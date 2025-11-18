@@ -1,0 +1,418 @@
+{
+  "common": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "projects": "Projects",
+    "contact": "Contact",
+    "contactUs": "Contact Us",
+    "learnMore": "Learn More",
+    "signUp": "Sign Up",
+    "readMore": "Read More",
+    "getQuote": "Get a Quote",
+    "copyright": "All rights reserved.",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "notFound": "Page not found",
+    "ourImpact": "Our Impact",
+    "allServices": "All Services",
+    "allProjects": "All Projects",
+    "recentProjects": "Recent Projects",
+    "engineeringServices": "Engineering Services",
+    "businessServices": "Business Services",
+    "digitalServices": "Digital Services",
+    "rasSystemsDesign": "RAS Systems Design",
+    "hftsTechnology": "HFTS Technology",
+    "hatcheryEngineering": "Hatchery Engineering",
+    "waterTreatment": "Water Treatment Systems",
+    "processingFacility": "Processing Facilities",
+    "feedMill": "Feed Mill Engineering",
+    "customEquipment": "Custom Equipment Design",
+    "recreationalWaterSystems": "Recreational Water Systems",
+    "feasibilityStudies": "Feasibility Studies",
+    "digitalSolutions": "Digital Solutions",
+    "innovation": "Innovation & Research",
+    "sustainability": "Sustainability",
+    "partnerships": "Partnerships",
+    "community": "Community Impact",
+    "genderEquality": "Gender Equality"
+  },
+  "navigation": {
+    "mainMenu": "Main Menu",
+    "skipToContent": "Skip to content"
+  },
+  "homepage": {
+    "hero": {
+      "title": "Vismar Aqua",
+      "tagline": "Professional Aquaculture Solutions",
+      "subtitle": "The ONLY aquaculture firm with in-house software development",
+      "description": "Expert design, installation, and maintenance of aquaculture systems with cutting-edge software solutions",
+      "cta": "Explore Our Services",
+      "ctaSecondary": "View Software Solutions",
+      "eyebrow": "AQUACULTURE ENGINEERING & DIGITAL SOLUTIONS",
+      "headline": "Engineering Tomorrow's Aquaculture, Today",
+      "subheadline": "Complete facility design + custom software solutions for modern fish farming. The only aquaculture engineers who build their own code.",
+      "ctaPrimary": "Start Your Project",
+      "ctaSecondary": "See Our Work",
+      "trustBadge1": "15+ Years Experience",
+      "trustBadge2": "50+ Projects Delivered",
+      "trustBadge3": "ISO Certified"
+    },
+    "stats": {
+      "experience": "Years of Experience",
+      "projects": "Projects Completed",
+      "countries": "Countries Served",
+      "software": "Software Solutions"
+    },
+    "software": {
+      "title": "In-House Software Development",
+      "subtitle": "THE ONLY FIRM WITH IN-HOUSE SOFTWARE",
+      "description": "We're not just aquaculture experts - we're software innovators. Our proprietary solutions give your operations a competitive edge.",
+      "cta": "Explore All Software Solutions"
+    },
+    "services": {
+      "title": "Our Services",
+      "subtitle": "COMPREHENSIVE AQUACULTURE SOLUTIONS",
+      "description": "From system design to ongoing maintenance, we deliver complete aquaculture solutions"
+    },
+    "projects": {
+      "title": "Featured Project",
+      "subtitle": "PROVEN RESULTS",
+      "description": "See how we've transformed aquaculture operations worldwide",
+      "viewAll": "View All Projects"
+    },
+    "blog": {
+      "tagline": "Blog",
+      "title": "Latest Aquaculture Insights",
+      "description": "Stay updated with the latest aquaculture trends",
+      "viewAll": "View All Posts",
+      "readTime": "min read"
+    },
+    "cta": {
+      "consultation": {
+        "title": "Ready to Transform Your Aquaculture Operation?",
+        "description": "Get a free consultation with our experts and discover how our solutions can optimize your business.",
+        "button": "Schedule Free Consultation"
+      },
+      "demo": {
+        "title": "Experience Our Software Solutions",
+        "description": "See our proprietary software in action with a personalized demo.",
+        "button": "Request Software Demo"
+      }
+    },
+    "trustIndicators": {
+      "stat1Number": "15+",
+      "stat1Label": "Years Aquaculture Engineering Experience",
+      "stat2Number": "50+",
+      "stat2Label": "Projects Delivered Globally",
+      "stat3Number": "20+",
+      "stat3Label": "Countries Across 4 Continents",
+      "stat4Number": "ISO 9001",
+      "stat4Label": "Certified Quality Systems"
+    },
+    "dualValue": {
+      "engineering": {
+        "headline": "Complete Engineering Solutions",
+        "description": "From concept to commissioning, we design and build modern aquaculture facilities optimized for efficiency, sustainability, and profitability.",
+        "feature1": "RAS & HFTS Systems Design",
+        "feature2": "Hatchery & Processing Facilities",
+        "feature3": "Water Treatment Solutions",
+        "feature4": "Feed Mill Engineering",
+        "feature5": "Custom Equipment Design",
+        "cta": "View All Services"
+      },
+      "business": {
+        "headline": "Strategic Business Planning",
+        "description": "De-risk your investment with comprehensive feasibility studies and business planning. Make informed decisions backed by expert analysis.",
+        "feature1": "Comprehensive Feasibility Studies",
+        "feature2": "Financial Modeling & ROI Analysis",
+        "feature3": "Market Research & Risk Assessment",
+        "feature4": "Investment Decision Support",
+        "feature5": "Project Optimization Strategies",
+        "cta": "Get Expert Analysis"
+      },
+      "software": {
+        "headline": "Custom Digital Solutions",
+        "description": "The only aquaculture engineers who build their own software. We understand your farm because we designed it.",
+        "feature1": "AI-Powered Fish Counting",
+        "feature2": "Farm Management Platforms",
+        "feature3": "Real-Time IoT Monitoring",
+        "feature4": "Biofloc Control Systems",
+        "feature5": "Custom App Development",
+        "cta": "Explore Software"
+      }
+    },
+    "featuredProject": {
+      "eyebrow": "FEATURED PROJECT",
+      "headline": "AQUAVISION: AI-Powered Aquaculture Monitoring",
+      "description": "Revolutionary computer vision system combining real-time biomass estimation, automated fish counting, behavior analysis, and water quality monitoring. The first fully integrated AI platform built specifically for modern aquaculture operations.",
+      "stat1Number": "99.2%",
+      "stat1Label": "Counting Accuracy",
+      "stat2Number": "Real-Time",
+      "stat2Label": "24/7 Monitoring",
+      "stat3Number": "8 Parameters",
+      "stat3Label": "Water Quality Sensors",
+      "stat4Number": "40% Cost",
+      "stat4Label": "Reduction vs Manual",
+      "cta": "Discover AQUAVISION"
+    },
+    "serviceCategories": {
+      "eyebrow": "OUR SERVICES",
+      "headline": "Complete Solutions for Modern Aquaculture",
+      "description": "From engineering to software, we deliver end-to-end solutions for the aquaculture industry",
+      "service1": {
+        "name": "RAS Systems Design",
+        "description": "Energy-efficient closed-loop systems for any species"
+      },
+      "service2": {
+        "name": "HFTS Technology",
+        "description": "Combining efficiency of RAS with natural water flow"
+      },
+      "service3": {
+        "name": "Hatchery Engineering",
+        "description": "From broodstock to post-larvae production"
+      },
+      "service4": {
+        "name": "Water Treatment Systems",
+        "description": "Filtration, biofilters, UV, ozone solutions"
+      },
+      "service5": {
+        "name": "Processing Facility Design",
+        "description": "HACCP-compliant post-harvest facilities"
+      },
+      "service6": {
+        "name": "Feed Mill Engineering",
+        "description": "Custom feed production facilities"
+      },
+      "service7": {
+        "name": "Custom Equipment Design",
+        "description": "Engineered solutions for unique requirements"
+      },
+      "service8": {
+        "name": "Digital Solutions",
+        "description": "AI, IoT, and custom farm management software"
+      },
+      "service9": {
+        "name": "Feasibility Studies",
+        "description": "Strategic planning and investment analysis"
+      },
+      "learnMore": "Learn More"
+    },
+    "technologies": {
+      "eyebrow": "INNOVATION",
+      "headline": "Cutting-Edge Technologies",
+      "description": "Innovation that sets us apart from traditional engineering firms",
+      "tech1": {
+        "title": "HFTS: The Future of Sustainable Aquaculture",
+        "description": "Hybrid systems that reduce energy by 40% while maintaining optimal water quality for intensive fish farming.",
+        "cta": "Read More"
+      },
+      "tech2": {
+        "title": "AI-Powered Monitoring Systems",
+        "description": "24/7 automated counting and behavior analysis using computer vision and machine learning algorithms.",
+        "cta": "Learn More"
+      },
+      "tech3": {
+        "title": "Biofloc Technology Integration",
+        "description": "Sustainable, high-density production systems that naturally manage waste and enhance feed efficiency.",
+        "cta": "Discover"
+      }
+    },
+    "softwareAnnouncement": {
+      "badge": "NEW CAPABILITY",
+      "headline": "Introducing Vismar Aqua IT Solutions",
+      "description": "We've spent years engineering aquaculture systems. Now, we're taking the next step—building custom digital solutions for the industry. We understand aquaculture from the inside, and we write the code ourselves. That means we can develop virtually any app, platform, or tool that makes daily operations easier.",
+      "feature1": "AI-based post-larvae counting",
+      "feature2": "Real-time pond monitoring",
+      "feature3": "Digital farm management dashboards",
+      "feature4": "Feed planning & inventory tracking",
+      "feature5": "Genetic selection databases",
+      "feature6": "Custom solutions for your needs",
+      "cta": "Explore Software Solutions"
+    },
+    "process": {
+      "eyebrow": "HOW WE WORK",
+      "headline": "How We Work",
+      "subtitle": "Our proven Design-Build-Operate-Transfer methodology",
+      "step1": {
+        "title": "Design",
+        "description": "Feasibility studies, engineering calculations, and detailed technical documentation tailored to your needs.",
+        "timeline": "120-180 days"
+      },
+      "step2": {
+        "title": "Build",
+        "description": "Turnkey construction with our own teams and trusted partners. Equipment installation and system integration.",
+        "timeline": "180-365 days"
+      },
+      "step3": {
+        "title": "Operate",
+        "description": "Post-commissioning support, staff training, and operational optimization to reach design capacity.",
+        "timeline": "90-180 days"
+      },
+      "step4": {
+        "title": "Transfer",
+        "description": "Complete knowledge transfer, operational procedures, and ongoing support until full independence.",
+        "timeline": "Ongoing"
+      }
+    },
+    "testimonials": {
+      "headline": "What Our Clients Say",
+      "testimonial1": {
+        "quote": "Professional approach. Systematic, consistent, result-oriented director of the company. I enjoy working together.",
+        "author": "Valerii",
+        "role": "Business Planning Workshop"
+      },
+      "testimonial2": {
+        "quote": "Experienced employees who not only solve the problems and difficulties that have arisen, but also provide solutions that allow you to save money in the future.",
+        "author": "Alexander",
+        "role": "Project Manager"
+      },
+      "testimonial3": {
+        "quote": "I read a lot of literature, but I could only get answers to exciting questions from Lubomir, the director of Vismar Aqua. Thank you, real professional.",
+        "author": "Victor",
+        "role": "Aquaculture Farmer"
+      }
+    },
+    "finalCTA": {
+      "headline": "Ready to Start Your Aquaculture Project?",
+      "subtitle": "Let's discuss how we can help bring your vision to life",
+      "engineering": {
+        "headline": "Engineering Project",
+        "description": "Need a new facility or farm expansion?",
+        "cta": "Submit Project"
+      },
+      "business": {
+        "headline": "Feasibility Study",
+        "description": "Planning a new aquaculture investment?",
+        "cta": "Request Analysis"
+      },
+      "software": {
+        "headline": "Software Development",
+        "description": "Looking for custom digital solutions?",
+        "cta": "Submit Request"
+      },
+      "form": {
+        "name": "Name *",
+        "email": "Email *",
+        "company": "Company Name",
+        "phone": "Phone",
+        "projectDetails": "Project Details *",
+        "businessNeeds": "Tell us about your project *",
+        "softwareNeeds": "Software Needs *"
+      },
+      "orCall": "Or call us:"
+    },
+    "whyVismar": {
+      "section": {
+        "label": "WHY CHOOSE VISMAR AQUA?",
+        "title": "The Ukrainian Advantage",
+        "subtitle": "World-class expertise, exceptional value, unmatched dedication"
+      },
+      "card1": {
+        "headline": "50% Lower Costs",
+        "subheadline": "Premium Quality, Smart Pricing",
+        "body": "World-class aquaculture engineering at half the price of Western European firms. Lower operational costs mean exceptional value—without compromising on quality.",
+        "badge": "↓ 50% vs. EU competitors"
+      },
+      "card2": {
+        "headline": "9-9, Six Days a Week",
+        "subheadline": "Your Timezone, Your Schedule",
+        "body": "Same-day responses, flexible meetings, and genuine commitment to your timeline. No more waiting weeks for a 30-minute call.",
+        "badge": "⏱️ <4 hours response time"
+      },
+      "card3": {
+        "headline": "AI-Accelerated Engineering",
+        "subheadline": "Next-Gen Tools, Faster Delivery",
+        "body": "Latest 3D CAD, AI-assisted design, real-time cloud collaboration. Cutting-edge technology delivers better results faster.",
+        "badge": "🤖 AI-powered design"
+      },
+      "card4": {
+        "headline": "War-Proven Reliability",
+        "subheadline": "Delivering Under Any Conditions",
+        "body": "We've delivered projects during air raids and blackouts. Crisis-tested resilience ensures your project stays on track—no matter what.",
+        "badge": "✓ Zero cancellations since 2022"
+      },
+      "cta": "Learn More"
+    }
+  },
+  "footer": {
+    "company": "Vismar Aqua",
+    "tagline": "Professional Water Treatment Solutions",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "followUs": "Follow Us"
+  },
+  "language": {
+    "switchTo": "Switch to",
+    "en": "English",
+    "uk": "Ukrainian"
+  },
+  "pages": {
+    "about": {
+      "title": "About Us",
+      "description": "Learn about Vismar Aqua's expertise in aquaculture systems and software development",
+      "subtitle": "LEADING AQUACULTURE INNOVATORS"
+    },
+    "services": {
+      "title": "Services",
+      "description": "Comprehensive aquaculture solutions from design to maintenance",
+      "subtitle": "COMPLETE AQUACULTURE SERVICES",
+      "cta": "Request a Consultation"
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "Explore our portfolio of successful aquaculture installations worldwide",
+      "subtitle": "PROVEN PROJECT EXCELLENCE",
+      "cta": "View All Projects"
+    },
+    "equipment": {
+      "title": "Equipment",
+      "description": "High-quality aquaculture equipment and RAS system components",
+      "subtitle": "PREMIUM AQUACULTURE EQUIPMENT",
+      "content": "We supply professional-grade equipment for recirculating aquaculture systems, including filtration, aeration, monitoring systems, and complete RAS solutions.",
+      "cta": "View Equipment Catalog"
+    },
+    "whatIsRas": {
+      "title": "What is RAS?",
+      "description": "Understanding Recirculating Aquaculture Systems and their benefits",
+      "subtitle": "RECIRCULATING AQUACULTURE SYSTEMS EXPLAINED",
+      "content": "RAS (Recirculating Aquaculture Systems) are advanced fish farming systems that reuse water through filtration and treatment, enabling sustainable and efficient aquaculture production.",
+      "benefits": {
+        "title": "Benefits of RAS",
+        "waterEfficiency": "90-99% water conservation",
+        "yearRound": "Year-round production",
+        "biosecurity": "Enhanced biosecurity",
+        "environmental": "Reduced environmental impact"
+      },
+      "cta": "Learn More About RAS"
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Get in touch with our aquaculture experts",
+      "subtitle": "LET'S DISCUSS YOUR PROJECT"
+    }
+  },
+  "contact": {
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send Message",
+      "namePlaceholder": "Your full name",
+      "emailPlaceholder": "your.email@example.com",
+      "subjectPlaceholder": "What would you like to discuss?",
+      "messagePlaceholder": "Tell us about your project or inquiry...",
+      "success": "Message sent successfully! We'll get back to you soon.",
+      "error": "Failed to send message. Please try again."
+    },
+    "info": {
+      "title": "Contact Information",
+      "address": "Office Address",
+      "phone": "Phone Number",
+      "email": "Email Address",
+      "hours": "Business Hours"
+    }
+  }
+}

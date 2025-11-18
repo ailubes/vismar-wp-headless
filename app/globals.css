@@ -1,0 +1,618 @@
+@import "tailwindcss";
+
+@theme {
+  /* NEW DESIGN SYSTEM - Brand Colors (from DESIGN-LAYOUT.md) */
+  --color-brand-primary: #1B4B63;      /* Deep Ocean Blue */
+  --color-brand-secondary: #00A8B5;    /* Aqua/Cyan */
+  --color-brand-accent: #FF6B35;       /* Coral Orange */
+  --color-brand-success: #4ECDC4;      /* Seafoam Green */
+
+  /* Legacy Brand Colors (backward compatibility - deprecated) */
+  --color-brand-blue: #5db4d2;
+  --color-brand-blue-dark: #1895c0;
+  --color-brand-teal: #21BDA1;
+
+  /* Neutral Colors - Extended Gray Scale */
+  --color-gray-50: #F7FAFC;    /* Backgrounds */
+  --color-gray-200: #E2E8F0;   /* Borders */
+  --color-gray-600: #718096;   /* Secondary text */
+  --color-gray-900: #1A202C;   /* Primary text */
+  --color-white: #FFFFFF;
+
+  /* Legacy Neutral Colors (backward compatibility) */
+  --color-neutral-darkest: #020908;
+  --color-neutral-gray: #d9dad9;
+  --color-neutral-aqua-light: #e8f8f5;
+  --color-neutral-teal-light: #d2f1ec;
+  --color-neutral-blue-light: #e7f4f8;
+
+  /* Design System Colors (light mode) - Updated to new scheme */
+  --color-background: #FFFFFF;
+  --color-foreground: #1A202C;          /* Updated to gray-900 */
+  --color-foreground-secondary: #718096; /* Updated to gray-600 */
+  --color-foreground-tertiary: #9CA3AF;
+  --color-surface: #F7FAFC;             /* Updated to gray-50 */
+  --color-card: #ffffff;
+  --color-card-foreground: #1A202C;     /* Updated to gray-900 */
+  --color-popover: #ffffff;
+  --color-popover-foreground: #1A202C;  /* Updated to gray-900 */
+  --color-primary: #1B4B63;             /* Updated to brand primary */
+  --color-primary-hover: #00A8B5;       /* Updated to brand secondary */
+  --color-primary-light: #e7f4f8;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #00A8B5;           /* Updated to brand secondary */
+  --color-secondary-foreground: #FFFFFF;
+  --color-muted: #F7FAFC;               /* Updated to gray-50 */
+  --color-muted-foreground: #718096;    /* Updated to gray-600 */
+  --color-accent: #FF6B35;              /* Updated to brand accent */
+  --color-accent-light: #FFE5DD;        /* Light coral tint */
+  --color-accent-dark: #E5572B;         /* Dark coral shade */
+  --color-accent-foreground: #ffffff;
+  --color-success: #4ECDC4;             /* Updated to brand success */
+  --color-success-foreground: #ffffff;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #E2E8F0;              /* Updated to gray-200 */
+  --color-border-strong: #D1D5DB;
+  --color-input: #E5E7EB;
+  --color-ring: #1B4B63;                /* Updated to brand primary */
+
+  /* Font families */
+  --font-family-heading: var(--font-poppins), var(--font-montserrat), system-ui, sans-serif;
+  --font-family-body: var(--font-poppins), var(--font-montserrat), system-ui, sans-serif;
+  --font-family-mono: ui-monospace, monospace;
+
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius: 0.5rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  /* Spacing scale - Figma Design System */
+  --spacing-2: 0.5rem;   /* 8px */
+  --spacing-4: 1rem;     /* 16px */
+  --spacing-6: 1.5rem;   /* 24px */
+  --spacing-8: 2rem;     /* 32px */
+  --spacing-12: 3rem;    /* 48px */
+  --spacing-16: 4rem;    /* 64px */
+  --spacing-20: 5rem;    /* 80px */
+  --spacing-28: 7rem;    /* 112px - Section padding */
+
+  /* Shadows */
+  --shadow-2xs: 0px 4px 8px -1px rgb(0 0 0 / 0.05);
+  --shadow-xs: 0px 4px 8px -1px rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow: 0px 4px 8px -1px rgb(0 0 0 / 0.10), 0px 1px 2px -2px rgb(0 0 0 / 0.10);
+  --shadow-md: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 8px 24px rgba(0, 0, 0, 0.15);
+  --shadow-2xl: 0px 4px 8px -1px rgb(0 0 0 / 0.25);
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-family-body);
+  line-height: 1.5; /* 150% from Figma */
+  font-size: 1rem; /* 16px body text */
+}
+
+/* Figma Typography System */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  font-family: var(--font-family-heading);
+}
+
+h1 {
+  font-size: 3.5rem; /* 56px */
+  line-height: 120%;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: 3rem; /* 48px */
+  line-height: 120%;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: 2rem; /* 32px */
+  line-height: 130%;
+  letter-spacing: -0.01em;
+}
+
+h4 {
+  font-size: 2rem; /* 32px */
+  line-height: 130%;
+  letter-spacing: -0.01em;
+}
+
+h5 {
+  font-size: 1.5rem; /* 24px */
+  line-height: 140%;
+  letter-spacing: -0.01em;
+}
+
+h6 {
+  font-size: 1.125rem; /* 18px */
+  line-height: 150%;
+}
+
+/* Responsive typography adjustments */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem; /* 40px on mobile */
+  }
+  h2 {
+    font-size: 2rem; /* 32px on mobile */
+  }
+  h3, h4 {
+    font-size: 1.5rem; /* 24px on mobile */
+  }
+  h5 {
+    font-size: 1.25rem; /* 20px on mobile */
+  }
+}
+
+/* Button component styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--color-ring);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.btn-primary:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--color-ring);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  background-color: var(--color-secondary);
+  color: var(--color-secondary-foreground);
+}
+
+.btn-secondary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--color-ring);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  background-color: transparent;
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+.btn-outline:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--color-ring);
+}
+
+/* Container */
+.container-custom {
+  max-width: 90rem; /* 1440px - Figma design width */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-custom {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-custom {
+    padding-left: 4rem; /* 64px horizontal padding from Figma */
+    padding-right: 4rem;
+  }
+}
+
+/* Section spacing - Figma Design System */
+.section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-top: 7rem; /* 112px from Figma */
+    padding-bottom: 7rem;
+  }
+}
+
+/* Card styles */
+.card {
+  background-color: var(--color-card);
+  color: var(--color-card-foreground);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+  box-shadow: var(--shadow-md);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* WordPress content styles */
+.wp-content {
+  max-width: none;
+}
+
+.wp-content img {
+  border-radius: 0.5rem;
+}
+
+.wp-content a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.wp-content a:hover {
+  opacity: 0.8;
+}
+
+/* Utility classes */
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, var(--color-brand-primary), var(--color-brand-secondary));
+}
+
+.bg-gradient-primary {
+  background-image: linear-gradient(to bottom right, var(--color-brand-primary), var(--color-brand-secondary));
+}
+
+.bg-gradient-aqua {
+  background-image: linear-gradient(to bottom right, var(--color-brand-primary), var(--color-brand-success));
+}
+
+/* New gradient utilities using updated color scheme */
+.bg-gradient-accent {
+  background-image: linear-gradient(to bottom right, var(--color-brand-accent), var(--color-brand-primary));
+}
+
+.text-gradient-ocean {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(135deg, var(--color-brand-primary), var(--color-brand-secondary), var(--color-brand-success));
+}
+
+/* Shadow utilities using design system */
+.shadow-custom-sm {
+  box-shadow: var(--shadow-sm);
+}
+
+.shadow-custom {
+  box-shadow: var(--shadow);
+}
+
+.shadow-custom-md {
+  box-shadow: var(--shadow-md);
+}
+
+.shadow-custom-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+.shadow-custom-xl {
+  box-shadow: var(--shadow-xl);
+}
+
+.shadow-custom-2xl {
+  box-shadow: var(--shadow-2xl);
+}
+
+/* Border radius utilities using design system */
+.rounded-custom-sm {
+  border-radius: var(--radius-sm);
+}
+
+.rounded-custom-md {
+  border-radius: var(--radius-md);
+}
+
+.rounded-custom-lg {
+  border-radius: var(--radius-lg);
+}
+
+.rounded-custom-xl {
+  border-radius: var(--radius-xl);
+}
+
+/* Premium typography utilities */
+.text-hero {
+  font-size: clamp(2.5rem, 6vw, 3.5rem); /* Responsive 40px-56px */
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+.text-display {
+  font-size: clamp(2rem, 5vw, 3rem); /* Responsive 32px-48px */
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+/* ===================================
+   Premium Micro-Interactions
+   =================================== */
+
+/* Button micro-interactions */
+.button-lift {
+  transition-property: transform, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.button-lift:hover {
+  transform: translateY(-2px);
+}
+
+.button-lift:active {
+  transform: scale(0.98);
+}
+
+.button-press {
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button-press:active {
+  transform: scale(0.98);
+}
+
+/* Card micro-interactions */
+.card-lift {
+  transition-property: transform, box-shadow, border-color;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.card-lift:hover {
+  transform: translateY(-4px);
+}
+
+.card-lift-subtle {
+  transition-property: transform, box-shadow;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.card-lift-subtle:hover {
+  transform: translateY(-2px) scale(1.01);
+}
+
+/* Icon micro-interactions */
+.icon-rotate {
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon-rotate-parent:hover .icon-rotate {
+  transform: rotate(5deg);
+}
+
+.icon-scale {
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon-scale-parent:hover .icon-scale {
+  transform: scale(1.1);
+}
+
+.icon-pulse {
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon-pulse-parent:hover .icon-pulse {
+  animation: icon-pulse-animation 600ms ease-in-out;
+}
+
+@keyframes icon-pulse-animation {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Link micro-interactions */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+.link-scale {
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.link-scale:hover {
+  transform: scale(1.02);
+}
+
+.link-scale:active {
+  transform: scale(0.98);
+}
+
+/* Border glow effect */
+.border-glow {
+  transition: border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.border-glow:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+/* Shadow transitions for different levels */
+.shadow-transition {
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.shadow-transition-sm:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.shadow-transition-md:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.shadow-transition-lg:hover {
+  box-shadow: var(--shadow-xl);
+}
+
+/* Smooth color transitions */
+.color-transition {
+  transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+              color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Arrow slide animation */
+.arrow-slide {
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.arrow-slide-parent:hover .arrow-slide {
+  transform: translateX(4px);
+}
+
+/* Dropdown fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .button-lift,
+  .button-press,
+  .card-lift,
+  .card-lift-subtle,
+  .icon-rotate,
+  .icon-scale,
+  .icon-pulse,
+  .link-underline,
+  .link-scale,
+  .border-glow,
+  .shadow-transition,
+  .color-transition,
+  .arrow-slide,
+  .animate-fadeIn {
+    transition: none;
+    animation: none;
+    transform: none;
+  }
+
+  .button-lift:hover,
+  .card-lift:hover,
+  .card-lift-subtle:hover {
+    transform: none;
+  }
+
+  .icon-rotate-parent:hover .icon-rotate,
+  .icon-scale-parent:hover .icon-scale,
+  .arrow-slide-parent:hover .arrow-slide {
+    transform: none;
+  }
+}
