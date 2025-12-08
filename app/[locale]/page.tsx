@@ -358,7 +358,7 @@ export default async function HomePage({ params }: Props) {
               {/* Left - Image (60% / 3 columns) */}
               <div className="lg:col-span-3 relative h-[400px] lg:h-[600px] rounded-2xl overflow-hidden">
                 <Image
-                  src="/images/template/placeholder-image1.png"
+                  src="/images/aquavision-logo-frontpage-featured.png"
                   alt={t('featuredProject.headline')}
                   fill
                   className="object-cover"

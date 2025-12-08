@@ -7,7 +7,7 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
 type Props = {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: string; page?: string[] }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function BlogPage({ params }: Props) {
-  const { locale } = await params;
+  const { locale, page: pageParam } = await params;
 
   // Enable static rendering
   setRequestLocale(locale);
@@ -30,8 +30,17 @@ export default async function BlogPage({ params }: Props) {
   const t = await getTranslations('common');
   const languageCode = locale === 'en' ? 'EN' : 'UK';
 
-  // This page always shows page 1
-  const currentPage = 1;
+  // Get page number from URL path
+  // /blog → page 1
+  // /blog/2 → page 2
+  // /blog/3 → page 3
+  const pageNumber = pageParam?.[0];
+  const currentPage = pageNumber ? parseInt(pageNumber, 10) : 1;
+
+  // Validate page number
+  if (pageNumber && (isNaN(currentPage) || currentPage < 1)) {
+    notFound();
+  }
 
   // Pagination settings
   const postsPerPage = 12;

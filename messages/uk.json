@@ -337,11 +337,68 @@
   },
   "footer": {
     "company": "Вісмар Аква",
-    "tagline": "Професійні рішення для очищення води",
-    "address": "Адреса",
-    "phone": "Телефон",
-    "email": "Електронна пошта",
-    "followUs": "Слідкуйте за нами"
+    "tagline": "Інженерна досконалість в аквакультурі",
+    "description": "Ми проектуємо та будуємо передові системи аквакультури, поєднуючи десятиліття інженерної експертизи з інноваційними цифровими рішеннями.",
+    "europeanOffice": "Європейський офіс",
+    "companyName": "Vismar Aquaculture OÜ",
+    "address": {
+      "street": "Ahtri tn 12",
+      "city": "Таллінн, Естонія 15551"
+    },
+    "ukraineBadge": "Інжиніринг з України з 2007 року",
+    "sections": {
+      "engineering": "Інжиніринг",
+      "businessServices": "Бізнес-послуги",
+      "digitalSolutions": "Цифрові рішення",
+      "company": "Компанія",
+      "getInTouch": "Зв'яжіться з нами"
+    },
+    "engineering": {
+      "rasSystemsDesign": "Проектування систем УЗВ",
+      "hftsTechnology": "Технологія HFTS",
+      "hatcheryEngineering": "Інжиніринг інкубаторів",
+      "waterTreatment": "Водоочищення",
+      "processingFacilities": "Переробні об'єкти",
+      "feedMillDesign": "Проектування кормозаводів",
+      "customEquipment": "Нестандартне обладнання",
+      "recreationalWaterSystems": "Рекреаційні водні системи"
+    },
+    "business": {
+      "feasibilityStudies": "Техніко-економічне обґрунтування"
+    },
+    "digital": {
+      "aiFishCounting": "ШІ-підрахунок риби",
+      "iotMonitoring": "IoT-моніторинг",
+      "farmManagement": "Управління фермою",
+      "bioflocControl": "Контроль біофлоку",
+      "customApps": "Додатки на замовлення"
+    },
+    "company": {
+      "aboutUs": "Про нас",
+      "ourProjects": "Наші проекти",
+      "caseStudies": "Кейси",
+      "blog": "Блог",
+      "careers": "Кар'єра"
+    },
+    "contact": {
+      "email": "vismaraqua@gmail.com",
+      "phone": "+380 67 502 47 30",
+      "website": "vismar-aqua.com"
+    },
+    "cta": {
+      "startProject": "Почати ваш проєкт"
+    },
+    "copyright": "© {year} Vismar Aquaculture OÜ. Всі права захищені.",
+    "legal": {
+      "privacy": "Конфіденційність",
+      "terms": "Умови",
+      "registration": "РЕГ 565762496683-03"
+    },
+    "social": {
+      "linkedinLabel": "LinkedIn",
+      "facebookLabel": "Facebook",
+      "youtubeLabel": "YouTube"
+    }
   },
   "language": {
     "switchTo": "Перемкнути на",

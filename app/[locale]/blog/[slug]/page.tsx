@@ -49,17 +49,28 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
+  const languageCode = locale === 'en' ? 'EN' : 'UK';
 
   try {
     const client = getClient();
     const { data } = await client.query({
       query: GET_POST_BY_SLUG,
-      variables: { slug },
+      variables: {
+        slug,
+        language: languageCode
+      },
     });
 
-    const post = data?.post;
+    const post = data?.posts?.nodes?.[0];
 
     if (!post) {
+      return {
+        title: 'Post Not Found',
+      };
+    }
+
+    // Verify the returned post language matches the requested language
+    if (post.language?.code !== languageCode) {
       return {
         title: 'Post Not Found',
       };
@@ -81,6 +92,7 @@ export default async function BlogDetailPage({ params }: Props) {
   setRequestLocale(locale);
 
   const t = await getTranslations('common');
+  const languageCode = locale === 'en' ? 'EN' : 'UK';
 
   let postData: any = null;
 
@@ -88,7 +100,10 @@ export default async function BlogDetailPage({ params }: Props) {
     const client = getClient();
     const result = await client.query({
       query: GET_POST_BY_SLUG,
-      variables: { slug },
+      variables: {
+        slug,
+        language: languageCode
+      },
     });
     postData = result.data;
   } catch (error) {
@@ -96,9 +111,14 @@ export default async function BlogDetailPage({ params }: Props) {
     notFound();
   }
 
-  const post = postData?.post;
+  const post = postData?.posts?.nodes?.[0];
 
   if (!post) {
+    notFound();
+  }
+
+  // Verify the returned post language matches the requested language
+  if (post.language?.code !== languageCode) {
     notFound();
   }
 
@@ -144,15 +164,27 @@ export default async function BlogDetailPage({ params }: Props) {
 
       {/* Featured Image Hero */}
       {post.featuredImage?.node?.sourceUrl ? (
-        <div className="relative h-96 md:h-[500px] bg-gradient-primary">
+        <div className="relative h-96 md:h-[500px]">
+          {/* Background Image */}
           <Image
-            src={getOptimizedImageUrl(post.featuredImage.node.sourceUrl)}
-            alt={post.featuredImage.node.altText || post.title}
+            src="/bg-hero-blog.jpeg"
+            alt=""
             fill
             sizes="100vw"
             className="object-cover"
             priority
           />
+          {/* Featured Image Overlay */}
+          <div className="absolute inset-0">
+            <Image
+              src={getOptimizedImageUrl(post.featuredImage.node.sourceUrl)}
+              alt={post.featuredImage.node.altText || post.title}
+              fill
+              sizes="100vw"
+              className="object-cover opacity-30"
+              priority
+            />
+          </div>
           <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/30 to-neutral-900/70 flex items-end">
             <div className="container-custom pb-12">
               {/* Categories */}
@@ -193,8 +225,18 @@ export default async function BlogDetailPage({ params }: Props) {
           </div>
         </div>
       ) : (
-        <section className="section bg-gradient-primary text-white">
-          <div className="container-custom">
+        <section className="relative section text-white">
+          {/* Background Image */}
+          <Image
+            src="/bg-hero-blog.jpeg"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/50 to-neutral-900/70" />
+          <div className="container-custom relative z-10">
             {/* Categories */}
             {post.categories?.nodes && post.categories.nodes.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-4">
@@ -240,18 +282,7 @@ export default async function BlogDetailPage({ params }: Props) {
             {/* WordPress Content */}
             {post.content && (
               <div
-                className="prose prose-lg prose-primary max-w-none mb-12
-                  prose-headings:font-semibold
-                  prose-h2:text-3xl prose-h2:mb-4 prose-h2:mt-8
-                  prose-h3:text-2xl prose-h3:mb-3 prose-h3:mt-6
-                  prose-p:text-neutral-700 prose-p:mb-4 prose-p:leading-relaxed
-                  prose-a:text-primary-600 prose-a:no-underline hover:prose-a:underline
-                  prose-ul:my-4 prose-ul:list-disc prose-ul:pl-6
-                  prose-ol:my-4 prose-ol:list-decimal prose-ol:pl-6
-                  prose-li:text-neutral-700 prose-li:mb-2
-                  prose-strong:text-neutral-900 prose-strong:font-semibold
-                  prose-img:rounded-lg prose-img:shadow-md
-                  prose-blockquote:border-l-4 prose-blockquote:border-primary-500 prose-blockquote:pl-4 prose-blockquote:italic"
+                className="prose max-w-none mb-12"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
             )}

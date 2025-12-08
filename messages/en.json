@@ -337,11 +337,68 @@
   },
   "footer": {
     "company": "Vismar Aqua",
-    "tagline": "Professional Water Treatment Solutions",
-    "address": "Address",
-    "phone": "Phone",
-    "email": "Email",
-    "followUs": "Follow Us"
+    "tagline": "Engineering Excellence in Aquaculture",
+    "description": "We design and build cutting-edge aquaculture systems, combining decades of engineering expertise with innovative digital solutions.",
+    "europeanOffice": "European Office",
+    "companyName": "Vismar Aquaculture OÜ",
+    "address": {
+      "street": "Ahtri tn 12",
+      "city": "Tallinn, Estonia 15551"
+    },
+    "ukraineBadge": "Engineering from Ukraine since 2007",
+    "sections": {
+      "engineering": "Engineering",
+      "businessServices": "Business Services",
+      "digitalSolutions": "Digital Solutions",
+      "company": "Company",
+      "getInTouch": "Get In Touch"
+    },
+    "engineering": {
+      "rasSystemsDesign": "RAS Systems Design",
+      "hftsTechnology": "HFTS Technology",
+      "hatcheryEngineering": "Hatchery Engineering",
+      "waterTreatment": "Water Treatment",
+      "processingFacilities": "Processing Facilities",
+      "feedMillDesign": "Feed Mill Design",
+      "customEquipment": "Custom Equipment",
+      "recreationalWaterSystems": "Recreational Water Systems"
+    },
+    "business": {
+      "feasibilityStudies": "Feasibility Studies"
+    },
+    "digital": {
+      "aiFishCounting": "AI Fish Counting",
+      "iotMonitoring": "IoT Monitoring",
+      "farmManagement": "Farm Management",
+      "bioflocControl": "Biofloc Control",
+      "customApps": "Custom Apps"
+    },
+    "company": {
+      "aboutUs": "About Us",
+      "ourProjects": "Our Projects",
+      "caseStudies": "Case Studies",
+      "blog": "Blog",
+      "careers": "Careers"
+    },
+    "contact": {
+      "email": "vismaraqua@gmail.com",
+      "phone": "+380 67 502 47 30",
+      "website": "vismar-aqua.com"
+    },
+    "cta": {
+      "startProject": "Start Your Project"
+    },
+    "copyright": "© {year} Vismar Aquaculture OÜ. All rights reserved.",
+    "legal": {
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "registration": "REG 565762496683-03"
+    },
+    "social": {
+      "linkedinLabel": "LinkedIn",
+      "facebookLabel": "Facebook",
+      "youtubeLabel": "YouTube"
+    }
   },
   "language": {
     "switchTo": "Switch to",

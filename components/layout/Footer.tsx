@@ -31,10 +31,10 @@ export default function Footer({ locale }: FooterProps) {
               />
             </Link>
             <p className="text-gray-200 font-medium leading-relaxed">
-              Engineering Excellence in Aquaculture
+              {t('tagline')}
             </p>
             <p className="text-gray-400 text-sm leading-relaxed">
-              We design and build cutting-edge aquaculture systems, combining decades of engineering expertise with innovative digital solutions.
+              {t('description')}
             </p>
 
             {/* Estonia Office Badge */}
@@ -42,11 +42,11 @@ export default function Footer({ locale }: FooterProps) {
               <div className="flex items-start space-x-2 text-emerald-400">
                 <Building2 className="w-5 h-5 mt-0.5 flex-shrink-0" />
                 <div className="text-xs leading-relaxed">
-                  <div className="font-semibold text-white mb-1">European Office</div>
+                  <div className="font-semibold text-white mb-1">{t('europeanOffice')}</div>
                   <div className="text-gray-400">
-                    Vismar Aquaculture OÜ<br />
-                    Ahtri tn 12<br />
-                    Tallinn, Estonia 15551
+                    {t('companyName')}<br />
+                    {t('address.street')}<br />
+                    {t('address.city')}
                   </div>
                 </div>
               </div>
@@ -56,7 +56,7 @@ export default function Footer({ locale }: FooterProps) {
             <div className="flex items-center space-x-2 text-brand-secondary pt-2">
               <span className="text-2xl">🇺🇦</span>
               <span className="text-xs font-medium text-gray-400">
-                Engineering from Ukraine since 2007
+                {t('ukraineBadge')}
               </span>
             </div>
           </div>
@@ -64,7 +64,7 @@ export default function Footer({ locale }: FooterProps) {
           {/* Column 2: Engineering Services */}
           <div>
             <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">
-              Engineering
+              {t('sections.engineering')}
             </h3>
             <ul className="space-y-2.5">
               <li>
@@ -72,7 +72,7 @@ export default function Footer({ locale }: FooterProps) {
                   href={`/${locale}/services/ras-systems`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
-                  RAS Systems Design
+                  {t('engineering.rasSystemsDesign')}
                 </Link>
               </li>
               <li>
@@ -80,7 +80,7 @@ export default function Footer({ locale }: FooterProps) {
                   href={`/${locale}/services/hfts-technology`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
-                  HFTS Technology
+                  {t('engineering.hftsTechnology')}
                 </Link>
               </li>
               <li>
@@ -88,7 +88,7 @@ export default function Footer({ locale }: FooterProps) {
                   href={`/${locale}/services/hatchery`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
-                  Hatchery Engineering
+                  {t('engineering.hatcheryEngineering')}
                 </Link>
               </li>
               <li>
@@ -96,7 +96,7 @@ export default function Footer({ locale }: FooterProps) {
                   href={`/${locale}/services/water-treatment`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
-                  Water Treatment
+                  {t('engineering.waterTreatment')}
                 </Link>
               </li>
               <li>
@@ -104,7 +104,7 @@ export default function Footer({ locale }: FooterProps) {
                   href={`/${locale}/services/processing`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
-                  Processing Facilities
+                  {t('engineering.processingFacilities')}
                 </Link>
               </li>
               <li>
@@ -112,7 +112,7 @@ export default function Footer({ locale }: FooterProps) {
                   href={`/${locale}/services/feed-mill`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
-                  Feed Mill Design
+                  {t('engineering.feedMillDesign')}
                 </Link>
               </li>
               <li>
@@ -120,7 +120,7 @@ export default function Footer({ locale }: FooterProps) {
                   href={`/${locale}/services/custom-design-equipment`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
-                  Custom Equipment
+                  {t('engineering.customEquipment')}
                 </Link>
               </li>
               <li>
@@ -128,7 +128,7 @@ export default function Footer({ locale }: FooterProps) {
                   href={`/${locale}/services/recreational-water-systems`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
-                  Recreational Water Systems
+                  {t('engineering.recreationalWaterSystems')}
                 </Link>
               </li>
             </ul>
@@ -138,7 +138,7 @@ export default function Footer({ locale }: FooterProps) {
           <div>
             {/* Business Services */}
             <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">
-              Business Services
+              {t('sections.businessServices')}
             </h3>
             <ul className="space-y-2.5 mb-6">
               <li>
@@ -146,14 +146,14 @@ export default function Footer({ locale }: FooterProps) {
                   href={`/${locale}/services/feasibility-studies`}
                   className="text-gray-400 hover:text-emerald-400 transition-colors duration-200 text-sm"
                 >
-                  Feasibility Studies
+                  {t('business.feasibilityStudies')}
                 </Link>
               </li>
             </ul>
 
             {/* Digital Solutions */}
             <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">
-              Digital Solutions
+              {t('sections.digitalSolutions')}
             </h3>
             <ul className="space-y-2.5">
               <li>
@@ -161,7 +161,7 @@ export default function Footer({ locale }: FooterProps) {
                   href={`/${locale}/software/ai-counting`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
-                  AI Fish Counting
+                  {t('digital.aiFishCounting')}
                 </Link>
               </li>
               <li>
@@ -169,7 +169,7 @@ export default function Footer({ locale }: FooterProps) {
                   href={`/${locale}/software/iot-monitoring`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
-                  IoT Monitoring
+                  {t('digital.iotMonitoring')}
                 </Link>
               </li>
               <li>
@@ -177,7 +177,7 @@ export default function Footer({ locale }: FooterProps) {
                   href={`/${locale}/software/farm-management`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
-                  Farm Management
+                  {t('digital.farmManagement')}
                 </Link>
               </li>
               <li>
@@ -185,7 +185,7 @@ export default function Footer({ locale }: FooterProps) {
                   href={`/${locale}/software/biofloc`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
-                  Biofloc Control
+                  {t('digital.bioflocControl')}
                 </Link>
               </li>
               <li>
@@ -193,7 +193,7 @@ export default function Footer({ locale }: FooterProps) {
                   href={`/${locale}/software/custom-apps`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
-                  Custom Apps
+                  {t('digital.customApps')}
                 </Link>
               </li>
             </ul>
@@ -202,7 +202,7 @@ export default function Footer({ locale }: FooterProps) {
           {/* Column 4: Company & Contact */}
           <div>
             <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">
-              Company
+              {t('sections.company')}
             </h3>
             <ul className="space-y-2.5 mb-6">
               <li>
@@ -210,7 +210,7 @@ export default function Footer({ locale }: FooterProps) {
                   href={`/${locale}/about`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
-                  About Us
+                  {t('company.aboutUs')}
                 </Link>
               </li>
               <li>
@@ -218,7 +218,7 @@ export default function Footer({ locale }: FooterProps) {
                   href={`/${locale}/projects`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
-                  Our Projects
+                  {t('company.ourProjects')}
                 </Link>
               </li>
               <li>
@@ -226,7 +226,7 @@ export default function Footer({ locale }: FooterProps) {
                   href={`/${locale}/case-studies`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
-                  Case Studies
+                  {t('company.caseStudies')}
                 </Link>
               </li>
               <li>
@@ -234,7 +234,7 @@ export default function Footer({ locale }: FooterProps) {
                   href={`/${locale}/blog`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
-                  Blog
+                  {t('company.blog')}
                 </Link>
               </li>
               <li>
@@ -242,42 +242,42 @@ export default function Footer({ locale }: FooterProps) {
                   href={`/${locale}/careers`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
-                  Careers
+                  {t('company.careers')}
                 </Link>
               </li>
             </ul>
 
             <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">
-              Get In Touch
+              {t('sections.getInTouch')}
             </h3>
             <ul className="space-y-3">
               <li className="flex items-start group">
                 <Mail className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0 text-brand-secondary" />
                 <a
-                  href="mailto:vismaraqua@gmail.com"
+                  href={`mailto:${t('contact.email')}`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm break-all"
                 >
-                  vismaraqua@gmail.com
+                  {t('contact.email')}
                 </a>
               </li>
               <li className="flex items-start group">
                 <Phone className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0 text-brand-secondary" />
                 <a
-                  href="tel:+380675024730"
+                  href={`tel:${t('contact.phone').replace(/\s/g, '')}`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
-                  +380 67 502 47 30
+                  {t('contact.phone')}
                 </a>
               </li>
               <li className="flex items-start group">
                 <Globe className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0 text-brand-secondary" />
                 <a
-                  href="https://vismar-aqua.com"
+                  href={`https://${t('contact.website')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
-                  vismar-aqua.com
+                  {t('contact.website')}
                 </a>
               </li>
             </ul>
@@ -286,7 +286,7 @@ export default function Footer({ locale }: FooterProps) {
               href={`/${locale}/contact`}
               className="inline-block mt-6 bg-gradient-to-r from-brand-primary to-brand-secondary hover:from-brand-primary/90 hover:to-brand-secondary/90 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:shadow-lg hover:scale-105 text-sm"
             >
-              Start Your Project
+              {t('cta.startProject')}
             </Link>
           </div>
         </div>
@@ -296,24 +296,24 @@ export default function Footer({ locale }: FooterProps) {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex flex-col md:flex-row items-center gap-4 text-xs text-gray-400">
               <p>
-                © {currentYear} Vismar Aquaculture OÜ. All rights reserved.
+                {t('copyright', { year: currentYear })}
               </p>
               <div className="flex items-center gap-3">
                 <Link
                   href={`/${locale}/privacy`}
                   className="hover:text-brand-secondary transition-colors duration-200"
                 >
-                  Privacy
+                  {t('legal.privacy')}
                 </Link>
                 <span className="text-gray-600">•</span>
                 <Link
                   href={`/${locale}/terms`}
                   className="hover:text-brand-secondary transition-colors duration-200"
                 >
-                  Terms
+                  {t('legal.terms')}
                 </Link>
                 <span className="text-gray-600">•</span>
-                <span className="text-gray-500">REG 565762496683-03</span>
+                <span className="text-gray-500">{t('legal.registration')}</span>
               </div>
             </div>
             <div className="flex space-x-4">
@@ -322,7 +322,7 @@ export default function Footer({ locale }: FooterProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-[#0A66C2] transition-all duration-200 hover:scale-110"
-                aria-label="LinkedIn"
+                aria-label={t('social.linkedinLabel')}
               >
                 <Linkedin className="w-5 h-5" />
               </a>
@@ -331,7 +331,7 @@ export default function Footer({ locale }: FooterProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-[#1877F2] transition-all duration-200 hover:scale-110"
-                aria-label="Facebook"
+                aria-label={t('social.facebookLabel')}
               >
                 <Facebook className="w-5 h-5" />
               </a>
@@ -340,7 +340,7 @@ export default function Footer({ locale }: FooterProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-[#FF0000] transition-all duration-200 hover:scale-110"
-                aria-label="YouTube"
+                aria-label={t('social.youtubeLabel')}
               >
                 <Youtube className="w-5 h-5" />
               </a>

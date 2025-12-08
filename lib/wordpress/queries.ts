@@ -662,55 +662,57 @@ export const GET_ALL_POSTS = gql`
   }
 `;
 
-// Query to get a single blog post by slug
+// Query to get a single blog post by slug and language
 export const GET_POST_BY_SLUG = gql`
-  query GetPostBySlug($slug: ID!) {
-    post(id: $slug, idType: SLUG) {
-      id
-      title
-      slug
-      excerpt
-      content
-      date
-      uri
-      author {
-        node {
-          name
-        }
-      }
-      featuredImage {
-        node {
-          sourceUrl
-          altText
-          mediaDetails {
-            width
-            height
+  query GetPostBySlug($slug: ID!, $language: LanguageCodeFilterEnum!) {
+    posts(where: { name: $slug, language: $language }, first: 1) {
+      nodes {
+        id
+        title
+        slug
+        excerpt
+        content
+        date
+        uri
+        author {
+          node {
+            name
           }
         }
-      }
-      categories {
-        nodes {
-          id
-          name
-          slug
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+            mediaDetails {
+              width
+              height
+            }
+          }
         }
-      }
-      tags {
-        nodes {
-          id
-          name
-          slug
+        categories {
+          nodes {
+            id
+            name
+            slug
+          }
         }
-      }
-      language {
-        code
-      }
-      translations {
-        title
-        uri
-        slug
+        tags {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
         language {
           code
+        }
+        translations {
+          title
+          uri
+          slug
+          language {
+            code
+          }
         }
       }
     }
