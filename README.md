@@ -2,6 +2,12 @@
 
 Modern, bilingual (EN/UA) headless WordPress frontend built with Next.js 14, TypeScript, Tailwind CSS, and next-intl.
 
+## Documentation
+
+For comprehensive deployment instructions, production setup, environment configuration, troubleshooting, and maintenance guides, see **[DEPLOYMENT.md](./DEPLOYMENT.md)**.
+
+This README covers quick start and development. For production deployment to Vercel, custom servers, or Docker, refer to the deployment guide.
+
 ## Tech Stack
 
 - **Next.js 14** - React framework with App Router
