@@ -58,8 +58,8 @@
   --color-ring: #1B4B63;                /* Updated to brand primary */
 
   /* Font families */
-  --font-family-heading: var(--font-poppins), var(--font-montserrat), system-ui, sans-serif;
-  --font-family-body: var(--font-poppins), var(--font-montserrat), system-ui, sans-serif;
+  --font-family-heading: var(--font-playfair), Georgia, serif;
+  --font-family-body: var(--font-montserrat), system-ui, sans-serif;
   --font-family-mono: ui-monospace, monospace;
 
   /* Border radius */
@@ -515,6 +515,41 @@ h6 {
   font-family: var(--font-family-mono);
   font-size: 0.9em;
   color: var(--color-brand-primary);
+}
+
+/* Code blocks with strong tags (warnings/callouts) - styled as notice boxes */
+/* Target WordPress pre.wp-block-code wrappers containing warnings */
+.prose pre.wp-block-code:has(code strong),
+.prose pre:has(code strong) {
+  background-color: #FEF3C7 !important;  /* Light yellow background for warnings */
+  border-left: 4px solid #F59E0B !important;  /* Orange left border */
+  padding: 1rem 1.25rem !important;
+  margin: 1.5rem 0 !important;
+  border-radius: 0.5rem !important;
+  color: var(--color-gray-900) !important;
+}
+
+.prose pre.wp-block-code code:has(strong),
+.prose pre code:has(strong),
+.prose code:has(strong),
+.prose p > code:only-child {
+  display: block !important;
+  font-family: var(--font-family-body) !important;
+  font-size: 1rem !important;
+  background-color: transparent !important;
+  color: var(--color-gray-900) !important;
+  line-height: 1.7 !important;
+  padding: 0 !important;
+}
+
+.prose pre.wp-block-code code:has(strong) strong,
+.prose code:has(strong) strong,
+.prose p > code:only-child strong {
+  color: #92400E !important;  /* Darker brown for strong text in warnings */
+  font-weight: 700 !important;
+  display: block !important;
+  margin-bottom: 0.5rem !important;
+  font-family: var(--font-family-body) !important;
 }
 
 .prose pre {

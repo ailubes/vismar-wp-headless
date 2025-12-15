@@ -37,9 +37,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        heading: ['var(--font-poppins)', 'var(--font-montserrat)', 'system-ui', 'sans-serif'],
-        body: ['var(--font-poppins)', 'var(--font-montserrat)', 'system-ui', 'sans-serif'],
-        poppins: ['var(--font-poppins)', 'system-ui', 'sans-serif'],
+        heading: ['var(--font-playfair)', 'Georgia', 'serif'],
+        body: ['var(--font-montserrat)', 'system-ui', 'sans-serif'],
+        playfair: ['var(--font-playfair)', 'Georgia', 'serif'],
         montserrat: ['var(--font-montserrat)', 'system-ui', 'sans-serif'],
       },
       fontSize: {

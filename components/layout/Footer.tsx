@@ -52,6 +52,21 @@ export default function Footer({ locale }: FooterProps) {
               </div>
             </div>
 
+            {/* Ukrainian Office Badge */}
+            <div className="pt-4">
+              <div className="flex items-start space-x-2 text-yellow-400">
+                <Building2 className="w-5 h-5 mt-0.5 flex-shrink-0" />
+                <div className="text-xs leading-relaxed">
+                  <div className="font-semibold text-white mb-1">{t('ukrainianOffice')}</div>
+                  <div className="text-gray-400">
+                    {t('ukrainianCompanyName')}<br />
+                    {t('ukrainianAddress.full')}<br />
+                    {t('ukrainianAddress.code')}
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Ukraine Badge */}
             <div className="flex items-center space-x-2 text-brand-secondary pt-2">
               <span className="text-2xl">🇺🇦</span>

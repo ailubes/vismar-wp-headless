@@ -52,8 +52,32 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ post, locale, readTimeText }: BlogCardProps) {
-  // Strip HTML tags from excerpt
-  const cleanExcerpt = post.excerpt?.replace(/<[^>]*>/g, '').trim() || '';
+  // Decode HTML entities
+  const decodeHtmlEntities = (text: string): string => {
+    const textarea = typeof document !== 'undefined' ? document.createElement('textarea') : null;
+    if (textarea) {
+      textarea.innerHTML = text;
+      return textarea.value;
+    }
+    // Fallback for SSR - decode common entities manually
+    return text
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#039;/g, "'")
+      .replace(/&#8217;/g, '\u2019')  // Right single quotation mark
+      .replace(/&#8216;/g, '\u2018')  // Left single quotation mark
+      .replace(/&#8220;/g, '\u201C')  // Left double quotation mark
+      .replace(/&#8221;/g, '\u201D')  // Right double quotation mark
+      .replace(/&#8211;/g, '\u2013')  // En dash
+      .replace(/&#8212;/g, '\u2014'); // Em dash
+  };
+
+  // Strip HTML tags from excerpt and decode entities
+  const cleanExcerpt = post.excerpt
+    ? decodeHtmlEntities(post.excerpt.replace(/<[^>]*>/g, '')).trim()
+    : '';
 
   // Calculate read time (rough estimate: 200 words per minute)
   const calculateReadTime = (text: string) => {

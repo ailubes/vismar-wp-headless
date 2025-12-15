@@ -1,6 +1,6 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
-import { Poppins, Montserrat } from 'next/font/google';
+import { Playfair_Display, Montserrat } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Header from '@/components/layout/Header';
@@ -9,15 +9,15 @@ import { generateOrganizationSchema, generateWebSiteSchema } from '@/lib/seo/str
 import { generateDefaultMetadata } from '@/lib/seo/metadata';
 import '../globals.css';
 
-// Poppins for English/Latin content
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
-  variable: '--font-poppins',
+// Playfair Display for headings (both languages)
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-playfair',
   display: 'swap',
 });
 
-// Montserrat for Ukrainian/Cyrillic content
+// Montserrat for body text (both languages)
 const montserrat = Montserrat({
   subsets: ['latin', 'cyrillic'],
   weight: ['300', '400', '500', '600', '700', '800'],
@@ -66,8 +66,8 @@ export default async function LocaleLayout({
   const websiteSchema = generateWebSiteSchema(locale);
 
   return (
-    <html lang={locale} className={`${poppins.variable} ${montserrat.variable}`}>
-      <body className={`flex flex-col min-h-screen ${locale === 'en' ? 'font-poppins' : 'font-montserrat'}`}>
+    <html lang={locale} className={`${playfairDisplay.variable} ${montserrat.variable}`}>
+      <body className="flex flex-col min-h-screen font-montserrat">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}

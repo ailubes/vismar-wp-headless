@@ -129,7 +129,7 @@ export default async function BlogPage({ params }: Props) {
                   {/* Previous Button */}
                   {currentPage > 1 && (
                     <a
-                      href={currentPage === 2 ? `/${locale}/blog` : `/${locale}/blog/page/${currentPage - 1}`}
+                      href={currentPage === Number(2) ? `/${locale}/blog` : `/${locale}/blog/page/${currentPage - 1}`}
                       className="px-4 py-2 border border-neutral-300 rounded-lg hover:bg-neutral-50 transition-colors"
                     >
                       {locale === 'en' ? 'Previous' : 'Попередня'}

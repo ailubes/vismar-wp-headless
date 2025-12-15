@@ -345,6 +345,12 @@
       "street": "Ahtri tn 12",
       "city": "Tallinn, Estonia 15551"
     },
+    "ukrainianOffice": "Ukrainian Office",
+    "ukrainianCompanyName": "TOV \"VISMAR AQUA\"",
+    "ukrainianAddress": {
+      "full": "08170, Kyiv Oblast, Fastivskyi District, Vita-Poshtova village, Vidrodzhennia St. 5",
+      "code": "EDRPOU Code 34710035"
+    },
     "ukraineBadge": "Engineering from Ukraine since 2007",
     "sections": {
       "engineering": "Engineering",

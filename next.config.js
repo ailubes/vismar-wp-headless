@@ -86,6 +86,27 @@ const nextConfig = {
         destination: '/en/:path*',
         permanent: true,
       },
+      // Old site URL redirects (vismar-aqua.com -> new structure)
+      {
+        source: '/pro-kompaniyu',
+        destination: '/uk/about',
+        permanent: true,
+      },
+      {
+        source: '/obladnannya',
+        destination: '/uk/services',
+        permanent: true,
+      },
+      {
+        source: '/info',
+        destination: '/uk/blog',
+        permanent: true,
+      },
+      {
+        source: '/hfts-technology-can-be-a-game-changer.html',
+        destination: '/uk/services/hfts',
+        permanent: true,
+      },
     ];
   },
 }
