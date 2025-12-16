@@ -482,6 +482,14 @@ export const GET_PROJECT_BY_SLUG = gql`
         projectTestimonial
         projectTestimonialAuthor
         projectTestimonialTitle
+
+        # Gallery images
+        projectGallery1
+        projectGallery2
+        projectGallery3
+        projectGallery4
+        projectGallery5
+        projectGallery6
       }
       language {
         code

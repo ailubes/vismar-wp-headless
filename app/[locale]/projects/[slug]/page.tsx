@@ -9,7 +9,7 @@ import Link from 'next/link';
 import {
   ArrowLeft, Calendar, Globe, MapPin, Building2, Fish, Zap, CheckCircle, Clock,
   Target, Lightbulb, Wrench, BarChart3, DollarSign, TrendingUp, Quote, Settings,
-  Droplets, Factory, Scale, Timer, Activity
+  Droplets, Factory, Scale, Timer, Activity, Camera
 } from 'lucide-react';
 import { getOptimizedImageUrl } from '@/lib/image-url';
 
@@ -189,6 +189,17 @@ export default async function ProjectDetailPage({ params }: Props) {
   const hasFinancials = details?.projectCapex || details?.projectOpexAnnual || details?.projectRoi;
   const hasTestimonial = details?.projectTestimonial;
   const hasMetrics = details?.projectMetricsBlock || details?.projectAnnualProduction;
+
+  // Collect gallery images
+  const galleryImages = [
+    details?.projectGallery1,
+    details?.projectGallery2,
+    details?.projectGallery3,
+    details?.projectGallery4,
+    details?.projectGallery5,
+    details?.projectGallery6,
+  ].filter(Boolean);
+  const hasGallery = galleryImages.length > 0;
 
   return (
     <div className="min-h-screen">
@@ -606,6 +617,37 @@ export default async function ProjectDetailPage({ params }: Props) {
                   )}
                 </div>
               )}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Project Gallery Section */}
+      {hasGallery && (
+        <section className="py-12 md:py-16 bg-white">
+          <div className="container-custom">
+            <div className="max-w-6xl mx-auto">
+              <div className="flex items-center gap-3 mb-8 justify-center">
+                <div className="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center">
+                  <Camera className="w-6 h-6 text-amber-600" />
+                </div>
+                <h2 className="text-2xl md:text-3xl font-bold text-neutral-900">
+                  {locale === 'en' ? 'Project Gallery' : 'Галерея проекту'}
+                </h2>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {galleryImages.map((imageUrl, index) => (
+                  <div key={index} className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group">
+                    <Image
+                      src={getOptimizedImageUrl(imageUrl as string)}
+                      alt={`${project.title} - Image ${index + 1}`}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 50vw, 33vw"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
