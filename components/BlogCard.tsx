@@ -30,6 +30,10 @@ interface Category {
   slug: string;
 }
 
+interface Translation {
+  featuredImage?: FeaturedImage;
+}
+
 interface Post {
   id: string;
   title: string;
@@ -43,6 +47,7 @@ interface Post {
   categories?: {
     nodes: Category[];
   };
+  translations?: Translation[];
 }
 
 interface BlogCardProps {
@@ -102,15 +107,25 @@ export default function BlogCard({ post, locale, readTimeText }: BlogCardProps) 
   // Get first category
   const primaryCategory = post.categories?.nodes?.[0];
 
+  // Construct the correct blog URL using locale and slug
+  const blogUrl = `/${locale}/blog/${post.slug}`;
+
+  // Get featured image - fallback to translation's image if main post doesn't have one
+  const featuredImage = post.featuredImage?.node?.sourceUrl
+    ? post.featuredImage
+    : post.translations?.[0]?.featuredImage;
+  const imageUrl = featuredImage?.node?.sourceUrl;
+  const imageAlt = featuredImage?.node?.altText || post.title;
+
   return (
-    <Link href={post.uri} className="block h-full">
+    <Link href={blogUrl} className="block h-full">
       <Card hoverable className="group overflow-hidden h-full flex flex-col" noPadding>
         {/* Featured Image */}
         <div className="relative aspect-video overflow-hidden bg-muted">
-          {post.featuredImage?.node?.sourceUrl ? (
+          {imageUrl ? (
             <Image
-              src={getOptimizedImageUrl(post.featuredImage.node.sourceUrl)}
-              alt={post.featuredImage.node.altText || post.title}
+              src={getOptimizedImageUrl(imageUrl)}
+              alt={imageAlt}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover group-hover:scale-105 transition-transform duration-300"

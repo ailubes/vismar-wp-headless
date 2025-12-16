@@ -6,12 +6,17 @@ import { GET_POST_BY_SLUG, GET_ALL_POSTS } from '@/lib/wordpress/queries';
 import { generatePostMetadata } from '@/lib/seo/metadata';
 import { generateArticleSchema, generateBreadcrumbSchema, renderJsonLd } from '@/lib/seo/structured-data';
 import { getOptimizedImageUrl } from '@/lib/image-url';
+import { getRelatedPosts, type BlogPost } from '@/lib/wordpress/related-posts';
+import BlogCard from '@/components/BlogCard';
 import Image from 'next/image';
 import Link from 'next/link';
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
 };
+
+// Allow dynamic rendering for blog posts not pre-rendered during build
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const client = getClient();
@@ -122,6 +127,24 @@ export default async function BlogDetailPage({ params }: Props) {
     notFound();
   }
 
+  // Fetch all posts for related posts calculation
+  let allPosts: BlogPost[] = [];
+  try {
+    const client = getClient();
+    const allPostsResult = await client.query({
+      query: GET_ALL_POSTS,
+      variables: {
+        language: languageCode
+      },
+    });
+    allPosts = allPostsResult.data?.posts?.nodes || [];
+  } catch (error) {
+    console.error('Error fetching all posts for related posts:', error);
+  }
+
+  // Calculate related posts
+  const relatedPosts = getRelatedPosts(post as BlogPost, allPosts, 4);
+
   // Format date
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -130,6 +153,29 @@ export default async function BlogDetailPage({ params }: Props) {
       month: 'long',
       day: 'numeric'
     });
+  };
+
+  // Clean up WordPress content - fix escaped characters and formatting
+  const cleanContent = (content: string) => {
+    if (!content) return '';
+
+    // Use replaceAll for more explicit string replacement
+    let cleaned = content;
+
+    // Replace literal backslash-n and backslash-t sequences
+    // These come from WordPress as actual backslash characters followed by n or t
+    cleaned = cleaned.replaceAll(String.fromCharCode(92) + 'n ' + String.fromCharCode(92) + 't', '<br />');
+    cleaned = cleaned.replaceAll(String.fromCharCode(92) + 'n', '<br />');
+    cleaned = cleaned.replaceAll(String.fromCharCode(92) + 't', '');
+
+    // Clean up multiple consecutive line breaks
+    cleaned = cleaned.replace(/(<br\s*\/?>){3,}/gi, '<br /><br />');
+
+    // Fix escaped quotes
+    cleaned = cleaned.replaceAll(String.fromCharCode(92) + "'", "'");
+    cleaned = cleaned.replaceAll(String.fromCharCode(92) + '"', '"');
+
+    return cleaned;
   };
 
   // Generate JSON-LD structured data
@@ -282,8 +328,8 @@ export default async function BlogDetailPage({ params }: Props) {
             {/* WordPress Content */}
             {post.content && (
               <div
-                className="prose max-w-none mb-12"
-                dangerouslySetInnerHTML={{ __html: post.content }}
+                className="prose prose-lg max-w-none mb-12"
+                dangerouslySetInnerHTML={{ __html: cleanContent(post.content) }}
               />
             )}
 
@@ -308,6 +354,28 @@ export default async function BlogDetailPage({ params }: Props) {
           </article>
         </div>
       </section>
+
+      {/* Related Posts Section */}
+      {relatedPosts.length > 0 && (
+        <section className="section bg-neutral-50">
+          <div className="container-custom">
+            <div className="max-w-7xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-neutral-900">
+                {locale === 'en' ? 'Related Articles' : 'Схожі статті'}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {relatedPosts.map((relatedPost) => (
+                  <BlogCard
+                    key={relatedPost.id}
+                    post={relatedPost}
+                    locale={locale}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Navigation - Back to Blog */}
       <section className="section bg-neutral-50">

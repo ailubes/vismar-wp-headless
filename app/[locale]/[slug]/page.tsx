@@ -2,9 +2,108 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getClient } from '@/lib/wordpress/client';
-import { GET_CONTENT_BY_URI, GET_ALL_PAGES, GET_ALL_POSTS } from '@/lib/wordpress/queries';
+import { GET_PAGE_BY_SLUG_AND_LANGUAGE, GET_POST_BY_SLUG, GET_ALL_PAGES, GET_ALL_POSTS } from '@/lib/wordpress/queries';
 import Image from 'next/image';
 import { BlogPostTemplate } from '@/components/BlogPostTemplate';
+
+// Helper to fetch content with proper language filtering and translation fallback
+async function fetchContentBySlugAndLanguage(slug: string, locale: string) {
+  const client = getClient();
+  const languageCode = locale === 'en' ? 'EN' : 'UK';
+  const otherLanguageCode = locale === 'en' ? 'UK' : 'EN';
+
+  // First, try to fetch as a page in the target language
+  try {
+    const pageResult = await client.query({
+      query: GET_PAGE_BY_SLUG_AND_LANGUAGE,
+      variables: { slug, language: languageCode },
+    });
+
+    const page = pageResult.data?.pages?.nodes?.[0];
+    if (page) {
+      return { type: 'Page' as const, data: page };
+    }
+  } catch (error) {
+    console.error('Error fetching page:', error);
+  }
+
+  // If not a page, try to fetch as a post in the target language
+  try {
+    const postResult = await client.query({
+      query: GET_POST_BY_SLUG,
+      variables: { slug, language: languageCode },
+    });
+
+    const post = postResult.data?.posts?.nodes?.[0];
+    if (post) {
+      return { type: 'Post' as const, data: post };
+    }
+  } catch (error) {
+    console.error('Error fetching post:', error);
+  }
+
+  // Translation fallback: if not found in target language,
+  // try to find in the other language and get its translation
+  try {
+    // Try as page in other language
+    const otherPageResult = await client.query({
+      query: GET_PAGE_BY_SLUG_AND_LANGUAGE,
+      variables: { slug, language: otherLanguageCode },
+    });
+
+    const otherPage = otherPageResult.data?.pages?.nodes?.[0];
+    if (otherPage?.translations) {
+      // Find translation for target language
+      const translation = otherPage.translations.find(
+        (t: any) => t.language?.code === languageCode
+      );
+      if (translation?.slug) {
+        // Fetch the actual translated page
+        const translatedPageResult = await client.query({
+          query: GET_PAGE_BY_SLUG_AND_LANGUAGE,
+          variables: { slug: translation.slug, language: languageCode },
+        });
+        const translatedPage = translatedPageResult.data?.pages?.nodes?.[0];
+        if (translatedPage) {
+          return { type: 'Page' as const, data: translatedPage };
+        }
+      }
+    }
+  } catch (error) {
+    console.error('Error fetching page translation:', error);
+  }
+
+  // Try as post in other language
+  try {
+    const otherPostResult = await client.query({
+      query: GET_POST_BY_SLUG,
+      variables: { slug, language: otherLanguageCode },
+    });
+
+    const otherPost = otherPostResult.data?.posts?.nodes?.[0];
+    if (otherPost?.translations) {
+      // Find translation for target language
+      const translation = otherPost.translations.find(
+        (t: any) => t.language?.code === languageCode
+      );
+      if (translation?.slug) {
+        // Fetch the actual translated post
+        const translatedPostResult = await client.query({
+          query: GET_POST_BY_SLUG,
+          variables: { slug: translation.slug, language: languageCode },
+        });
+        const translatedPost = translatedPostResult.data?.posts?.nodes?.[0];
+        if (translatedPost) {
+          return { type: 'Post' as const, data: translatedPost };
+        }
+      }
+    }
+  } catch (error) {
+    console.error('Error fetching post translation:', error);
+  }
+
+  return null;
+}
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
@@ -35,33 +134,64 @@ export async function generateStaticParams() {
     const enPosts = enPostsResult.data?.posts?.nodes || [];
     const ukPosts = ukPostsResult.data?.posts?.nodes || [];
 
-    // Extract slugs from URIs for pages
-    const pageParams = pages
-      .map((page: any) => {
-        const uri = page.uri as string;
-        // Extract locale and slug from URI like "/en/about/" or "/ua/about-3/"
-        const match = uri.match(/^\/(en|ua)\/([^\/]+)\/?$/);
-        if (match) {
-          return {
-            locale: match[1],
-            slug: match[2],
-          };
-        }
-        return null;
-      })
-      .filter(Boolean);
+    // Extract slugs from URIs for pages (both actual slugs and canonical slugs)
+    const pageParams: { locale: string; slug: string }[] = [];
+    const seenParams = new Set<string>();
 
-    // Add post params (posts use slug directly)
-    const postParams = [
-      ...enPosts.map((post: any) => ({
-        locale: 'en',
-        slug: post.slug,
-      })),
-      ...ukPosts.map((post: any) => ({
-        locale: 'uk',
-        slug: post.slug,
-      }))
-    ];
+    pages.forEach((page: any) => {
+      const uri = page.uri as string;
+      // Extract locale and slug from URI like "/en/about/" or "/uk/about-6/"
+      const match = uri.match(/^\/(en|uk)\/([^\/]+)\/?$/);
+      if (match) {
+        const locale = match[1];
+        const slug = match[2];
+        const key = `${locale}:${slug}`;
+        if (!seenParams.has(key)) {
+          seenParams.add(key);
+          pageParams.push({ locale, slug });
+        }
+      }
+    });
+
+    // For each English page, also generate a Ukrainian path with the same slug
+    // This enables /uk/about to work (will use translation fallback)
+    pages.forEach((page: any) => {
+      const uri = page.uri as string;
+      const match = uri.match(/^\/(en)\/([^\/]+)\/?$/);
+      if (match) {
+        const enSlug = match[2];
+        const ukKey = `uk:${enSlug}`;
+        if (!seenParams.has(ukKey)) {
+          seenParams.add(ukKey);
+          pageParams.push({ locale: 'uk', slug: enSlug });
+        }
+      }
+    });
+
+    // Add post params - both actual and canonical slugs
+    const postParams: { locale: string; slug: string }[] = [];
+
+    enPosts.forEach((post: any) => {
+      const key = `en:${post.slug}`;
+      if (!seenParams.has(key)) {
+        seenParams.add(key);
+        postParams.push({ locale: 'en', slug: post.slug });
+      }
+      // Also add Ukrainian path with English slug for fallback
+      const ukKey = `uk:${post.slug}`;
+      if (!seenParams.has(ukKey)) {
+        seenParams.add(ukKey);
+        postParams.push({ locale: 'uk', slug: post.slug });
+      }
+    });
+
+    ukPosts.forEach((post: any) => {
+      const key = `uk:${post.slug}`;
+      if (!seenParams.has(key)) {
+        seenParams.add(key);
+        postParams.push({ locale: 'uk', slug: post.slug });
+      }
+    });
 
     return [...pageParams, ...postParams];
   } catch (error) {
@@ -74,34 +204,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
 
   try {
-    const client = getClient();
-    // Construct URI for WordPress query
-    const uri = `/${locale}/${slug}`;
+    const result = await fetchContentBySlugAndLanguage(slug, locale);
 
-    const { data } = await client.query({
-      query: GET_CONTENT_BY_URI,
-      variables: { uri },
-    });
-
-    const content = data?.nodeByUri;
-
-    if (!content) {
+    if (!result) {
       return {
         title: 'Not Found',
       };
     }
 
     // Handle both Page and Post types
-    if (content.__typename === 'Page') {
+    if (result.type === 'Page') {
       return {
-        title: content.title,
+        title: result.data.title,
         description: '', // Could extract from content if needed
       };
-    } else if (content.__typename === 'Post') {
+    } else if (result.type === 'Post') {
       // Strip HTML tags from excerpt for description
-      const cleanExcerpt = content.excerpt?.replace(/<[^>]*>/g, '').trim() || '';
+      const cleanExcerpt = result.data.excerpt?.replace(/<[^>]*>/g, '').trim() || '';
       return {
-        title: content.title,
+        title: result.data.title,
         description: cleanExcerpt || '',
       };
     }
@@ -125,40 +246,21 @@ export default async function Page({ params }: Props) {
 
   const t = await getTranslations('common');
 
-  let contentData: any = null;
+  // Fetch content using language-aware query
+  const result = await fetchContentBySlugAndLanguage(slug, locale);
 
-  try {
-    const client = getClient();
-    // Construct URI for WordPress query
-    const uri = `/${locale}/${slug}`;
-
-    const result = await client.query({
-      query: GET_CONTENT_BY_URI,
-      variables: { uri },
-    });
-    contentData = result.data;
-  } catch (error) {
-    console.error('Error fetching content data:', error);
-    if (error instanceof Error) {
-      console.error('Error message:', error.message);
-    }
-    notFound();
-  }
-
-  const content = contentData?.nodeByUri;
-
-  if (!content) {
+  if (!result) {
     notFound();
   }
 
   // Detect content type and render appropriate template
-  if (content.__typename === 'Post') {
+  if (result.type === 'Post') {
     // Render blog post using BlogPostTemplate
-    return <BlogPostTemplate post={content} locale={locale} getQuoteText={t('getQuote')} />;
+    return <BlogPostTemplate post={result.data} locale={locale} getQuoteText={t('getQuote')} />;
   }
 
   // Render page (default)
-  const page = content;
+  const page = result.data;
 
   return (
     <div className="min-h-screen">

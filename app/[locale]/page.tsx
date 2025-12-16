@@ -88,7 +88,13 @@ export default async function HomePage({ params }: Props) {
   const services = servicesData?.services?.nodes || [];
   const projects = projectData?.projects?.nodes || [];
   const software = softwareData?.softwareSolutions?.nodes || [];
-  const posts = postsData?.posts?.nodes || [];
+  const allPosts = postsData?.posts?.nodes || [];
+
+  // Sort posts by date (newest first)
+  const posts = [...allPosts].sort((a, b) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
+
   const featuredProject = projects[0];
 
   return (
@@ -102,9 +108,29 @@ export default async function HomePage({ params }: Props) {
         </div>
       )}
 
-      {/* Hero Section - 50/50 Split Layout */}
-      <section className="bg-card flex items-center py-10">
-        <div className="container-custom">
+      {/* Hero Section - 50/50 Split Layout with Enhanced Visual Elements */}
+      <section className="relative bg-gradient-to-br from-slate-50 via-blue-50/30 to-cyan-50/40 flex items-center py-16 lg:py-20 overflow-hidden">
+        {/* Decorative Background Elements */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {/* Large gradient circle - top right */}
+          <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-brand-primary/10 to-cyan-400/20 rounded-full blur-3xl" />
+          {/* Medium circle - bottom left */}
+          <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-gradient-to-tr from-brand-secondary/10 to-rose-300/15 rounded-full blur-3xl" />
+          {/* Animated floating bubbles - aquaculture theme */}
+          <div className="absolute top-1/4 right-1/4 w-4 h-4 bg-cyan-400/30 rounded-full animate-pulse" />
+          <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-blue-400/25 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
+          <div className="absolute bottom-1/3 left-1/4 w-5 h-5 bg-teal-400/20 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-2/3 right-1/5 w-2 h-2 bg-cyan-500/30 rounded-full animate-pulse" style={{ animationDelay: '1.5s' }} />
+          {/* Wave pattern - subtle bottom decoration */}
+          <svg className="absolute bottom-0 left-0 right-0 w-full h-24 text-white/50" viewBox="0 0 1440 100" preserveAspectRatio="none">
+            <path fill="currentColor" d="M0,40 C150,80 350,0 500,40 C650,80 800,20 1000,40 C1200,60 1350,20 1440,40 L1440,100 L0,100 Z" opacity="0.3" />
+            <path fill="currentColor" d="M0,60 C200,30 400,80 600,50 C800,20 1000,70 1200,50 C1300,40 1400,60 1440,50 L1440,100 L0,100 Z" opacity="0.2" />
+          </svg>
+          {/* Grid pattern overlay - very subtle */}
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLW9wYWNpdHk9IjAuMDIiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-50" />
+        </div>
+
+        <div className="container-custom relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Column - Content */}
             <ScrollReveal>
@@ -127,12 +153,12 @@ export default async function HomePage({ params }: Props) {
                 {/* CTAs */}
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link href={`/${locale}/contact`}>
-                    <Button variant="accent" size="lg" className="text-lg px-8 py-4 w-full sm:w-auto">
+                    <Button variant="accent" size="lg" className="text-lg px-8 py-4 w-full sm:w-auto shadow-lg hover:shadow-xl transition-shadow">
                       {t('hero.ctaPrimary')}
                     </Button>
                   </Link>
                   <Link href={`/${locale}/projects`}>
-                    <Button variant="primary" size="lg" className="!bg-brand-primary text-lg px-8 py-4 w-full sm:w-auto hover:!bg-brand-primary/90">
+                    <Button variant="primary" size="lg" className="!bg-brand-primary text-lg px-8 py-4 w-full sm:w-auto hover:!bg-brand-primary/90 shadow-lg hover:shadow-xl transition-shadow">
                       {t('hero.ctaSecondary')}
                     </Button>
                   </Link>
@@ -140,15 +166,15 @@ export default async function HomePage({ params }: Props) {
 
                 {/* Trust Badges */}
                 <div className="flex flex-wrap gap-6 pt-4">
-                  <div className="flex items-center gap-2 text-sm text-gray-700">
+                  <div className="flex items-center gap-2 text-sm text-gray-700 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
                     <CheckIcon className="w-5 h-5 text-brand-success" />
                     <span>{t('hero.trustBadge1')}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-700">
+                  <div className="flex items-center gap-2 text-sm text-gray-700 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
                     <CheckIcon className="w-5 h-5 text-brand-success" />
                     <span>{t('hero.trustBadge2')}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-700">
+                  <div className="flex items-center gap-2 text-sm text-gray-700 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
                     <CheckIcon className="w-5 h-5 text-brand-success" />
                     <span>{t('hero.trustBadge3')}</span>
                   </div>
@@ -156,17 +182,29 @@ export default async function HomePage({ params }: Props) {
               </div>
             </ScrollReveal>
 
-            {/* Right Column - Visual */}
+            {/* Right Column - Visual with enhanced styling */}
             <ScrollReveal delay={200}>
               <div className="relative h-[400px] lg:h-[600px]">
+                {/* Decorative frame around image */}
+                <div className="absolute -inset-4 bg-gradient-to-br from-brand-primary/20 via-cyan-400/10 to-brand-secondary/20 rounded-3xl blur-xl" />
+                <div className="absolute -top-2 -left-2 w-20 h-20 border-t-4 border-l-4 border-brand-primary/30 rounded-tl-3xl" />
+                <div className="absolute -bottom-2 -right-2 w-20 h-20 border-b-4 border-r-4 border-brand-secondary/30 rounded-br-3xl" />
                 <Image
                   src="/images/vismar-aqua-hero-image.png"
                   alt={t('hero.headline')}
                   fill
-                  className="object-cover rounded-2xl"
+                  className="object-cover rounded-2xl shadow-2xl relative z-10"
                   priority
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
+                {/* Fish icon accent */}
+                <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center z-20">
+                  <Fish className="w-8 h-8 text-brand-primary" />
+                </div>
+                {/* Water drops icon accent */}
+                <div className="absolute -top-4 -right-4 w-14 h-14 bg-white rounded-full shadow-lg flex items-center justify-center z-20">
+                  <Droplets className="w-7 h-7 text-cyan-500" />
+                </div>
               </div>
             </ScrollReveal>
           </div>
@@ -472,8 +510,8 @@ export default async function HomePage({ params }: Props) {
             </div>
           </ScrollReveal>
 
-          {/* Services Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Services Grid - 3x3 */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { icon: RefreshCw, key: 'service1', href: '/services/ras', iconBg: 'bg-blue-500', borderColor: 'border-blue-200' },
               { icon: Waves, key: 'service2', href: '/services/hfts', iconBg: 'bg-cyan-500', borderColor: 'border-cyan-200' },
@@ -526,13 +564,13 @@ export default async function HomePage({ params }: Props) {
           <ScrollReveal>
             <div className="text-center max-w-3xl mx-auto mb-16">
               <div className="text-brand-secondary text-sm font-semibold tracking-wider uppercase mb-4">
-                WHY CHOOSE VISMAR AQUA?
+                {t('whyVismar.section.label')}
               </div>
               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-                The Ukrainian Advantage
+                {t('whyVismar.section.title')}
               </h2>
               <p className="text-xl text-gray-600">
-                World-class expertise, exceptional value, unmatched dedication
+                {t('whyVismar.section.subtitle')}
               </p>
             </div>
           </ScrollReveal>
@@ -549,30 +587,30 @@ export default async function HomePage({ params }: Props) {
 
                 {/* Headline */}
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">
-                  50% Lower Costs
+                  {t('whyVismar.card1.headline')}
                 </h3>
 
                 {/* Subheadline */}
                 <h4 className="text-xl font-semibold text-gray-700 mb-4">
-                  Premium Quality, Smart Pricing
+                  {t('whyVismar.card1.subheadline')}
                 </h4>
 
                 {/* Body */}
                 <p className="text-gray-600 mb-6 flex-grow leading-relaxed">
-                  World-class aquaculture engineering at half the price of Western European firms. Lower operational costs mean exceptional value—without compromising on quality.
+                  {t('whyVismar.card1.body')}
                 </p>
 
                 {/* Badge */}
                 <div className="mb-4">
                   <span className="inline-block px-4 py-2 bg-blue-100 text-blue-700 text-sm font-semibold rounded-full">
-                    ↓ 50% vs. EU competitors
+                    {t('whyVismar.card1.badge')}
                   </span>
                 </div>
 
                 {/* Learn More Link */}
                 <Link href={`/${locale}/why-vismar-aqua#value`}>
                   <div className="flex items-center text-blue-600 font-semibold group-hover:gap-2 transition-all">
-                    <span>Learn More</span>
+                    <span>{t('whyVismar.cta')}</span>
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </Link>
@@ -589,30 +627,30 @@ export default async function HomePage({ params }: Props) {
 
                 {/* Headline */}
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">
-                  9-9, Six Days a Week
+                  {t('whyVismar.card2.headline')}
                 </h3>
 
                 {/* Subheadline */}
                 <h4 className="text-xl font-semibold text-gray-700 mb-4">
-                  Your Timezone, Your Schedule
+                  {t('whyVismar.card2.subheadline')}
                 </h4>
 
                 {/* Body */}
                 <p className="text-gray-600 mb-6 flex-grow leading-relaxed">
-                  Same-day responses, flexible meetings, and genuine commitment to your timeline. No more waiting weeks for a 30-minute call.
+                  {t('whyVismar.card2.body')}
                 </p>
 
                 {/* Badge */}
                 <div className="mb-4">
                   <span className="inline-block px-4 py-2 bg-amber-100 text-amber-700 text-sm font-semibold rounded-full">
-                    ⏱️ &lt;4 hours response time
+                    {t('whyVismar.card2.badge')}
                   </span>
                 </div>
 
                 {/* Learn More Link */}
                 <Link href={`/${locale}/why-vismar-aqua#response`}>
                   <div className="flex items-center text-amber-600 font-semibold group-hover:gap-2 transition-all">
-                    <span>Learn More</span>
+                    <span>{t('whyVismar.cta')}</span>
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </Link>
@@ -629,30 +667,30 @@ export default async function HomePage({ params }: Props) {
 
                 {/* Headline */}
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">
-                  AI-Accelerated Engineering
+                  {t('whyVismar.card3.headline')}
                 </h3>
 
                 {/* Subheadline */}
                 <h4 className="text-xl font-semibold text-gray-700 mb-4">
-                  Next-Gen Tools, Faster Delivery
+                  {t('whyVismar.card3.subheadline')}
                 </h4>
 
                 {/* Body */}
                 <p className="text-gray-600 mb-6 flex-grow leading-relaxed">
-                  Latest 3D CAD, AI-assisted design, real-time cloud collaboration. Cutting-edge technology delivers better results faster.
+                  {t('whyVismar.card3.body')}
                 </p>
 
                 {/* Badge */}
                 <div className="mb-4">
                   <span className="inline-block px-4 py-2 bg-purple-100 text-purple-700 text-sm font-semibold rounded-full">
-                    🤖 AI-powered design
+                    {t('whyVismar.card3.badge')}
                   </span>
                 </div>
 
                 {/* Learn More Link */}
                 <Link href={`/${locale}/why-vismar-aqua#technology`}>
                   <div className="flex items-center text-purple-600 font-semibold group-hover:gap-2 transition-all">
-                    <span>Learn More</span>
+                    <span>{t('whyVismar.cta')}</span>
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </Link>
@@ -669,30 +707,30 @@ export default async function HomePage({ params }: Props) {
 
                 {/* Headline */}
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">
-                  War-Proven Reliability
+                  {t('whyVismar.card4.headline')}
                 </h3>
 
                 {/* Subheadline */}
                 <h4 className="text-xl font-semibold text-gray-700 mb-4">
-                  Delivering Under Any Conditions
+                  {t('whyVismar.card4.subheadline')}
                 </h4>
 
                 {/* Body */}
                 <p className="text-gray-600 mb-6 flex-grow leading-relaxed">
-                  We&apos;ve delivered projects during air raids and blackouts. Crisis-tested resilience ensures your project stays on track—no matter what.
+                  {t('whyVismar.card4.body')}
                 </p>
 
                 {/* Badge */}
                 <div className="mb-4">
                   <span className="inline-block px-4 py-2 bg-green-100 text-green-700 text-sm font-semibold rounded-full">
-                    ✓ Zero cancellations since 2022
+                    {t('whyVismar.card4.badge')}
                   </span>
                 </div>
 
                 {/* Learn More Link */}
                 <Link href={`/${locale}/why-vismar-aqua#resilience`}>
                   <div className="flex items-center text-green-600 font-semibold group-hover:gap-2 transition-all">
-                    <span>Learn More</span>
+                    <span>{t('whyVismar.cta')}</span>
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </Link>

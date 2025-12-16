@@ -184,13 +184,30 @@ export async function generatePageMetadata(locale: string, slug: string, data: a
  * Generate metadata for blog posts
  */
 export async function generatePostMetadata(locale: string, slug: string, data: any): Promise<Metadata> {
+  const { optimizeMetaDescription, generatePostKeywords } = await import('@/lib/seo/description-optimizer');
+
   const title = data?.title || 'Blog Post';
-  const description = data?.excerpt || data?.content?.substring(0, 160);
+  const rawDescription = data?.excerpt || data?.content?.substring(0, 160) || '';
   const author = data?.author?.node?.name;
   const categories = data?.categories?.nodes || [];
-  const tags = data?.tags?.nodes?.map((tag: any) => tag.name) || [];
+  const tags = data?.tags?.nodes || [];
 
-  return generateMetadata({
+  // Optimize meta description with keywords
+  const description = optimizeMetaDescription({
+    excerpt: rawDescription,
+    categories: categories.map((cat: any) => ({ slug: cat.slug, name: cat.name })),
+    locale,
+    title,
+  });
+
+  // Generate keywords based on categories and tags
+  const keywords = generatePostKeywords(
+    categories.map((cat: any) => ({ slug: cat.slug, name: cat.name })),
+    tags,
+    locale
+  );
+
+  const metadata = generateMetadata({
     title: `${title} - Vismar Aqua Blog`,
     description,
     locale,
@@ -208,8 +225,14 @@ export async function generatePostMetadata(locale: string, slug: string, data: a
     publishedTime: data?.date,
     modifiedTime: data?.modified,
     section: categories[0]?.name,
-    tags,
+    tags: tags.map((tag: any) => tag.name),
   });
+
+  // Add keywords to metadata
+  return {
+    ...metadata,
+    keywords: keywords.join(', '),
+  };
 }
 
 /**

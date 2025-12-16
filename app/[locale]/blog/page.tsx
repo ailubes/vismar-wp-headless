@@ -60,8 +60,13 @@ export default async function BlogPage({ params }: Props) {
 
   const allPosts = postsData?.posts?.nodes || [];
 
+  // Sort posts by date (newest first)
+  const sortedPosts = [...allPosts].sort((a, b) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
+
   // Client-side pagination
-  const totalPosts = allPosts.length;
+  const totalPosts = sortedPosts.length;
   const totalPages = Math.ceil(totalPosts / postsPerPage);
 
   // Validate current page is within range
@@ -71,7 +76,7 @@ export default async function BlogPage({ params }: Props) {
 
   const startIndex = (currentPage - 1) * postsPerPage;
   const endIndex = startIndex + postsPerPage;
-  const posts = allPosts.slice(startIndex, endIndex);
+  const posts = sortedPosts.slice(startIndex, endIndex);
 
   return (
     <div className="min-h-screen">

@@ -38,9 +38,9 @@ const config: Config = {
       },
       fontFamily: {
         heading: ['var(--font-playfair)', 'Georgia', 'serif'],
-        body: ['var(--font-montserrat)', 'system-ui', 'sans-serif'],
+        body: ['var(--font-manrope)', 'system-ui', 'sans-serif'],
         playfair: ['var(--font-playfair)', 'Georgia', 'serif'],
-        montserrat: ['var(--font-montserrat)', 'system-ui', 'sans-serif'],
+        manrope: ['var(--font-manrope)', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         // H1: 56px / 120% / -0.01em
@@ -51,10 +51,10 @@ const config: Config = {
         'h4': ['2rem', { lineHeight: '130%', letterSpacing: '-0.01em' }],
         // H5: 24px / 140% / -0.01em
         'h5': ['1.5rem', { lineHeight: '140%', letterSpacing: '-0.01em' }],
-        // Body: 16px / 150%
-        'body': ['1rem', { lineHeight: '150%' }],
-        // Text Medium: 18px / 150%
-        'text-md': ['1.125rem', { lineHeight: '150%' }],
+        // Body: 16px / 160% (increased for better Cyrillic readability)
+        'body': ['1rem', { lineHeight: '160%' }],
+        // Text Medium: 18px / 160% (increased for better Cyrillic readability)
+        'text-md': ['1.125rem', { lineHeight: '160%' }],
       },
       spacing: {
         // Section padding: 112px vertical

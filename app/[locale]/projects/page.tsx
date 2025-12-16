@@ -5,6 +5,9 @@ import ProjectsClient from './ProjectsClient';
 import TestimonialsCarousel from './TestimonialsCarousel';
 import { BarChart3, Globe, DollarSign, TrendingUp, Factory, Settings, MapPin, CheckCircle, ArrowRight, Waves, Droplets, GitMerge, Layers, Map, Send, Briefcase } from 'lucide-react';
 
+// Force dynamic rendering to always fetch fresh data
+export const dynamic = 'force-dynamic';
+
 type Props = {
   params: Promise<{ locale: string }>;
 };
@@ -152,7 +155,7 @@ export default async function ProjectsPage({ params }: Props) {
                     <div className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
                       {locale === 'en' ? 'Production Capacity' : 'Виробнича потужність'}
                     </div>
-                    <div className="text-xl font-bold text-gray-900">500 MT/year</div>
+                    <div className="text-xl font-bold text-gray-900">250 MT/year</div>
                   </div>
                 </div>
 
@@ -182,14 +185,14 @@ export default async function ProjectsPage({ params }: Props) {
 
                 {/* Status */}
                 <div className="flex items-start space-x-3">
-                  <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
+                  <Settings className="w-6 h-6 text-yellow-600 flex-shrink-0 mt-1" />
                   <div>
                     <div className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
                       {locale === 'en' ? 'Status' : 'Статус'}
                     </div>
                     <div className="flex items-center space-x-2">
-                      <span className="inline-block px-3 py-1 bg-green-100 text-green-800 text-sm font-semibold rounded-full">
-                        {locale === 'en' ? 'Operational' : 'Працює'}
+                      <span className="inline-block px-3 py-1 bg-yellow-100 text-yellow-800 text-sm font-semibold rounded-full">
+                        {locale === 'en' ? 'Construction Phase' : 'Етап будівництва'}
                       </span>
                     </div>
                   </div>
@@ -199,7 +202,7 @@ export default async function ProjectsPage({ params }: Props) {
               {/* CTA Button */}
               <div>
                 <a
-                  href={`/${locale}/projects/uae-shrimp-farm-ras-design-7`}
+                  href={`/${locale}/projects/uae-shrimp-farm-ras-design`}
                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
                 >
                   <span>

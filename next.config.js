@@ -34,6 +34,11 @@ const nextConfig = {
         hostname: 'vismaraqua.com.ua',
         pathname: '/wp-content/uploads/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'wp.vismar-aqua.com',
+        pathname: '/wp-content/**',
+      },
     ],
   },
 

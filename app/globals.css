@@ -59,7 +59,7 @@
 
   /* Font families */
   --font-family-heading: var(--font-playfair), Georgia, serif;
-  --font-family-body: var(--font-montserrat), system-ui, sans-serif;
+  --font-family-body: var(--font-manrope), system-ui, sans-serif;
   --font-family-mono: ui-monospace, monospace;
 
   /* Border radius */
@@ -101,7 +101,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: var(--font-family-body);
-  line-height: 1.5; /* 150% from Figma */
+  line-height: 1.6; /* 160% - improved for Cyrillic readability */
   font-size: 1rem; /* 16px body text */
 }
 

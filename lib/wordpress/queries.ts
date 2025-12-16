@@ -145,7 +145,7 @@ export const GET_FEATURED_PROJECT = gql`
         title
         excerpt
         uri
-        projectDetails {
+        projectMeta {
           projectClient
           projectLocation
           projectYear
@@ -393,27 +393,27 @@ export const GET_ALL_PROJECTS = gql`
             altText
           }
         }
-        projectDetails {
+        projectMeta {
           projectClient
           projectLocation
           projectYear
           projectStatus
+          projectSystemType
+          projectSpecies
+          projectCapacity
           projectFeatured
         }
-        technicalSpecifications {
-          projectSystemType
-          # projectSpecies is a relationship field - temporarily removed
-          projectAnnualProduction
-          projectProductionUnit
-          projectSpeciesText
-          projectProductionCycles
-        }
-        performanceMetrics {
-          projectMetricsBlock
-        }
-        projectContentSections {
-          projectSolution
-          projectResults
+        translations {
+          slug
+          featuredImage {
+            node {
+              sourceUrl
+              altText
+            }
+          }
+          language {
+            code
+          }
         }
       }
     }
@@ -428,109 +428,76 @@ export const GET_PROJECT_BY_SLUG = gql`
       title
       content
       slug
+      excerpt
+      date
       featuredImage {
         node {
           sourceUrl
           altText
         }
       }
-      projectDetails {
+      projectMeta {
+        # Basic info
         projectClient
         projectLocation
         projectYear
         projectStatus
-        projectSubtitle
-        projectFeatured
-      }
-      technicalSpecifications {
         projectSystemType
-        # projectSpecies is a relationship field - temporarily removed
-        projectAnnualProduction
-        projectProductionUnit
-        projectFacilitySize
-        projectFacilitySizeUnit
-        projectStandingBiomass
-        projectBiomassUnit
-        projectWaterVolume
-        projectWaterVolumeUnit
-        projectSpeciesText
-        projectProductionCycles
-        projectGrowthPeriod
-        projectSurvivalRate
-        projectMarketSize
-      }
-      projectContentSections {
+        projectSpecies
+        projectCapacity
+        projectFeatured
+        projectSubtitle
+
+        # Content sections
         projectOverview
         projectChallenge
         projectSolution
-        projectResults
         projectTechnicalDetails
-        projectImpact
-        projectSystemComponents
-        projectWaterTreatment
-        projectSupportInfrastructure
-      }
-      engineeringDetails {
-        projectTechnologies {
-          technologyName
-          technologyDescription
-        }
-        projectInnovations
-        projectPerformanceMetrics {
-          metricName
-          metricValue
-          metricUnit
-        }
-      }
-      performanceMetrics {
         projectMetricsBlock
-      }
-      financialPerformance {
+        projectResults
+
+        # Production metrics
+        projectAnnualProduction
+        projectProductionUnit
+        projectProductionCycles
+        projectStandingBiomass
+        projectGrowthPeriod
+        projectMarketSize
+        projectSurvivalRate
+        projectFacilitySize
+        projectWaterVolume
+
+        # Financial data
         projectCapex
         projectCapexCurrency
         projectOpexAnnual
-        projectProductionCost
         projectRevenueAnnual
         projectProfitAnnual
         projectProfitMargin
+        projectProductionCost
         projectRoi
         projectFinancialNotes
-      }
-      media {
-        projectGallery {
-          nodes {
-            sourceUrl
-            altText
-          }
-        }
+
+        # Testimonial
         projectTestimonial
         projectTestimonialAuthor
         projectTestimonialTitle
       }
-      projectTimeline {
-        projectStartDate
-        projectCompletionDate
-        projectPhases {
-          phaseName
-          phaseDescription
-          phaseStatus
-        }
+      language {
+        code
       }
-      engineeringChallenges {
-        projectChallenges {
-          challengeTitle
-          challengeProblem
-          challengeSolution
+      translations {
+        title
+        slug
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
         }
-      }
-      projectDeliverables {
-        projectDeliverables {
-          deliverableCategory
-          deliverableItems
+        language {
+          code
         }
-      }
-      environmentalImpact {
-        projectEnvironmentalBenefits
       }
     }
   }
@@ -657,6 +624,18 @@ export const GET_ALL_POSTS = gql`
         language {
           code
         }
+        translations {
+          featuredImage {
+            node {
+              sourceUrl
+              altText
+              mediaDetails {
+                width
+                height
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -664,7 +643,7 @@ export const GET_ALL_POSTS = gql`
 
 // Query to get a single blog post by slug and language
 export const GET_POST_BY_SLUG = gql`
-  query GetPostBySlug($slug: ID!, $language: LanguageCodeFilterEnum!) {
+  query GetPostBySlug($slug: String!, $language: LanguageCodeFilterEnum!) {
     posts(where: { name: $slug, language: $language }, first: 1) {
       nodes {
         id
@@ -787,6 +766,44 @@ export const GET_ALL_CATEGORIES = gql`
   }
 `;
 
+// Query to get a page by slug with language filtering
+export const GET_PAGE_BY_SLUG_AND_LANGUAGE = gql`
+  query GetPageBySlugAndLanguage($slug: String!, $language: LanguageCodeFilterEnum!) {
+    pages(where: { name: $slug, language: $language, status: PUBLISH }, first: 1) {
+      nodes {
+        id
+        title
+        content
+        slug
+        uri
+        date
+        modified
+        language {
+          code
+        }
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+            mediaDetails {
+              width
+              height
+            }
+          }
+        }
+        translations {
+          title
+          uri
+          slug
+          language {
+            code
+          }
+        }
+      }
+    }
+  }
+`;
+
 // Query to get content (Page or Post) by URI using nodeByUri
 export const GET_CONTENT_BY_URI = gql`
   query GetContentByUri($uri: String!) {
@@ -800,6 +817,9 @@ export const GET_CONTENT_BY_URI = gql`
         uri
         date
         modified
+        language {
+          code
+        }
         featuredImage {
           node {
             sourceUrl

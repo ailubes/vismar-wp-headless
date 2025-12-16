@@ -55,13 +55,13 @@ export default function Header({ locale }: HeaderProps) {
         {
           label: common('digitalServices'),
           items: [
-            { label: 'Software Solutions', href: `/${locale}/software` },
-            { label: 'AI Fish Counting', href: `/${locale}/software/ai-counting` },
-            { label: 'IoT Monitoring', href: `/${locale}/software/iot-monitoring` },
-            { label: 'Farm Management', href: `/${locale}/software/farm-management` },
-            { label: 'Data Analytics', href: `/${locale}/software/analytics` },
-            { label: 'Biofloc Control', href: `/${locale}/software/biofloc` },
-            { label: 'Custom Development', href: `/${locale}/software/custom-apps` },
+            { label: common('softwareSolutions'), href: `/${locale}/software` },
+            { label: common('aiFishCounting'), href: `/${locale}/software/ai-counting` },
+            { label: common('iotMonitoring'), href: `/${locale}/software/iot-monitoring` },
+            { label: common('farmManagement'), href: `/${locale}/software/farm-management` },
+            { label: common('dataAnalytics'), href: `/${locale}/software/analytics` },
+            { label: common('bioflocControl'), href: `/${locale}/software/biofloc` },
+            { label: common('customDevelopment'), href: `/${locale}/software/custom-apps` },
           ]
         }
       ]

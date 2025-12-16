@@ -1,6 +1,6 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
-import { Playfair_Display, Montserrat } from 'next/font/google';
+import { Playfair_Display, Manrope } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Header from '@/components/layout/Header';
@@ -17,11 +17,11 @@ const playfairDisplay = Playfair_Display({
   display: 'swap',
 });
 
-// Montserrat for body text (both languages)
-const montserrat = Montserrat({
+// Manrope for body text (both languages) - better readability for Cyrillic
+const manrope = Manrope({
   subsets: ['latin', 'cyrillic'],
   weight: ['300', '400', '500', '600', '700', '800'],
-  variable: '--font-montserrat',
+  variable: '--font-manrope',
   display: 'swap',
 });
 
@@ -66,8 +66,8 @@ export default async function LocaleLayout({
   const websiteSchema = generateWebSiteSchema(locale);
 
   return (
-    <html lang={locale} className={`${playfairDisplay.variable} ${montserrat.variable}`}>
-      <body className="flex flex-col min-h-screen font-montserrat">
+    <html lang={locale} className={`${playfairDisplay.variable} ${manrope.variable}`}>
+      <body className="flex flex-col min-h-screen font-manrope">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
