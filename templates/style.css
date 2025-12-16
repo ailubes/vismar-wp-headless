@@ -1,0 +1,1511 @@
+.desktop-1,
+.desktop-1 * {
+  box-sizing: border-box;
+}
+.desktop-1 {
+  background: #ffffff;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.navbar-1 {
+  background: var(--color-scheme-2-background, #5db4d2);
+  padding: 0px 64px 0px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1440px;
+  height: 72px;
+  position: relative;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.content {
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 80px;
+  height: 40px;
+  position: relative;
+}
+.company-logo {
+  flex-shrink: 0;
+  width: 84px;
+  height: 36px;
+  position: relative;
+  overflow: hidden;
+}
+.logo-wide-1 {
+  width: 83.33%;
+  height: 100%;
+  position: absolute;
+  right: 8.73%;
+  left: 7.94%;
+  bottom: 0%;
+  top: 0%;
+  overflow: visible;
+}
+.column {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  position: relative;
+}
+.link {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.link-text {
+  color: var(--color-scheme-2-text, #ffffff);
+  text-align: left;
+  font-family: var(
+    --text-regular-normal-font-family,
+    "LexendDeca-Regular",
+    sans-serif
+  );
+  font-size: var(--text-regular-normal-font-size, 16px);
+  line-height: var(--text-regular-normal-line-height, 150%);
+  font-weight: var(--text-regular-normal-font-weight, 400);
+  position: relative;
+}
+.nav-link-dropdown {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.chevron-down {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: visible;
+}
+.actions {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.button {
+  background: var(--opacity-white-10, rgba(255, 255, 255, 0.1));
+  padding: 8px 20px 8px 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.button2 {
+  color: var(--color-white, #ffffff);
+  text-align: left;
+  font-family: var(
+    --text-regular-medium-font-family,
+    "LexendDeca-Medium",
+    sans-serif
+  );
+  font-size: var(--text-regular-medium-font-size, 16px);
+  line-height: var(--text-regular-medium-line-height, 150%);
+  font-weight: var(--text-regular-medium-font-weight, 500);
+  position: relative;
+}
+.button3 {
+  background: var(--color-neutral-darkest, #020908);
+  border-style: solid;
+  border-color: var(--opacity-transparent, rgba(255, 255, 255, 0));
+  border-width: 1px;
+  padding: 8px 20px 8px 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.header-84 {
+  background: var(--color-scheme-2-background, #5db4d2);
+  padding: 80px 64px 80px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 1440px;
+  position: relative;
+  overflow: hidden;
+}
+.container2 {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.card {
+  background: var(--color-scheme-2-foreground, #1895c0);
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 1312px;
+  position: relative;
+  overflow: hidden;
+}
+.column2 {
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: flex-start;
+  justify-content: center;
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+}
+.content2 {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.medium-length-hero-headline-goes-here {
+  color: var(--color-scheme-2-text, #ffffff);
+  text-align: left;
+  font-family: var(
+    --heading-desktop-h1-font-family,
+    "Teachers-Regular",
+    sans-serif
+  );
+  font-size: var(--heading-desktop-h1-font-size, 56px);
+  line-height: var(--heading-desktop-h1-line-height, 120%);
+  letter-spacing: var(--heading-desktop-h1-letter-spacing, -0.01em);
+  font-weight: var(--heading-desktop-h1-font-weight, 400);
+  position: relative;
+  align-self: stretch;
+}
+.lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-suspendisse-varius-enim-in-eros-elementum-tristique-duis-cursus-mi-quis-viverra-ornare-eros-dolor-interdum-nulla-ut-commodo-diam-libero-vitae-erat {
+  color: var(--color-scheme-2-text, #ffffff);
+  text-align: left;
+  font-family: var(
+    --text-medium-normal-font-family,
+    "LexendDeca-Regular",
+    sans-serif
+  );
+  font-size: var(--text-medium-normal-font-size, 18px);
+  line-height: var(--text-medium-normal-line-height, 150%);
+  font-weight: var(--text-medium-normal-font-weight, 400);
+  position: relative;
+  align-self: stretch;
+}
+.actions2 {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.button4 {
+  background: var(--color-neutral-darkest, #020908);
+  border-style: solid;
+  border-color: var(--opacity-transparent, rgba(255, 255, 255, 0));
+  border-width: 1px;
+  padding: 10px 24px 10px 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.button5 {
+  background: var(--opacity-white-10, rgba(255, 255, 255, 0.1));
+  padding: 10px 24px 10px 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.image {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+  height: 640px;
+  position: relative;
+}
+.placeholder-image {
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  object-fit: cover;
+}
+.layout-239 {
+  background: var(--color-scheme-3-background, #d9dad9);
+  padding: 112px 64px 112px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 1440px;
+  position: relative;
+  overflow: hidden;
+}
+.section-title {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 768px;
+  position: relative;
+}
+.tagline-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.tagline {
+  color: var(--color-scheme-3-text, #020908);
+  text-align: center;
+  font-family: var(
+    --heading-desktop-tagline-font-family,
+    "LexendDeca-SemiBold",
+    sans-serif
+  );
+  font-size: var(--heading-desktop-tagline-font-size, 16px);
+  line-height: var(--heading-desktop-tagline-line-height, 150%);
+  font-weight: var(--heading-desktop-tagline-font-weight, 600);
+  position: relative;
+}
+.content3 {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.heading {
+  color: var(--color-scheme-3-text, #020908);
+  text-align: center;
+  font-family: var(
+    --heading-desktop-h2-font-family,
+    "Teachers-Regular",
+    sans-serif
+  );
+  font-size: var(--heading-desktop-h2-font-size, 48px);
+  line-height: var(--heading-desktop-h2-line-height, 120%);
+  letter-spacing: var(--heading-desktop-h2-letter-spacing, -0.01em);
+  font-weight: var(--heading-desktop-h2-font-weight, 400);
+  position: relative;
+  align-self: stretch;
+}
+.text {
+  color: var(--color-scheme-3-text, #020908);
+  text-align: center;
+  font-family: var(
+    --text-medium-normal-font-family,
+    "LexendDeca-Regular",
+    sans-serif
+  );
+  font-size: var(--text-medium-normal-font-size, 18px);
+  line-height: var(--text-medium-normal-line-height, 150%);
+  font-weight: var(--text-medium-normal-font-weight, 400);
+  position: relative;
+  align-self: stretch;
+}
+.content4 {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 48px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1312px;
+  position: relative;
+}
+.column3 {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.placeholder-image2 {
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 240px;
+  position: relative;
+  object-fit: cover;
+}
+.heading2 {
+  color: var(--color-scheme-3-text, #020908);
+  text-align: center;
+  font-family: var(
+    --heading-desktop-h4-font-family,
+    "Teachers-Regular",
+    sans-serif
+  );
+  font-size: var(--heading-desktop-h4-font-size, 32px);
+  line-height: var(--heading-desktop-h4-line-height, 130%);
+  letter-spacing: var(--heading-desktop-h4-letter-spacing, -0.01em);
+  font-weight: var(--heading-desktop-h4-font-weight, 400);
+  position: relative;
+  align-self: stretch;
+}
+.text2 {
+  color: var(--color-scheme-3-text, #020908);
+  text-align: center;
+  font-family: var(
+    --text-regular-normal-font-family,
+    "LexendDeca-Regular",
+    sans-serif
+  );
+  font-size: var(--text-regular-normal-font-size, 16px);
+  line-height: var(--text-regular-normal-line-height, 150%);
+  font-weight: var(--text-regular-normal-font-weight, 400);
+  position: relative;
+  align-self: stretch;
+}
+.actions3 {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.button6 {
+  background: var(--opacity-neutral-darkest-5, rgba(2, 9, 8, 0.05));
+  border-style: solid;
+  border-color: var(--opacity-transparent, rgba(255, 255, 255, 0));
+  border-width: 1px;
+  padding: 10px 24px 10px 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.button7 {
+  color: var(--color-neutral-darkest, #020908);
+  text-align: left;
+  font-family: var(
+    --text-regular-medium-font-family,
+    "LexendDeca-Medium",
+    sans-serif
+  );
+  font-size: var(--text-regular-medium-font-size, 16px);
+  line-height: var(--text-regular-medium-line-height, 150%);
+  font-weight: var(--text-regular-medium-font-weight, 500);
+  position: relative;
+}
+.button8 {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.icon-chevron-right {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: visible;
+}
+.layout-1 {
+  background: var(--color-scheme-1-background, #ffffff);
+  padding: 112px 64px 112px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 1440px;
+  position: relative;
+  overflow: hidden;
+}
+.container3 {
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.content5 {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 1;
+  position: relative;
+}
+.section-title2 {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.tagline2 {
+  color: var(--color-scheme-1-text, #020908);
+  text-align: left;
+  font-family: var(
+    --heading-desktop-tagline-font-family,
+    "LexendDeca-SemiBold",
+    sans-serif
+  );
+  font-size: var(--heading-desktop-tagline-font-size, 16px);
+  line-height: var(--heading-desktop-tagline-line-height, 150%);
+  font-weight: var(--heading-desktop-tagline-font-weight, 600);
+  position: relative;
+}
+.heading3 {
+  color: var(--color-scheme-1-text, #020908);
+  text-align: left;
+  font-family: var(
+    --heading-desktop-h2-font-family,
+    "Teachers-Regular",
+    sans-serif
+  );
+  font-size: var(--heading-desktop-h2-font-size, 48px);
+  line-height: var(--heading-desktop-h2-line-height, 120%);
+  letter-spacing: var(--heading-desktop-h2-letter-spacing, -0.01em);
+  font-weight: var(--heading-desktop-h2-font-weight, 400);
+  position: relative;
+  align-self: stretch;
+}
+.text3 {
+  color: var(--color-scheme-1-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-medium-normal-font-family,
+    "LexendDeca-Regular",
+    sans-serif
+  );
+  font-size: var(--text-medium-normal-font-size, 18px);
+  line-height: var(--text-medium-normal-line-height, 150%);
+  font-weight: var(--text-medium-normal-font-weight, 400);
+  position: relative;
+  align-self: stretch;
+}
+.icon-chevron-right2 {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: visible;
+}
+.placeholder-image3 {
+  flex: 1;
+  height: 640px;
+  position: relative;
+  object-fit: cover;
+}
+.layout-241 {
+  background: var(--color-scheme-4-background, #e8f8f5);
+  padding: 112px 64px 112px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 1440px;
+  position: relative;
+  overflow: hidden;
+}
+.section-title3 {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 768px;
+  position: relative;
+}
+.tagline3 {
+  color: var(--color-scheme-4-text, #020908);
+  text-align: left;
+  font-family: var(
+    --heading-desktop-tagline-font-family,
+    "LexendDeca-SemiBold",
+    sans-serif
+  );
+  font-size: var(--heading-desktop-tagline-font-size, 16px);
+  line-height: var(--heading-desktop-tagline-line-height, 150%);
+  font-weight: var(--heading-desktop-tagline-font-weight, 600);
+  position: relative;
+}
+.heading4 {
+  color: var(--color-scheme-4-text, #020908);
+  text-align: left;
+  font-family: var(
+    --heading-desktop-h2-font-family,
+    "Teachers-Regular",
+    sans-serif
+  );
+  font-size: var(--heading-desktop-h2-font-size, 48px);
+  line-height: var(--heading-desktop-h2-line-height, 120%);
+  letter-spacing: var(--heading-desktop-h2-letter-spacing, -0.01em);
+  font-weight: var(--heading-desktop-h2-font-weight, 400);
+  position: relative;
+  align-self: stretch;
+}
+.text4 {
+  color: var(--color-scheme-4-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-medium-normal-font-family,
+    "LexendDeca-Regular",
+    sans-serif
+  );
+  font-size: var(--text-medium-normal-font-size, 18px);
+  line-height: var(--text-medium-normal-line-height, 150%);
+  font-weight: var(--text-medium-normal-font-weight, 400);
+  position: relative;
+  align-self: stretch;
+}
+.row2 {
+  display: flex;
+  flex-direction: row;
+  gap: 48px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.column4 {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 1;
+  position: relative;
+}
+.icon-relume {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  position: relative;
+  overflow: visible;
+}
+.heading5 {
+  color: var(--color-scheme-4-text, #020908);
+  text-align: left;
+  font-family: var(
+    --heading-desktop-h4-font-family,
+    "Teachers-Regular",
+    sans-serif
+  );
+  font-size: var(--heading-desktop-h4-font-size, 32px);
+  line-height: var(--heading-desktop-h4-line-height, 130%);
+  letter-spacing: var(--heading-desktop-h4-letter-spacing, -0.01em);
+  font-weight: var(--heading-desktop-h4-font-weight, 400);
+  position: relative;
+  align-self: stretch;
+}
+.text5 {
+  color: var(--color-scheme-4-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-regular-normal-font-family,
+    "LexendDeca-Regular",
+    sans-serif
+  );
+  font-size: var(--text-regular-normal-font-size, 16px);
+  line-height: var(--text-regular-normal-line-height, 150%);
+  font-weight: var(--text-regular-normal-font-weight, 400);
+  position: relative;
+  align-self: stretch;
+}
+.icon-relume2 {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  position: relative;
+  overflow: visible;
+}
+.icon-relume3 {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  position: relative;
+  overflow: visible;
+}
+.icon-chevron-right3 {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: visible;
+}
+.cta-1 {
+  background: var(--color-scheme-1-background, #ffffff);
+  padding: 112px 64px 112px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 1440px;
+  position: relative;
+  overflow: hidden;
+}
+.column5 {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 1;
+  position: relative;
+}
+.button9 {
+  background: linear-gradient(
+    104.04deg,
+    rgba(33, 189, 161, 1) 0%,
+    rgba(24, 149, 192, 1) 100%
+  );
+  border-style: solid;
+  border-color: var(--opacity-transparent, rgba(255, 255, 255, 0));
+  border-width: 1px;
+  padding: 10px 24px 10px 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.button10 {
+  background: var(--opacity-neutral-darkest-5, rgba(2, 9, 8, 0.05));
+  border-style: solid;
+  border-color: var(--opacity-transparent, rgba(255, 255, 255, 0));
+  border-width: 1px;
+  padding: 10px 24px 10px 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.placeholder-image4 {
+  flex: 1;
+  height: 400px;
+  position: relative;
+  object-fit: cover;
+}
+.blog-35 {
+  background: var(--color-scheme-5-background, #d2f1ec);
+  padding: 112px 64px 112px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 1440px;
+  position: relative;
+  overflow: hidden;
+}
+.tagline-wrapper2 {
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.tagline4 {
+  color: var(--color-scheme-5-text, #020908);
+  text-align: center;
+  font-family: var(
+    --heading-desktop-tagline-font-family,
+    "LexendDeca-SemiBold",
+    sans-serif
+  );
+  font-size: var(--heading-desktop-tagline-font-size, 16px);
+  line-height: var(--heading-desktop-tagline-line-height, 150%);
+  font-weight: var(--heading-desktop-tagline-font-weight, 600);
+  position: relative;
+}
+.heading6 {
+  color: var(--color-scheme-5-text, #020908);
+  text-align: center;
+  font-family: var(
+    --heading-desktop-h2-font-family,
+    "Teachers-Regular",
+    sans-serif
+  );
+  font-size: var(--heading-desktop-h2-font-size, 48px);
+  line-height: var(--heading-desktop-h2-line-height, 120%);
+  letter-spacing: var(--heading-desktop-h2-letter-spacing, -0.01em);
+  font-weight: var(--heading-desktop-h2-font-weight, 400);
+  position: relative;
+  align-self: stretch;
+}
+.text6 {
+  color: var(--color-scheme-5-text, #020908);
+  text-align: center;
+  font-family: var(
+    --text-medium-normal-font-family,
+    "LexendDeca-Regular",
+    sans-serif
+  );
+  font-size: var(--text-medium-normal-font-size, 18px);
+  line-height: var(--text-medium-normal-line-height, 150%);
+  font-weight: var(--text-medium-normal-font-weight, 400);
+  position: relative;
+  align-self: stretch;
+}
+.row3 {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.card2 {
+  background: var(--color-scheme-5-foreground, #e8f8f5);
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.placeholder-image5 {
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 300px;
+  position: relative;
+  object-fit: cover;
+}
+.content6 {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.content7 {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.tag {
+  border-style: solid;
+  border-color: var(--opacity-transparent, rgba(255, 255, 255, 0));
+  border-width: 1px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.text7 {
+  color: var(--color-neutral-darkest, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-semi-bold-font-family,
+    "LexendDeca-SemiBold",
+    sans-serif
+  );
+  font-size: var(--text-small-semi-bold-font-size, 14px);
+  line-height: var(--text-small-semi-bold-line-height, 150%);
+  font-weight: var(--text-small-semi-bold-font-weight, 600);
+  position: relative;
+  width: 66px;
+}
+.heading7 {
+  color: var(--color-scheme-5-text, #020908);
+  text-align: left;
+  font-family: var(
+    --heading-desktop-h5-font-family,
+    "Teachers-Regular",
+    sans-serif
+  );
+  font-size: var(--heading-desktop-h5-font-size, 24px);
+  line-height: var(--heading-desktop-h5-line-height, 140%);
+  letter-spacing: var(--heading-desktop-h5-letter-spacing, -0.01em);
+  font-weight: var(--heading-desktop-h5-font-weight, 400);
+  position: relative;
+  align-self: stretch;
+}
+.text8 {
+  color: var(--color-scheme-5-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-regular-normal-font-family,
+    "LexendDeca-Regular",
+    sans-serif
+  );
+  font-size: var(--text-regular-normal-font-size, 16px);
+  line-height: var(--text-regular-normal-line-height, 150%);
+  font-weight: var(--text-regular-normal-font-weight, 400);
+  position: relative;
+  align-self: stretch;
+}
+.avatar {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.avatar-image {
+  border-radius: 50%;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  position: relative;
+  object-fit: cover;
+}
+.content8 {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 1;
+  position: relative;
+}
+.text9 {
+  color: var(--color-scheme-5-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-semi-bold-font-family,
+    "LexendDeca-SemiBold",
+    sans-serif
+  );
+  font-size: var(--text-small-semi-bold-font-size, 14px);
+  line-height: var(--text-small-semi-bold-line-height, 150%);
+  font-weight: var(--text-small-semi-bold-font-weight, 600);
+  position: relative;
+  align-self: stretch;
+}
+.time {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.text10 {
+  color: var(--color-scheme-5-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-normal-font-family,
+    "LexendDeca-Regular",
+    sans-serif
+  );
+  font-size: var(--text-small-normal-font-size, 14px);
+  line-height: var(--text-small-normal-line-height, 150%);
+  font-weight: var(--text-small-normal-font-weight, 400);
+  position: relative;
+}
+.div {
+  color: var(--color-scheme-5-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-medium-normal-font-family,
+    "LexendDeca-Regular",
+    sans-serif
+  );
+  font-size: var(--text-medium-normal-font-size, 18px);
+  line-height: var(--text-medium-normal-line-height, 150%);
+  font-weight: var(--text-medium-normal-font-weight, 400);
+  position: relative;
+}
+.actions4 {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.footer-3 {
+  background: var(--color-scheme-6-background, #e7f4f8);
+  padding: 80px 64px 80px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 1440px;
+  position: relative;
+  overflow: hidden;
+}
+.content9 {
+  display: flex;
+  flex-direction: row;
+  gap: 64px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.column6 {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 864px;
+  position: relative;
+  overflow: hidden;
+}
+.logo-wide-12 {
+  width: 70px;
+  height: 36px;
+  position: absolute;
+  left: 50%;
+  translate: -50% -50%;
+  top: 50%;
+  overflow: visible;
+}
+.content10 {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.address {
+  color: var(--color-scheme-6-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-semi-bold-font-family,
+    "LexendDeca-SemiBold",
+    sans-serif
+  );
+  font-size: var(--text-small-semi-bold-font-size, 14px);
+  line-height: var(--text-small-semi-bold-line-height, 150%);
+  font-weight: var(--text-small-semi-bold-font-weight, 600);
+  position: relative;
+  align-self: stretch;
+}
+.level-1-12-sample-st-sydney-nsw-2000 {
+  color: var(--color-scheme-6-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-normal-font-family,
+    "LexendDeca-Regular",
+    sans-serif
+  );
+  font-size: var(--text-small-normal-font-size, 14px);
+  line-height: var(--text-small-normal-line-height, 150%);
+  font-weight: var(--text-small-normal-font-weight, 400);
+  position: relative;
+  align-self: stretch;
+}
+.contact {
+  color: var(--color-scheme-6-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-semi-bold-font-family,
+    "LexendDeca-SemiBold",
+    sans-serif
+  );
+  font-size: var(--text-small-semi-bold-font-size, 14px);
+  line-height: var(--text-small-semi-bold-line-height, 150%);
+  font-weight: var(--text-small-semi-bold-font-weight, 600);
+  position: relative;
+  align-self: stretch;
+}
+.container4 {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+._1800-123-4567 {
+  color: var(--color-scheme-6-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-link-font-family,
+    "LexendDeca-Regular",
+    sans-serif
+  );
+  font-size: var(--text-small-link-font-size, 14px);
+  line-height: var(--text-small-link-line-height, 150%);
+  font-weight: var(--text-small-link-font-weight, 400);
+  text-decoration: underline;
+  position: relative;
+  align-self: stretch;
+}
+.info-relume-io {
+  color: var(--color-scheme-6-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-link-font-family,
+    "LexendDeca-Regular",
+    sans-serif
+  );
+  font-size: var(--text-small-link-font-size, 14px);
+  line-height: var(--text-small-link-line-height, 150%);
+  font-weight: var(--text-small-link-font-weight, 400);
+  text-decoration: underline;
+  position: relative;
+  align-self: stretch;
+}
+.social-links {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.icon-facebook {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: visible;
+}
+.icon-instagram {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: visible;
+}
+.icon-x {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: visible;
+}
+.icon-linked-in {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: visible;
+}
+.icon-youtube {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: visible;
+}
+.column7 {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.link-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 1;
+  position: relative;
+}
+.link2 {
+  padding: 8px 0px 8px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.about-us {
+  color: var(--color-scheme-6-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-semi-bold-font-family,
+    "LexendDeca-SemiBold",
+    sans-serif
+  );
+  font-size: var(--text-small-semi-bold-font-size, 14px);
+  line-height: var(--text-small-semi-bold-line-height, 150%);
+  font-weight: var(--text-small-semi-bold-font-weight, 600);
+  position: relative;
+  flex: 1;
+}
+.our-services {
+  color: var(--color-scheme-6-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-semi-bold-font-family,
+    "LexendDeca-SemiBold",
+    sans-serif
+  );
+  font-size: var(--text-small-semi-bold-font-size, 14px);
+  line-height: var(--text-small-semi-bold-line-height, 150%);
+  font-weight: var(--text-small-semi-bold-font-weight, 600);
+  position: relative;
+  flex: 1;
+}
+.contact-us {
+  color: var(--color-scheme-6-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-semi-bold-font-family,
+    "LexendDeca-SemiBold",
+    sans-serif
+  );
+  font-size: var(--text-small-semi-bold-font-size, 14px);
+  line-height: var(--text-small-semi-bold-line-height, 150%);
+  font-weight: var(--text-small-semi-bold-font-weight, 600);
+  position: relative;
+  flex: 1;
+}
+.blog-posts {
+  color: var(--color-scheme-6-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-semi-bold-font-family,
+    "LexendDeca-SemiBold",
+    sans-serif
+  );
+  font-size: var(--text-small-semi-bold-font-size, 14px);
+  line-height: var(--text-small-semi-bold-line-height, 150%);
+  font-weight: var(--text-small-semi-bold-font-weight, 600);
+  position: relative;
+  flex: 1;
+}
+.fa-qs {
+  color: var(--color-scheme-6-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-semi-bold-font-family,
+    "LexendDeca-SemiBold",
+    sans-serif
+  );
+  font-size: var(--text-small-semi-bold-font-size, 14px);
+  line-height: var(--text-small-semi-bold-line-height, 150%);
+  font-weight: var(--text-small-semi-bold-font-weight, 600);
+  position: relative;
+  flex: 1;
+}
+.testimonials {
+  color: var(--color-scheme-6-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-semi-bold-font-family,
+    "LexendDeca-SemiBold",
+    sans-serif
+  );
+  font-size: var(--text-small-semi-bold-font-size, 14px);
+  line-height: var(--text-small-semi-bold-line-height, 150%);
+  font-weight: var(--text-small-semi-bold-font-weight, 600);
+  position: relative;
+  flex: 1;
+}
+.careers {
+  color: var(--color-scheme-6-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-semi-bold-font-family,
+    "LexendDeca-SemiBold",
+    sans-serif
+  );
+  font-size: var(--text-small-semi-bold-font-size, 14px);
+  line-height: var(--text-small-semi-bold-line-height, 150%);
+  font-weight: var(--text-small-semi-bold-font-weight, 600);
+  position: relative;
+  flex: 1;
+}
+.sustainability {
+  color: var(--color-scheme-6-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-semi-bold-font-family,
+    "LexendDeca-SemiBold",
+    sans-serif
+  );
+  font-size: var(--text-small-semi-bold-font-size, 14px);
+  line-height: var(--text-small-semi-bold-line-height, 150%);
+  font-weight: var(--text-small-semi-bold-font-weight, 600);
+  position: relative;
+  flex: 1;
+}
+.partnerships {
+  color: var(--color-scheme-6-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-semi-bold-font-family,
+    "LexendDeca-SemiBold",
+    sans-serif
+  );
+  font-size: var(--text-small-semi-bold-font-size, 14px);
+  line-height: var(--text-small-semi-bold-line-height, 150%);
+  font-weight: var(--text-small-semi-bold-font-weight, 600);
+  position: relative;
+  flex: 1;
+}
+.resources {
+  color: var(--color-scheme-6-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-semi-bold-font-family,
+    "LexendDeca-SemiBold",
+    sans-serif
+  );
+  font-size: var(--text-small-semi-bold-font-size, 14px);
+  line-height: var(--text-small-semi-bold-line-height, 150%);
+  font-weight: var(--text-small-semi-bold-font-weight, 600);
+  position: relative;
+  flex: 1;
+}
+.credits {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.divider {
+  margin-top: -1px;
+  border-style: solid;
+  border-color: var(--color-scheme-6-border, rgba(2, 9, 8, 0.15));
+  border-width: 1px 0 0 0;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 0px;
+  position: relative;
+}
+.row4 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+._2025-vismar-aqua-all-rights-reserved {
+  color: var(--color-scheme-6-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-normal-font-family,
+    "LexendDeca-Regular",
+    sans-serif
+  );
+  font-size: var(--text-small-normal-font-size, 14px);
+  line-height: var(--text-small-normal-line-height, 150%);
+  font-weight: var(--text-small-normal-font-weight, 400);
+  position: relative;
+}
+.footer-links {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.privacy-policy {
+  color: var(--color-scheme-6-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-link-font-family,
+    "LexendDeca-Regular",
+    sans-serif
+  );
+  font-size: var(--text-small-link-font-size, 14px);
+  line-height: var(--text-small-link-line-height, 150%);
+  font-weight: var(--text-small-link-font-weight, 400);
+  text-decoration: underline;
+  position: relative;
+}
+.terms-of-service {
+  color: var(--color-scheme-6-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-link-font-family,
+    "LexendDeca-Regular",
+    sans-serif
+  );
+  font-size: var(--text-small-link-font-size, 14px);
+  line-height: var(--text-small-link-line-height, 150%);
+  font-weight: var(--text-small-link-font-weight, 400);
+  text-decoration: underline;
+  position: relative;
+}
+.cookies-settings {
+  color: var(--color-scheme-6-text, #020908);
+  text-align: left;
+  font-family: var(
+    --text-small-link-font-family,
+    "LexendDeca-Regular",
+    sans-serif
+  );
+  font-size: var(--text-small-link-font-size, 14px);
+  line-height: var(--text-small-link-line-height, 150%);
+  font-weight: var(--text-small-link-font-weight, 400);
+  text-decoration: underline;
+  position: relative;
+}

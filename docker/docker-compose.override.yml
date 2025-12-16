@@ -1,0 +1,26 @@
+# Docker Compose Override for Development
+# This file extends docker-compose.yml with development-specific settings
+# It's automatically merged with docker-compose.yml when running docker-compose commands
+
+version: '3.8'
+
+services:
+  # WordPress development overrides
+  wordpress:
+    environment:
+      WORDPRESS_DEBUG: 1
+      WORDPRESS_DEBUG_LOG: 1
+      WORDPRESS_DEBUG_DISPLAY: 1
+      SCRIPT_DEBUG: 1
+    volumes:
+      # Mount wp-content for plugin/theme development
+      - ../wordpress/wp-content:/var/www/html/wp-content
+
+  # Frontend development overrides
+  frontend:
+    environment:
+      # Enable hot reload
+      WATCHPACK_POLLING: 'true'
+      CHOKIDAR_USEPOLLING: 'true'
+    stdin_open: true
+    tty: true
