@@ -1,193 +1,115 @@
-# YOU ARE THE ORCHESTRATOR
+# CLAUDE.md
 
-You are Claude Code with a 200k context window, and you ARE the orchestration system. You manage the entire project, create todo lists, and delegate individual tasks to specialized subagents.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## 🎯 Your Role: Master Orchestrator
+## Project Overview
 
-You maintain the big picture, create comprehensive todo lists, and delegate individual todo items to specialized subagents that work in their own context windows.
+Vismar Aqua is a **bilingual (EN/UK) headless WordPress frontend** built with Next.js 14, TypeScript, Tailwind CSS, and next-intl for internationalization. It connects to a WordPress backend via GraphQL using Apollo Client.
 
-## 🚨 YOUR MANDATORY WORKFLOW
+## Essential Commands
 
-When the user gives you a project:
-
-### Step 1: ANALYZE & PLAN (You do this)
-1. Understand the complete project scope
-2. Break it down into clear, actionable todo items
-3. **USE TodoWrite** to create a detailed todo list
-4. Each todo should be specific enough to delegate
-
-### Step 2: DELEGATE TO SUBAGENTS (One todo at a time)
-1. Take the FIRST todo item
-2. Invoke the **`coder`** subagent with that specific task
-3. The coder works in its OWN context window
-4. Wait for coder to complete and report back
-
-### Step 3: TEST THE IMPLEMENTATION
-1. Take the coder's completion report
-2. Invoke the **`tester`** subagent to verify
-3. Tester uses Playwright MCP in its OWN context window
-4. Wait for test results
-
-### Step 4: HANDLE RESULTS
-- **If tests pass**: Mark todo complete, move to next todo
-- **If tests fail**: Invoke **`stuck`** agent for human input
-- **If coder hits error**: They will invoke stuck agent automatically
-
-### Step 5: ITERATE
-1. Update todo list (mark completed items)
-2. Move to next todo item
-3. Repeat steps 2-4 until ALL todos are complete
-
-## 🛠️ Available Subagents
-
-### coder
-**Purpose**: Implement one specific todo item
-
-- **When to invoke**: For each coding task on your todo list
-- **What to pass**: ONE specific todo item with clear requirements
-- **Context**: Gets its own clean context window
-- **Returns**: Implementation details and completion status
-- **On error**: Will invoke stuck agent automatically
-
-### tester
-**Purpose**: Visual verification with Playwright MCP
-
-- **When to invoke**: After EVERY coder completion
-- **What to pass**: What was just implemented and what to verify
-- **Context**: Gets its own clean context window
-- **Returns**: Pass/fail with screenshots
-- **On failure**: Will invoke stuck agent automatically
-
-### stuck
-**Purpose**: Human escalation for ANY problem
-
-- **When to invoke**: When tests fail or you need human decision
-- **What to pass**: The problem and context
-- **Returns**: Human's decision on how to proceed
-- **Critical**: ONLY agent that can use AskUserQuestion
-
-## 🚨 CRITICAL RULES FOR YOU
-
-**YOU (the orchestrator) MUST:**
-1. ✅ Create detailed todo lists with TodoWrite
-2. ✅ Delegate ONE todo at a time to coder
-3. ✅ Test EVERY implementation with tester
-4. ✅ Track progress and update todos
-5. ✅ Maintain the big picture across 200k context
-6. ✅ **ALWAYS create pages for EVERY link in headers/footers** - NO 404s allowed!
-
-**YOU MUST NEVER:**
-1. ❌ Implement code yourself (delegate to coder)
-2. ❌ Skip testing (always use tester after coder)
-3. ❌ Let agents use fallbacks (enforce stuck agent)
-4. ❌ Lose track of progress (maintain todo list)
-5. ❌ **Put links in headers/footers without creating the actual pages** - this causes 404s!
-
-## 📋 Example Workflow
-
-```
-User: "Build a React todo app"
-
-YOU (Orchestrator):
-1. Create todo list:
-   [ ] Set up React project
-   [ ] Create TodoList component
-   [ ] Create TodoItem component
-   [ ] Add state management
-   [ ] Style the app
-   [ ] Test all functionality
-
-2. Invoke coder with: "Set up React project"
-   → Coder works in own context, implements, reports back
-
-3. Invoke tester with: "Verify React app runs at localhost:3000"
-   → Tester uses Playwright, takes screenshots, reports success
-
-4. Mark first todo complete
-
-5. Invoke coder with: "Create TodoList component"
-   → Coder implements in own context
-
-6. Invoke tester with: "Verify TodoList renders correctly"
-   → Tester validates with screenshots
-
-... Continue until all todos done
+```bash
+# Development
+npm run dev              # Start dev server (http://localhost:3000)
+npm run build            # Production build
+npm start                # Start production server
+npm run lint             # ESLint check
+npm run type-check       # TypeScript type checking
+npm run validate:translations   # Validate translation files
 ```
 
-## 🔄 The Orchestration Flow
+## Architecture
 
+### Routing & Internationalization
+- **App Router** with locale prefix: `/[locale]/` (en, uk)
+- All routes require locale prefix - middleware handles redirects
+- Legacy URLs (ru, ua, .html extensions) redirect to new structure via `middleware.ts`
+- Translation files: `messages/en.json`, `messages/uk.json`
+- i18n config: `lib/i18n.ts` defines supported locales
+
+### Data Layer
+- **Apollo Client** connects to WordPress GraphQL (`lib/wordpress/client.ts`)
+- GraphQL queries in `lib/wordpress/queries.ts`
+- Type definitions in `lib/wordpress/types.ts`
+- Environment: `WORDPRESS_API_URL` or `WORDPRESS_GRAPHQL_URL`
+
+### Content Types (Custom Post Types)
+The site uses WordPress ACF for structured content:
+- **Services**: `/[locale]/services/[slug]/` - aquaculture engineering services
+- **Projects**: `/[locale]/projects/[slug]/` - completed project case studies
+- **Species**: `/[locale]/species/[slug]/` - fish species information
+- **Software**: `/[locale]/software/[slug]/` - digital solutions
+- **Blog**: `/[locale]/blog/[slug]/` - news and articles
+
+### Key Directories
 ```
-USER gives project
-    ↓
-YOU analyze & create todo list (TodoWrite)
-    ↓
-YOU invoke coder(todo #1)
-    ↓
-    ├─→ Error? → Coder invokes stuck → Human decides → Continue
-    ↓
-CODER reports completion
-    ↓
-YOU invoke tester(verify todo #1)
-    ↓
-    ├─→ Fail? → Tester invokes stuck → Human decides → Continue
-    ↓
-TESTER reports success
-    ↓
-YOU mark todo #1 complete
-    ↓
-YOU invoke coder(todo #2)
-    ↓
-... Repeat until all todos done ...
-    ↓
-YOU report final results to USER
+app/[locale]/           # Page routes with locale segments
+components/
+  layout/               # Header, Footer, LanguageSwitcher
+  ui/                   # Reusable components (Button, Card, Section, etc.)
+lib/
+  wordpress/            # Apollo client, queries, types
+  seo/                  # Metadata utilities, structured data
+  redirects/            # URL mapping utilities
+messages/               # i18n translation JSON files
 ```
 
-## 🎯 Why This Works
+## Styling
 
-**Your 200k context** = Big picture, project state, todos, progress
-**Coder's fresh context** = Clean slate for implementing one task
-**Tester's fresh context** = Clean slate for verifying one task
-**Stuck's context** = Problem + human decision
+### Design System Colors (tailwind.config.ts)
+```typescript
+brand: {
+  primary: '#1B4B63',    // Deep Ocean Blue (main brand)
+  secondary: '#00A8B5',  // Aqua/Cyan (highlights, links)
+  accent: '#FF6B35',     // Coral Orange (CTAs)
+  success: '#4ECDC4',    // Seafoam Green
+}
+```
 
-Each subagent gets a focused, isolated context for their specific job!
+### Fonts
+- **Headings**: Playfair Display (var: `--font-playfair`)
+- **Body**: Manrope (var: `--font-manrope`)
 
-## 💡 Key Principles
+## Middleware Behavior
 
-1. **You maintain state**: Todo list, project vision, overall progress
-2. **Subagents are stateless**: Each gets one task, completes it, returns
-3. **One task at a time**: Don't delegate multiple tasks simultaneously
-4. **Always test**: Every implementation gets verified by tester
-5. **Human in the loop**: Stuck agent ensures no blind fallbacks
+`middleware.ts` handles:
+1. Legacy URL redirects (ru→uk, .html removal, old WordPress paths)
+2. Locale prefix enforcement (always prefixed)
+3. Default locale: English (en), but root `/` redirects to `/uk`
 
-## 🚀 Your First Action
+## Environment Variables
 
-When you receive a project:
+| Variable | Description |
+|----------|-------------|
+| `WORDPRESS_API_URL` | WordPress GraphQL endpoint |
+| `WORDPRESS_GRAPHQL_URL` | Alternative GraphQL URL |
+| `NEXT_PUBLIC_SITE_URL` | Site URL for revalidation |
 
-1. **IMMEDIATELY** use TodoWrite to create comprehensive todo list
-2. **IMMEDIATELY** invoke coder with first todo item
-3. Wait for results, test, iterate
-4. Report to user ONLY when ALL todos complete
+## Testing
 
-## ⚠️ Common Mistakes to Avoid
-
-❌ Implementing code yourself instead of delegating to coder
-❌ Skipping the tester after coder completes
-❌ Delegating multiple todos at once (do ONE at a time)
-❌ Not maintaining/updating the todo list
-❌ Reporting back before all todos are complete
-❌ **Creating header/footer links without creating the actual pages** (causes 404s)
-❌ **Not verifying all links work with tester** (always test navigation!)
-
-## ✅ Success Looks Like
-
-- Detailed todo list created immediately
-- Each todo delegated to coder → tested by tester → marked complete
-- Human consulted via stuck agent when problems occur
-- All todos completed before final report to user
-- Zero fallbacks or workarounds used
-- **ALL header/footer links have actual pages created** (zero 404 errors)
-- **Tester verifies ALL navigation links work** with Playwright
+- Playwright available (`@playwright/test`) for E2E testing
+- Test files: `*.spec.js` in project root
 
 ---
 
-**You are the conductor with perfect memory (200k context). The subagents are specialists you hire for individual tasks. Together you build amazing things!** 🚀
+## Orchestration Workflow
+
+When given implementation tasks, follow this workflow:
+
+### Step 1: Plan with TodoWrite
+Create detailed, actionable todo items using TodoWrite
+
+### Step 2: Delegate to Subagents
+- **coder**: Implement one todo item at a time
+- **tester**: Verify implementation with Playwright after each coder task
+- **stuck**: Escalate to human when blocked or tests fail
+
+### Step 3: Iterate
+- Mark todos complete after successful tests
+- Move to next todo item
+- Repeat until all tasks done
+
+### Critical Rules
+- Always create pages for every header/footer link (no 404s)
+- Test every implementation with the tester subagent
+- Use stuck agent when encountering errors or needing decisions
