@@ -13,7 +13,13 @@ import {
   Cpu,
   Database,
   Cloud,
-  Settings
+  Settings,
+  Camera,
+  Clock,
+  Shield,
+  Brain,
+  BarChart3,
+  TrendingUp
 } from 'lucide-react';
 
 type Props = {
@@ -291,44 +297,121 @@ export default async function CustomAppsPage({ params }: Props) {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="section bg-gradient-primary text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-20">
-            <Code className="w-32 h-32" />
+      {/* Premium Hero Section */}
+      <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center py-16 md:py-24 overflow-hidden">
+        {/* Dark gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a2540] via-[#1B4B63] to-[#0d3a4d]" />
+
+        {/* Decorative gradient circles */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-purple-500/20 to-transparent blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-[#00A8B5]/15 to-transparent blur-3xl" />
+        <div className="absolute top-1/2 left-1/4 w-[300px] h-[300px] rounded-full bg-gradient-to-r from-[#42c997]/10 to-transparent blur-2xl" />
+
+        {/* Grid pattern overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }}
+        />
+
+        {/* Floating tech icons */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-[15%] left-[8%] animate-float-slow opacity-20">
+            <Brain className="w-12 h-12 text-[#42c997]" />
           </div>
-          <div className="absolute bottom-20 right-20">
-            <Cpu className="w-40 h-40" />
+          <div className="absolute top-[25%] right-[12%] animate-float-medium opacity-15">
+            <Camera className="w-16 h-16 text-purple-400" />
+          </div>
+          <div className="absolute bottom-[30%] left-[15%] animate-float-fast opacity-20">
+            <BarChart3 className="w-10 h-10 text-[#00A8B5]" />
+          </div>
+          <div className="absolute bottom-[20%] right-[8%] animate-float-slow opacity-15">
+            <Zap className="w-14 h-14 text-[#42c997]" />
           </div>
         </div>
-        <div className="container-custom text-center relative z-10">
-          <div className="flex justify-center mb-6">
-            <div className="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-              <Code className="w-10 h-10" />
+
+        {/* Hero content */}
+        <div className="container-custom relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Breadcrumb */}
+            <div className="flex items-center justify-center gap-2 text-sm text-white/60 mb-6">
+              <Link href={`/${locale}`} className="hover:text-white transition-colors">{isEnglish ? 'Home' : 'Головна'}</Link>
+              <span>/</span>
+              <Link href={`/${locale}/software`} className="hover:text-white transition-colors">{isEnglish ? 'Software' : 'Програми'}</Link>
+              <span>/</span>
+              <span className="text-white">{content.hero.title}</span>
+            </div>
+
+            {/* Main headline */}
+            <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-6">
+              {content.hero.title}
+            </h1>
+
+            {/* Tagline */}
+            <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed mb-10">
+              {content.hero.subtitle}
+            </p>
+
+            {/* CTA buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href={`/${locale}/contact`}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-accent hover:bg-brand-accent/90 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-brand-accent/25"
+              >
+                {content.hero.cta}
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                href={`/${locale}/software`}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-success hover:bg-brand-success/90 text-white font-semibold rounded-lg border border-white/20 transition-all duration-300 backdrop-blur-sm"
+              >
+                {isEnglish ? 'View All Solutions' : 'Всі рішення'}
+              </Link>
             </div>
           </div>
-          <h1 className="mb-6 font-bold">{content.hero.title}</h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8">
-            {content.hero.subtitle}
-          </p>
-          <Link
-            href={`/${locale}/contact`}
-            className="inline-flex items-center gap-2 bg-white text-brand-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-neutral-100 transition-all hover:shadow-lg"
-          >
-            {content.hero.cta}
-            <ArrowRight className="w-5 h-5" />
-          </Link>
+        </div>
+
+        {/* Wave divider */}
+        <div className="absolute left-0 right-0" style={{ bottom: '-1px' }}>
+          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto block" preserveAspectRatio="none" style={{ display: 'block' }}>
+            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+          </svg>
         </div>
       </section>
 
-      {/* Introduction */}
-      <section className="section bg-white">
+      {/* Hero stats section */}
+      <section className="section bg-white pt-0">
         <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">{content.intro.title}</h2>
-            <div className="prose prose-lg max-w-none">
-              <p className="text-lg text-neutral-700 mb-4">{content.intro.text1}</p>
-              <p className="text-lg text-neutral-700">{content.intro.text2}</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 -mt-8 md:-mt-12">
+            <div className="text-center p-6 rounded-xl bg-white border border-neutral-200 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-[#42c997]/10 to-[#00A8B5]/10 mb-3 border border-[#42c997]/20">
+                <Zap className="w-6 h-6 md:w-7 md:h-7 text-[#42c997]" />
+              </div>
+              <div className="text-3xl md:text-4xl font-bold text-neutral-900 mb-1">95%</div>
+              <div className="text-sm md:text-base text-neutral-600">{isEnglish ? 'Accuracy' : 'Точність'}</div>
+            </div>
+            <div className="text-center p-6 rounded-xl bg-white border border-neutral-200 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-[#42c997]/10 to-[#00A8B5]/10 mb-3 border border-[#42c997]/20">
+                <Clock className="w-6 h-6 md:w-7 md:h-7 text-[#42c997]" />
+              </div>
+              <div className="text-3xl md:text-4xl font-bold text-neutral-900 mb-1">50%</div>
+              <div className="text-sm md:text-base text-neutral-600">{isEnglish ? 'Time Saved' : 'Економія часу'}</div>
+            </div>
+            <div className="text-center p-6 rounded-xl bg-white border border-neutral-200 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-[#42c997]/10 to-[#00A8B5]/10 mb-3 border border-[#42c997]/20">
+                <Shield className="w-6 h-6 md:w-7 md:h-7 text-[#42c997]" />
+              </div>
+              <div className="text-3xl md:text-4xl font-bold text-neutral-900 mb-1">24/7</div>
+              <div className="text-sm md:text-base text-neutral-600">{isEnglish ? 'Monitoring' : 'Моніторинг'}</div>
+            </div>
+            <div className="text-center p-6 rounded-xl bg-white border border-neutral-200 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-[#42c997]/10 to-[#00A8B5]/10 mb-3 border border-[#42c997]/20">
+                <TrendingUp className="w-6 h-6 md:w-7 md:h-7 text-[#42c997]" />
+              </div>
+              <div className="text-3xl md:text-4xl font-bold text-neutral-900 mb-1">30%</div>
+              <div className="text-sm md:text-base text-neutral-600">{isEnglish ? 'ROI Increase' : 'Зростання ROI'}</div>
             </div>
           </div>
         </div>

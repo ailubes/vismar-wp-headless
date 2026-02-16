@@ -15,7 +15,9 @@ import {
   TrendingDown,
   Zap,
   Heart,
-  Euro
+  Euro,
+  Smile,
+  Globe
 } from 'lucide-react';
 
 type Props = {
@@ -387,51 +389,115 @@ export default async function RecreationalWaterSystemsPage({ params }: Props) {
 
   const t = isEnglish ? content.en : content.uk;
 
+  // Hero stats
+  const heroStats = [
+    { icon: Award, value: '15+', label: { en: 'Years Experience', uk: 'Років досвіду' } },
+    { icon: Globe, value: '100+', label: { en: 'Aquatic Projects', uk: 'Водних проектів' } },
+    { icon: Users, value: '50+', label: { en: 'Active Installations', uk: 'Активних систем' } },
+    { icon: Zap, value: '50%', label: { en: 'Cost Savings', uk: 'Економія витрат' } }
+  ];
+
   return (
     <div className="min-h-screen">
-      {/* Breadcrumb */}
-      <div className="bg-light py-4">
-        <div className="container-custom">
-          <nav className="flex items-center space-x-2 text-sm">
-            <Link href={`/${locale}`} className="text-muted-foreground hover:text-foreground">
-              {t.breadcrumb.home}
-            </Link>
-            <span className="text-muted-foreground">/</span>
-            <Link href={`/${locale}/services`} className="text-muted-foreground hover:text-foreground">
-              {t.breadcrumb.services}
-            </Link>
-            <span className="text-muted-foreground">/</span>
-            <span className="text-foreground font-medium">{t.breadcrumb.current}</span>
-          </nav>
-        </div>
-      </div>
+      {/* Premium Hero Section */}
+      <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center py-16 md:py-24 overflow-hidden">
+        {/* Dark gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a2540] via-[#1B4B63] to-[#0d3a4d]" />
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-cyan-600 via-blue-700 to-blue-900 text-white py-20">
-        <div className="container-custom">
+        {/* Decorative gradient circles */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-[#42c997]/20 to-transparent blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-[#00A8B5]/15 to-transparent blur-3xl" />
+
+        {/* Grid pattern overlay */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`, backgroundSize: '50px 50px' }} />
+
+        {/* Floating icons */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-[15%] left-[8%] animate-float-slow opacity-20">
+            <Droplets className="w-12 h-12 text-[#42c997]" />
+          </div>
+          <div className="absolute top-[25%] right-[12%] animate-float-medium opacity-15">
+            <Waves className="w-16 h-16 text-[#00A8B5]" />
+          </div>
+          <div className="absolute bottom-[30%] left-[15%] animate-float-fast opacity-20">
+            <Fish className="w-10 h-10 text-[#35a87a]" />
+          </div>
+          <div className="absolute bottom-[20%] right-[8%] animate-float-slow opacity-15">
+            <Smile className="w-14 h-14 text-[#42c997]" />
+          </div>
+          <div className="absolute top-[50%] right-[25%] animate-float-medium opacity-10">
+            <Heart className="w-12 h-12 text-[#00A8B5]" />
+          </div>
+        </div>
+
+        {/* Hero content */}
+        <div className="container-custom relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <Droplets className="w-20 h-20 mx-auto mb-6 opacity-90" />
-            <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-cyan-100">
-              {t.hero.subtitle}
-            </h2>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              {t.hero.title}
+            {/* Breadcrumb */}
+            <div className="flex items-center justify-center gap-2 text-sm text-white/60 mb-6">
+              <Link href={`/${locale}`} className="hover:text-white transition-colors">{isEnglish ? 'Home' : 'Головна'}</Link>
+              <span>/</span>
+              <Link href={`/${locale}/services`} className="hover:text-white transition-colors">{isEnglish ? 'Services' : 'Послуги'}</Link>
+              <span>/</span>
+              <span className="text-white">{isEnglish ? 'Recreational Water Systems' : 'Рекреаційні водні системи'}</span>
+            </div>
+
+            {/* Eyebrow badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6 md:mb-8">
+              <Sparkles className="w-4 h-4 text-[#42c997]" />
+              <span className="text-sm font-medium text-white/90">
+                {isEnglish ? 'Recreational & Decorative Water Systems' : 'Рекреаційні та декоративні водні системи'}
+              </span>
+            </div>
+
+            {/* Main headline */}
+            <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-6">
+              {isEnglish ? (
+                <>From Fish Farms to<span className="block text-[#42c997]">Dream Pools</span></>
+              ) : (
+                <>Від рибних ферм до<span className="block text-[#42c997]">басейнів мрії</span></>
+              )}
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-cyan-50 leading-relaxed">
-              {t.hero.description}
+
+            {/* Subheader */}
+            <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed mb-10">
+              {isEnglish
+                ? '15+ years of aquaculture water management expertise applied to swimming pools, natural pools, koi ponds, water features, and water storage systems.'
+                : '15+ років досвіду управління водою в аквакультурі застосовано до басейнів, природних басейнів, ставків для коїв, водних об\'єктів та систем зберігання води.'}
             </p>
+
+            {/* Hero stats grid */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-10">
+              {heroStats.map((stat, index) => {
+                const StatIcon = stat.icon;
+                return (
+                  <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/10 hover:bg-white/15 transition-all duration-300">
+                    <StatIcon className="w-6 h-6 md:w-8 md:h-8 text-[#42c997] mx-auto mb-2" />
+                    <div className="text-2xl md:text-3xl font-bold text-white mb-1">{stat.value}</div>
+                    <div className="text-xs md:text-sm text-white/70">{isEnglish ? stat.label.en : stat.label.uk}</div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* CTA buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href={`/${locale}/contact`}>
-                <button className="bg-white text-blue-700 hover:bg-cyan-50 px-8 py-4 rounded-lg font-semibold text-lg flex items-center justify-center gap-2 transition-colors">
-                  {t.hero.cta1}
-                  <ArrowRight className="w-5 h-5" />
-                </button>
+              <Link href={`/${locale}/contact`} className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#42c997] hover:bg-[#35a87a] text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#42c997]/25">
+                {isEnglish ? 'Request Consultation' : 'Запитати консультацію'}
+                <ArrowRight className="w-5 h-5" />
               </Link>
-              <button className="border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-lg font-semibold text-lg transition-colors">
-                {t.hero.cta2}
-              </button>
+              <Link href={`/${locale}/services`} className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg border border-white/20 transition-all duration-300 backdrop-blur-sm">
+                {isEnglish ? 'All Services' : 'Всі послуги'}
+              </Link>
             </div>
           </div>
+        </div>
+
+        {/* Wave divider */}
+        <div className="absolute -bottom-px left-0 right-0">
+          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto block" preserveAspectRatio="none">
+            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+          </svg>
         </div>
       </section>
 
@@ -623,22 +689,29 @@ export default async function RecreationalWaterSystemsPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-20 bg-gradient-to-br from-cyan-600 to-blue-700 text-white">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.finalCta.title}</h2>
-            <p className="text-xl mb-8 text-cyan-50">{t.finalCta.subtitle}</p>
+      {/* Premium CTA Section */}
+      <section className="relative py-20 md:py-28 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#42c997] to-[#35a87a]" />
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-white/10 blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-white/5 blur-2xl" />
+
+        <div className="container-custom relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+              {t.finalCta.title}
+            </h2>
+            <p className="text-lg md:text-xl text-white/90 mb-10">
+              {t.finalCta.subtitle}
+            </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href={`/${locale}/contact`}>
-                <button className="bg-white text-cyan-700 hover:bg-cyan-50 px-8 py-4 rounded-lg font-semibold text-lg flex items-center justify-center gap-2 transition-colors">
-                  {t.finalCta.cta1}
-                  <ArrowRight className="w-5 h-5" />
-                </button>
+              <Link href={`/${locale}/contact`} className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#35a87a] hover:bg-gray-100 font-semibold rounded-lg transition-all duration-300 hover:shadow-lg">
+                {t.finalCta.cta1}
+                <ArrowRight className="w-5 h-5" />
               </Link>
-              <button className="border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-lg font-semibold text-lg transition-colors">
+              <Link href={`/${locale}/services`} className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-semibold rounded-lg border border-white/30 transition-all duration-300">
                 {t.finalCta.cta2}
-              </button>
+              </Link>
             </div>
           </div>
         </div>

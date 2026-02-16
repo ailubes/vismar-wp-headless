@@ -8,27 +8,22 @@ import {
   Droplets,
   Microscope,
   Waves,
-  Settings,
-  Wrench,
   FileText,
   Calculator,
   Package,
   Rocket,
-  Filter,
-  Wind,
-  Gauge,
-  Zap,
-  Thermometer,
   Shield,
-  Factory,
-  GraduationCap,
-  Store,
-  Building2,
   CheckCircle,
   ArrowRight,
   DollarSign,
-  TrendingUp,
-  Activity
+  Sparkles,
+  Clock,
+  Target,
+  Activity,
+  Gauge,
+  Users,
+  Award,
+  BarChart3
 } from 'lucide-react';
 
 type Props = {
@@ -50,529 +45,506 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function HatcheryPage({ params }: Props) {
   const { locale } = await params;
-
-  // Enable static rendering
   setRequestLocale(locale);
 
   const isEnglish = locale === 'en';
 
-  // Content dictionary
-  const content = {
-    // Hero Section
-    hero: {
-      title: isEnglish ? 'Hatchery Engineering & Design' : 'Інжиніринг та проектування інкубаторіїв',
-      subtitle: isEnglish
-        ? 'Complete hatchery systems for consistent, high-quality fingerling production'
-        : 'Повні системи інкубаторіїв для стабільного виробництва високоякісних мальків',
-      cta: isEnglish ? 'Design Your Hatchery' : 'Спроектувати ваш інкубаторій',
-    },
-    // Introduction
-    intro: {
-      title: isEnglish ? 'Specialized Hatchery Systems' : 'Спеціалізовані системи інкубаторіїв',
-      text1: isEnglish
-        ? 'Hatcheries are critical for aquaculture operations, providing high-quality fingerlings and fry for grow-out facilities. A well-designed hatchery ensures consistent supply, superior genetics, and biosecurity while reducing long-term costs and dependency on external suppliers.'
-        : 'Інкубаторії є критично важливими для операцій аквакультури, забезпечуючи високоякісні мальки та личинки для вирощувальних об\'єктів. Добре спроектований інкубаторій забезпечує стабільні поставки, чудову генетику та біобезпеку, знижуючи довгострокові витрати та залежність від зовнішніх постачальників.',
-      text2: isEnglish
-        ? 'Vismar Aqua designs complete hatchery systems including broodstock management, spawning facilities, egg incubation, larval rearing, and live feed production. Our AI-accelerated design process delivers cost-effective, reliable hatchery solutions tailored to your target species and production capacity.'
-        : 'Vismar Aqua проектує повні системи інкубаторіїв, включаючи управління плідниками, об\'єкти нересту, інкубацію ікри, вирощування личинок та виробництво живого корму. Наш AI-прискорений процес проектування забезпечує економічно ефективні, надійні рішення для інкубаторіїв, адаптовані до ваших цільових видів та виробничої потужності.',
-      whyHatcheryTitle: isEnglish ? 'Why Invest in a Hatchery?' : 'Чому варто інвестувати в інкубаторій?',
-      benefits: [
-        {
-          icon: Shield,
-          title: isEnglish ? 'Consistent Supply' : 'Стабільні поставки',
-          description: isEnglish ? 'Guaranteed fingerling availability year-round, independent of external suppliers' : 'Гарантована доступність мальків цілий рік, незалежно від зовнішніх постачальників',
-        },
-        {
-          icon: Microscope,
-          title: isEnglish ? 'Biosecurity Control' : 'Контроль біобезпеки',
-          description: isEnglish ? 'Prevent disease introduction from external fingerling sources' : 'Запобігання занесенню хвороб від зовнішніх джерел мальків',
-        },
-        {
-          icon: Fish,
-          title: isEnglish ? 'Genetic Control' : 'Генетичний контроль',
-          description: isEnglish ? 'Select and breed for superior traits: growth rate, disease resistance, quality' : 'Відбір та розведення кращих ознак: темпи росту, стійкість до хвороб, якість',
-        },
-        {
-          icon: DollarSign,
-          title: isEnglish ? 'Cost Savings' : 'Економія витрат',
-          description: isEnglish ? 'Long-term savings vs. purchasing fingerlings; vertical integration benefits' : 'Довгострокова економія проти купівлі мальків; переваги вертикальної інтеграції',
-        },
-      ],
-    },
-    // When to Build
-    whenToBuild: {
-      title: isEnglish ? 'When to Build a Hatchery vs. Buying Fingerlings' : 'Коли будувати інкубаторій проти купівлі мальків',
-      scenarios: [
-        {
-          title: isEnglish ? 'Build a Hatchery When:' : 'Будуйте інкубаторій, якщо:',
-          points: [
-            isEnglish ? 'Production exceeds 50-100 tons annually' : 'Виробництво перевищує 50-100 тонн щорічно',
-            isEnglish ? 'Fingerling supply is unreliable or expensive' : 'Постачання мальків ненадійне або дороге',
-            isEnglish ? 'You want genetic improvement programs' : 'Ви хочете програми генетичного покращення',
-            isEnglish ? 'High biosecurity is critical' : 'Висока біобезпека є критичною',
-          ],
-        },
-        {
-          title: isEnglish ? 'Buy Fingerlings When:' : 'Купуйте мальки, якщо:',
-          points: [
-            isEnglish ? 'Small-scale operations (<50 tons/year)' : 'Невеликі операції (<50 тонн/рік)',
-            isEnglish ? 'Reliable local fingerling suppliers exist' : 'Існують надійні місцеві постачальники мальків',
-            isEnglish ? 'Capital for hatchery construction is limited' : 'Капітал для будівництва інкубаторію обмежений',
-            isEnglish ? 'Testing species or markets first' : 'Спочатку тестуєте види або ринки',
-          ],
-        },
-      ],
-    },
-    // Our Services
-    services: {
-      title: isEnglish ? 'Our Hatchery Services' : 'Наші послуги інкубаторію',
-      items: [
-        {
-          icon: FileText,
-          title: isEnglish ? 'Complete System Design' : 'Повне проектування системи',
-          description: isEnglish
-            ? 'End-to-end hatchery design including broodstock facilities, spawning rooms, incubation systems, larval rearing, and live feed production units.'
-            : 'Наскрізне проектування інкубаторію, включаючи об\'єкти для плідників, кімнати нересту, системи інкубації, вирощування личинок та виробничі одиниці живого корму.',
-        },
-        {
-          icon: Microscope,
-          title: isEnglish ? 'Broodstock Facility Engineering' : 'Інжиніринг об\'єктів для плідників',
-          description: isEnglish
-            ? 'Specialized broodstock tanks, conditioning systems, photoperiod control, and breeding protocols for optimal spawning performance.'
-            : 'Спеціалізовані резервуари для плідників, системи кондиціювання, контроль фотоперіоду та протоколи розведення для оптимальної продуктивності нересту.',
-        },
-        {
-          icon: Package,
-          title: isEnglish ? 'Nursery & Grow-Out Integration' : 'Інтеграція розсадника та вирощування',
-          description: isEnglish
-            ? 'Seamless integration with nursery and grow-out facilities, weaning protocols, and fingerling transfer systems.'
-            : 'Безшовна інтеграція з розсадником та вирощувальними об\'єктами, протоколи відлучення та системи передачі мальків.',
-        },
-      ],
-    },
-    // Key Components
-    components: {
-      title: isEnglish ? 'Key Hatchery Components' : 'Ключові компоненти інкубаторію',
-      items: [
-        {
-          icon: Fish,
-          title: isEnglish ? 'Broodstock Conditioning Tanks' : 'Резервуари кондиціювання плідників',
-          description: isEnglish ? 'Temperature, light, and photoperiod control for spawning readiness' : 'Контроль температури, світла та фотоперіоду для готовності до нересту',
-        },
-        {
-          icon: Activity,
-          title: isEnglish ? 'Spawning & Stripping Facilities' : 'Об\'єкти нересту та здою',
-          description: isEnglish ? 'Dedicated spawning tanks, egg collection, fertilization stations' : 'Виділені резервуари нересту, збір ікри, станції запліднення',
-        },
-        {
-          icon: Egg,
-          title: isEnglish ? 'Egg Incubation Systems' : 'Системи інкубації ікри',
-          description: isEnglish ? 'Temperature-controlled incubators, flow management, disease prevention' : 'Інкубатори з контролем температури, управління потоком, профілактика хвороб',
-        },
-        {
-          icon: Baby,
-          title: isEnglish ? 'Larval Rearing Tanks' : 'Резервуари для вирощування личинок',
-          description: isEnglish ? 'First feeding tanks, optimal water quality, gentle flow patterns' : 'Резервуари першого годування, оптимальна якість води, м\'які схеми потоку',
-        },
-        {
-          icon: Microscope,
-          title: isEnglish ? 'Live Feed Production' : 'Виробництво живого корму',
-          description: isEnglish ? 'Rotifer and artemia culture systems, algae production' : 'Системи культивування коловерток та артемії, виробництво водоростей',
-        },
-        {
-          icon: Droplets,
-          title: isEnglish ? 'Water Quality Management' : 'Управління якістю води',
-          description: isEnglish ? 'Filtration, temperature control, oxygen monitoring, water treatment' : 'Фільтрація, контроль температури, моніторинг кисню, очищення води',
-        },
-        {
-          icon: Shield,
-          title: isEnglish ? 'Biosecurity Systems' : 'Системи біобезпеки',
-          description: isEnglish ? 'Quarantine protocols, water treatment, footbaths, access control' : 'Протоколи карантину, очищення води, ванночки для ніг, контроль доступу',
-        },
-        {
-          icon: Gauge,
-          title: isEnglish ? 'Monitoring & Automation' : 'Моніторинг та автоматизація',
-          description: isEnglish ? 'Real-time sensors, automated feeding, alarm systems' : 'Датчики в реальному часі, автоматизоване годування, системи сигналізації',
-        },
-      ],
-    },
-    // Design Process
-    process: {
-      title: isEnglish ? 'Hatchery Design Process' : 'Процес проектування інкубаторію',
-      steps: [
-        {
-          icon: FileText,
-          number: '01',
-          title: isEnglish ? 'Species Selection & Requirements Analysis' : 'Вибір видів та аналіз вимог',
-          description: isEnglish
-            ? 'Identify target species, production capacity goals, broodstock needs, and species-specific requirements for optimal hatchery design.'
-            : 'Визначення цільових видів, цілей виробничої потужності, потреб плідників та специфічних вимог видів для оптимального проектування інкубаторію.',
-        },
-        {
-          icon: Calculator,
-          number: '02',
-          title: isEnglish ? 'Facility Layout & Capacity Planning' : 'Компоновка об\'єкта та планування потужності',
-          description: isEnglish
-            ? 'Design facility layout, calculate tank sizes, plan workflow from broodstock to fingerling output, optimize space utilization.'
-            : 'Проектування компоновки об\'єкта, розрахунок розмірів резервуарів, планування робочого процесу від плідників до випуску мальків, оптимізація використання простору.',
-        },
-        {
-          icon: Package,
-          number: '03',
-          title: isEnglish ? 'System Design & Equipment Specification' : 'Проектування системи та специфікація обладнання',
-          description: isEnglish
-            ? 'Select incubation systems, water treatment equipment, live feed production units, and monitoring technology for your hatchery.'
-            : 'Вибір систем інкубації, обладнання для очищення води, виробничих одиниць живого корму та технології моніторингу для вашого інкубаторію.',
-        },
-        {
-          icon: Rocket,
-          number: '04',
-          title: isEnglish ? 'Commissioning & Training' : 'Введення в експлуатацію та навчання',
-          description: isEnglish
-            ? 'System startup, broodstock conditioning protocols, spawning procedures, and comprehensive staff training for successful operations.'
-            : 'Запуск системи, протоколи кондиціювання плідників, процедури нересту та комплексне навчання персоналу для успішних операцій.',
-        },
-      ],
-    },
-    // Technical Advantages
-    advantages: {
-      title: isEnglish ? 'Technical Advantages' : 'Технічні переваги',
-      items: [
-        {
-          icon: CheckCircle,
-          title: isEnglish ? 'Species-Specific Protocols' : 'Специфічні для видів протоколи',
-          description: isEnglish ? 'Customized breeding and rearing protocols for your target species' : 'Індивідуальні протоколи розведення та вирощування для ваших цільових видів',
-        },
-        {
-          icon: CheckCircle,
-          title: isEnglish ? 'Biosecurity-First Design' : 'Дизайн з пріоритетом біобезпеки',
-          description: isEnglish ? 'Disease prevention built into facility layout and workflows' : 'Профілактика хвороб вбудована в компоновку об\'єкта та робочі процеси',
-        },
-        {
-          icon: CheckCircle,
-          title: isEnglish ? 'Automated Feeding Systems' : 'Автоматизовані системи годування',
-          description: isEnglish ? 'Precise feeding schedules for optimal larval development' : 'Точні графіки годування для оптимального розвитку личинок',
-        },
-        {
-          icon: CheckCircle,
-          title: isEnglish ? 'Water Quality Optimization' : 'Оптимізація якості води',
-          description: isEnglish ? 'Real-time monitoring and control for critical parameters' : 'Моніторинг та контроль в реальному часі для критичних параметрів',
-        },
-        {
-          icon: CheckCircle,
-          title: isEnglish ? 'Scalable Production' : 'Масштабоване виробництво',
-          description: isEnglish ? 'Design for future expansion and capacity increases' : 'Проектування для майбутнього розширення та збільшення потужності',
-        },
-        {
-          icon: CheckCircle,
-          title: isEnglish ? 'Energy-Efficient Systems' : 'Енергоефективні системи',
-          description: isEnglish ? 'Minimize operational costs through optimized energy use' : 'Мінімізація експлуатаційних витрат через оптимізоване використання енергії',
-        },
-      ],
-    },
-    // Species Support
-    species: {
-      title: isEnglish ? 'Species We Support' : 'Види, які ми підтримуємо',
-      items: [
-        {
-          title: isEnglish ? 'Salmon & Trout' : 'Лосось та форель',
-          description: isEnglish ? 'Salmonid hatcheries, smolt production, egg incubation' : 'Лососеві інкубаторії, виробництво смолтів, інкубація ікри',
-        },
-        {
-          title: isEnglish ? 'Tilapia' : 'Тіляпія',
-          description: isEnglish ? 'Mouth-brooding protocols, fry collection, sex reversal' : 'Протоколи виношування в роті, збір мальків, зміна статі',
-        },
-        {
-          title: isEnglish ? 'Sea Bass & Bream' : 'Сібас та дорада',
-          description: isEnglish ? 'Marine hatcheries, live feed production, larval rearing' : 'Морські інкубаторії, виробництво живого корму, вирощування личинок',
-        },
-        {
-          title: isEnglish ? 'Shrimp & Prawns' : 'Креветки',
-          description: isEnglish ? 'Maturation units, nauplii production, post-larval rearing' : 'Підрозділи дозрівання, виробництво науплій, вирощування постличинок',
-        },
-        {
-          title: isEnglish ? 'Sturgeon & Caviar' : 'Осетр та ікра',
-          description: isEnglish ? 'Specialized broodstock management, caviar production facilities' : 'Спеціалізоване управління плідниками, об\'єкти виробництва ікри',
-        },
-        {
-          title: isEnglish ? 'Ornamental Fish' : 'Декоративні риби',
-          description: isEnglish ? 'Multi-species hatcheries, breeding programs, quality control' : 'Багатовидові інкубаторії, програми розведення, контроль якості',
-        },
-      ],
-    },
-    // Why Choose Us
-    whyUs: {
-      title: isEnglish ? 'Why Choose Vismar Aqua' : 'Чому обрати Vismar Aqua',
-      items: [
-        {
-          title: isEnglish ? '50% Lower Engineering Costs' : 'На 50% нижчі витрати на інжиніринг',
-          description: isEnglish
-            ? 'AI-accelerated design process reduces engineering costs while delivering optimized, efficient hatchery systems tailored to your species.'
-            : 'AI-прискорений процес проектування знижує витрати на інжиніринг, забезпечуючи оптимізовані, ефективні системи інкубаторіїв, адаптовані до ваших видів.',
-        },
-        {
-          title: isEnglish ? 'Multi-Species Expertise' : 'Експертиза багатьох видів',
-          description: isEnglish
-            ? 'Experience with salmonids, tilapia, marine species, shrimp, sturgeon, and ornamental fish hatchery design and protocols.'
-            : 'Досвід роботи з лососевими, тіляпією, морськими видами, креветками, осетром та проектуванням інкубаторіїв і протоколами для декоративних риб.',
-        },
-        {
-          title: isEnglish ? 'Proven Hatchery Protocols' : 'Перевірені протоколи інкубаторію',
-          description: isEnglish
-            ? 'Species-specific breeding, spawning, and rearing protocols based on 15+ years of aquaculture engineering experience.'
-            : 'Специфічні для видів протоколи розведення, нересту та вирощування на основі 15+ років досвіду інжинірингу аквакультури.',
-        },
-        {
-          title: isEnglish ? 'Complete System Integration' : 'Повна інтеграція системи',
-          description: isEnglish
-            ? 'Seamless integration with nursery, grow-out facilities, and recirculating systems for vertical integration benefits.'
-            : 'Безшовна інтеграція з розсадником, вирощувальними об\'єктами та рециркуляційними системами для переваг вертикальної інтеграції.',
-        },
-      ],
-    },
-    // Related Projects
-    relatedProjects: {
-      title: isEnglish ? 'Related Projects' : 'Пов\'язані проекти',
-      description: isEnglish
-        ? 'Explore our portfolio of completed hatchery projects and aquaculture breeding facilities.'
-        : 'Ознайомтеся з нашим портфоліо завершених проектів інкубаторіїв та об\'єктів розведення аквакультури.',
-      cta: isEnglish ? 'View Our Hatchery Projects' : 'Переглянути наші проекти інкубаторіїв',
-    },
-    // Final CTA
-    finalCta: {
-      title: isEnglish ? 'Ready to Design Your Hatchery?' : 'Готові спроектувати ваш інкубаторій?',
-      description: isEnglish
-        ? 'Contact us today for a consultation. Let\'s discuss your species, production goals, and design the perfect hatchery solution for your operation.'
-        : 'Зв\'яжіться з нами сьогодні для консультації. Давайте обговоримо ваші види, цілі виробництва та спроектуємо ідеальне рішення інкубаторію для вашої операції.',
-      ctaButton: isEnglish ? 'Schedule a Consultation' : 'Запланувати консультацію',
-      formLabels: {
-        name: isEnglish ? 'Name' : 'Ім\'я',
-        email: isEnglish ? 'Email' : 'Електронна пошта',
-        projectType: isEnglish ? 'Project Type' : 'Тип проекту',
-        message: isEnglish ? 'Message' : 'Повідомлення',
-        submit: isEnglish ? 'Send Message' : 'Надіслати повідомлення',
-        projectTypes: [
-          isEnglish ? 'New Hatchery Construction' : 'Будівництво нового інкубаторію',
-          isEnglish ? 'Hatchery Expansion' : 'Розширення інкубаторію',
-          isEnglish ? 'Broodstock Facility Design' : 'Проектування об\'єкта для плідників',
-          isEnglish ? 'Hatchery Optimization' : 'Оптимізація інкубаторію',
-          isEnglish ? 'Species-Specific Consultation' : 'Консультація для конкретного виду',
-          isEnglish ? 'Other' : 'Інше',
-        ],
-      },
-    },
-  };
-
   return (
     <div className="min-h-screen">
-      {/* Breadcrumb Navigation */}
-      <nav className="bg-neutral-50 border-b border-neutral-200">
-        <div className="container-custom py-4">
-          <div className="flex items-center text-sm text-neutral-600">
-            <Link href={`/${locale}`} className="hover:text-primary-600 transition-colors">
-              {isEnglish ? 'Home' : 'Головна'}
-            </Link>
-            <span className="mx-2">/</span>
-            <Link href={`/${locale}/services`} className="hover:text-primary-600 transition-colors">
-              {isEnglish ? 'Services' : 'Послуги'}
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-neutral-900 font-medium">{isEnglish ? 'Hatchery Engineering' : 'Інжиніринг інкубаторіїв'}</span>
-          </div>
-        </div>
-      </nav>
-
-      {/* Hero Section */}
-      <section className="section bg-gradient-primary text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-20">
+      {/* Premium Hero Section */}
+      <section className="relative min-h-[85vh] flex items-center bg-gradient-to-br from-[#0a2540] via-[#1B4B63] to-[#0d3a4d] overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-10 text-white/5 animate-float-slow">
             <Egg className="w-32 h-32" />
           </div>
-          <div className="absolute bottom-20 right-20">
-            <Fish className="w-40 h-40" />
+          <div className="absolute top-40 right-20 text-white/5 animate-float-medium">
+            <Fish className="w-24 h-24" />
           </div>
+          <div className="absolute bottom-32 left-1/4 text-white/5 animate-float-fast">
+            <Baby className="w-20 h-20" />
+          </div>
+          <div className="absolute top-1/3 right-1/3 text-white/5 animate-float-slow">
+            <Microscope className="w-28 h-28" />
+          </div>
+          <div className="absolute bottom-20 right-10 text-white/5 animate-float-medium">
+            <Waves className="w-36 h-36" />
+          </div>
+
+          {/* Gradient Orbs */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#42c997]/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#00A8B5]/10 rounded-full blur-3xl" />
         </div>
-        <div className="container-custom text-center relative z-10">
-          <div className="flex justify-center mb-6">
-            <div className="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-              <Baby className="w-10 h-10" />
+
+        <div className="container-custom relative z-10 pt-20">
+          {/* Breadcrumb */}
+          <nav className="mb-8">
+            <div className="flex items-center text-sm text-white/60">
+              <Link href={`/${locale}`} className="hover:text-white transition-colors">
+                {isEnglish ? 'Home' : 'Головна'}
+              </Link>
+              <span className="mx-2">/</span>
+              <Link href={`/${locale}/services`} className="hover:text-white transition-colors">
+                {isEnglish ? 'Services' : 'Послуги'}
+              </Link>
+              <span className="mx-2">/</span>
+              <span className="text-white">{isEnglish ? 'Hatchery Engineering' : 'Інжиніринг інкубаторіїв'}</span>
+            </div>
+          </nav>
+
+          <div className="max-w-4xl">
+            {/* Eyebrow */}
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
+              <Sparkles className="w-4 h-4 text-[#42c997]" />
+              <span className="text-white/90 text-sm font-medium">
+                {isEnglish ? 'Fingerling Production Systems' : 'Системи виробництва мальків'}
+              </span>
+            </div>
+
+            {/* Main Headline */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              {isEnglish ? 'Hatchery Engineering' : 'Інжиніринг інкубаторіїв'}
+              <span className="block text-[#42c997]">
+                {isEnglish ? '& Design' : 'та проектування'}
+              </span>
+            </h1>
+
+            <p className="text-xl md:text-2xl text-white/80 mb-8 leading-relaxed max-w-3xl">
+              {isEnglish
+                ? 'Complete hatchery systems for consistent, high-quality fingerling production. From broodstock to grow-out ready juveniles.'
+                : 'Повні системи інкубаторіїв для стабільного виробництва високоякісних мальків. Від плідників до готових до вирощування молодих особин.'}
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 mb-16">
+              <Link
+                href={`/${locale}/contact`}
+                className="inline-flex items-center justify-center gap-2 bg-[#42c997] hover:bg-[#35a87a] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all hover:shadow-lg hover:shadow-[#42c997]/25"
+              >
+                {isEnglish ? 'Design Your Hatchery' : 'Спроектувати ваш інкубаторій'}
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                href={`/${locale}/projects`}
+                className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all border border-white/20"
+              >
+                {isEnglish ? 'View Projects' : 'Переглянути проекти'}
+              </Link>
+            </div>
+
+            {/* Hero Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-5 border border-white/10">
+                <div className="flex items-center gap-3 mb-2">
+                  <Clock className="w-5 h-5 text-[#42c997]" />
+                  <span className="text-2xl md:text-3xl font-bold text-white">15+</span>
+                </div>
+                <p className="text-white/60 text-sm">{isEnglish ? 'Years Experience' : 'Років досвіду'}</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-5 border border-white/10">
+                <div className="flex items-center gap-3 mb-2">
+                  <Fish className="w-5 h-5 text-[#42c997]" />
+                  <span className="text-2xl md:text-3xl font-bold text-white">20+</span>
+                </div>
+                <p className="text-white/60 text-sm">{isEnglish ? 'Species Supported' : 'Підтримуваних видів'}</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-5 border border-white/10">
+                <div className="flex items-center gap-3 mb-2">
+                  <Target className="w-5 h-5 text-[#42c997]" />
+                  <span className="text-2xl md:text-3xl font-bold text-white">95%</span>
+                </div>
+                <p className="text-white/60 text-sm">{isEnglish ? 'Survival Rate' : 'Виживаність'}</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-5 border border-white/10">
+                <div className="flex items-center gap-3 mb-2">
+                  <DollarSign className="w-5 h-5 text-[#42c997]" />
+                  <span className="text-2xl md:text-3xl font-bold text-white">50%</span>
+                </div>
+                <p className="text-white/60 text-sm">{isEnglish ? 'Cost Savings' : 'Економія витрат'}</p>
+              </div>
             </div>
           </div>
-          <h1 className="mb-6 font-bold">{content.hero.title}</h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8">
-            {content.hero.subtitle}
-          </p>
-          <Link
-            href={`/${locale}/contact`}
-            className="inline-flex items-center gap-2 bg-white text-brand-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-neutral-100 transition-all hover:shadow-lg"
-          >
-            {content.hero.cta}
-            <ArrowRight className="w-5 h-5" />
-          </Link>
+        </div>
+
+        {/* Wave Divider */}
+        <div className="absolute -bottom-px left-0 right-0">
+          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto block" preserveAspectRatio="none">
+            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+          </svg>
         </div>
       </section>
 
-      {/* Introduction Section */}
-      <section className="section bg-white">
+      {/* Why Invest in a Hatchery Section */}
+      <section className="py-20 bg-white">
         <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">{content.intro.title}</h2>
-            <div className="prose prose-lg max-w-none">
-              <p className="text-lg text-neutral-700 mb-4">{content.intro.text1}</p>
-              <p className="text-lg text-neutral-700">{content.intro.text2}</p>
-            </div>
-
-            {/* Why Hatchery Benefits */}
-            <h3 className="text-2xl font-bold mt-12 mb-6 text-center">{content.intro.whyHatcheryTitle}</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {content.intro.benefits.map((benefit, index) => {
-                const Icon = benefit.icon;
-                return (
-                  <div key={index} className="flex items-start gap-4 p-6 bg-neutral-50 rounded-lg">
-                    <div className="w-12 h-12 bg-brand-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-6 h-6 text-brand-secondary" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-lg mb-2">{benefit.title}</h4>
-                      <p className="text-neutral-600">{benefit.description}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {isEnglish ? 'Why Invest in ' : 'Чому варто інвестувати в '}
+              <span className="text-[#42c997]">{isEnglish ? 'a Hatchery?' : 'інкубаторій?'}</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              {isEnglish
+                ? 'A well-designed hatchery ensures consistent supply, superior genetics, and biosecurity'
+                : 'Добре спроектований інкубаторій забезпечує стабільні поставки, чудову генетику та біобезпеку'}
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* When to Build vs Buy */}
-      <section className="section bg-gradient-to-br from-neutral-50 to-brand-primary/5">
-        <div className="container-custom">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">{content.whenToBuild.title}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {content.whenToBuild.scenarios.map((scenario, index) => (
-              <div key={index} className="card p-8 bg-white">
-                <h3 className="text-xl font-semibold mb-4 text-brand-primary">{scenario.title}</h3>
-                <ul className="space-y-3">
-                  {scenario.points.map((point, pointIndex) => (
-                    <li key={pointIndex} className="flex items-start gap-2">
-                      <CheckCircle className="w-5 h-5 text-brand-success flex-shrink-0 mt-0.5" />
-                      <span className="text-neutral-600">{point}</span>
-                    </li>
-                  ))}
-                </ul>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                icon: Shield,
+                title: isEnglish ? 'Consistent Supply' : 'Стабільні поставки',
+                description: isEnglish
+                  ? 'Guaranteed fingerling availability year-round, independent of external suppliers'
+                  : 'Гарантована доступність мальків цілий рік, незалежно від зовнішніх постачальників',
+              },
+              {
+                icon: Microscope,
+                title: isEnglish ? 'Biosecurity Control' : 'Контроль біобезпеки',
+                description: isEnglish
+                  ? 'Prevent disease introduction from external fingerling sources'
+                  : 'Запобігання занесенню хвороб від зовнішніх джерел мальків',
+              },
+              {
+                icon: Fish,
+                title: isEnglish ? 'Genetic Control' : 'Генетичний контроль',
+                description: isEnglish
+                  ? 'Select and breed for superior traits: growth rate, disease resistance, quality'
+                  : 'Відбір та розведення кращих ознак: темпи росту, стійкість до хвороб, якість',
+              },
+              {
+                icon: DollarSign,
+                title: isEnglish ? 'Cost Savings' : 'Економія витрат',
+                description: isEnglish
+                  ? 'Long-term savings vs. purchasing fingerlings; vertical integration benefits'
+                  : 'Довгострокова економія проти купівлі мальків; переваги вертикальної інтеграції',
+              },
+            ].map((benefit, index) => (
+              <div
+                key={index}
+                className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100 hover:shadow-xl hover:border-[#42c997]/30 transition-all duration-300 group"
+              >
+                <div className="w-14 h-14 bg-[#42c997]/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#42c997]/20 transition-colors">
+                  <benefit.icon className="w-7 h-7 text-[#42c997]" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">{benefit.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Our Hatchery Services */}
-      <section className="section bg-white">
+      {/* When to Build vs Buy */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-[#42c997]/5">
         <div className="container-custom">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">{content.services.title}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {content.services.items.map((service, index) => {
-              const Icon = service.icon;
-              return (
-                <div
-                  key={index}
-                  className="card p-8 hover:shadow-xl transition-all group bg-gradient-to-br from-white to-neutral-50"
-                >
-                  <div className="w-16 h-16 bg-brand-secondary/10 rounded-xl mb-6 flex items-center justify-center group-hover:bg-brand-secondary/20 transition-colors">
-                    <Icon className="w-8 h-8 text-brand-secondary" />
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {isEnglish ? 'Build or ' : 'Будувати чи '}
+              <span className="text-[#42c997]">{isEnglish ? 'Buy?' : 'купувати?'}</span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-[#42c997]">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-[#42c997] rounded-xl flex items-center justify-center">
+                  <Award className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900">
+                  {isEnglish ? 'Build a Hatchery When:' : 'Будуйте інкубаторій, якщо:'}
+                </h3>
+              </div>
+              <ul className="space-y-4">
+                {[
+                  isEnglish ? 'Production exceeds 50-100 tons annually' : 'Виробництво перевищує 50-100 тонн щорічно',
+                  isEnglish ? 'Fingerling supply is unreliable or expensive' : 'Постачання мальків ненадійне або дороге',
+                  isEnglish ? 'You want genetic improvement programs' : 'Ви хочете програми генетичного покращення',
+                  isEnglish ? 'High biosecurity is critical' : 'Висока біобезпека є критичною',
+                ].map((point, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-[#42c997] flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700">{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl shadow-lg">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-gray-200 rounded-xl flex items-center justify-center">
+                  <Users className="w-6 h-6 text-gray-600" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900">
+                  {isEnglish ? 'Buy Fingerlings When:' : 'Купуйте мальки, якщо:'}
+                </h3>
+              </div>
+              <ul className="space-y-4">
+                {[
+                  isEnglish ? 'Small-scale operations (<50 tons/year)' : 'Невеликі операції (<50 тонн/рік)',
+                  isEnglish ? 'Reliable local fingerling suppliers exist' : 'Існують надійні місцеві постачальники мальків',
+                  isEnglish ? 'Capital for hatchery construction is limited' : 'Капітал для будівництва інкубаторію обмежений',
+                  isEnglish ? 'Testing species or markets first' : 'Спочатку тестуєте види або ринки',
+                ].map((point, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-600">{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Hatchery Services */}
+      <section className="py-20 bg-white">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {isEnglish ? 'Our Hatchery ' : 'Наші послуги '}
+              <span className="text-[#42c997]">{isEnglish ? 'Services' : 'інкубаторію'}</span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: FileText,
+                number: '01',
+                title: isEnglish ? 'Complete System Design' : 'Повне проектування системи',
+                description: isEnglish
+                  ? 'End-to-end hatchery design including broodstock facilities, spawning rooms, incubation systems, larval rearing, and live feed production units.'
+                  : 'Наскрізне проектування інкубаторію, включаючи об\'єкти для плідників, кімнати нересту, системи інкубації, вирощування личинок та виробничі одиниці живого корму.',
+              },
+              {
+                icon: Microscope,
+                number: '02',
+                title: isEnglish ? 'Broodstock Facility Engineering' : 'Інжиніринг об\'єктів для плідників',
+                description: isEnglish
+                  ? 'Specialized broodstock tanks, conditioning systems, photoperiod control, and breeding protocols for optimal spawning performance.'
+                  : 'Спеціалізовані резервуари для плідників, системи кондиціювання, контроль фотоперіоду та протоколи розведення для оптимальної продуктивності нересту.',
+              },
+              {
+                icon: Package,
+                number: '03',
+                title: isEnglish ? 'Nursery & Grow-Out Integration' : 'Інтеграція розсадника та вирощування',
+                description: isEnglish
+                  ? 'Seamless integration with nursery and grow-out facilities, weaning protocols, and fingerling transfer systems.'
+                  : 'Безшовна інтеграція з розсадником та вирощувальними об\'єктами, протоколи відлучення та системи передачі мальків.',
+              },
+            ].map((service, index) => (
+              <div
+                key={index}
+                className="relative bg-gradient-to-br from-[#0a2540] to-[#1B4B63] p-8 rounded-2xl text-white overflow-hidden group hover:shadow-2xl transition-all"
+              >
+                <div className="absolute top-4 right-4 text-6xl font-bold text-white/10">
+                  {service.number}
+                </div>
+                <div className="relative z-10">
+                  <div className="w-14 h-14 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#42c997]/30 transition-colors">
+                    <service.icon className="w-7 h-7 text-[#42c997]" />
                   </div>
                   <h3 className="text-xl font-semibold mb-4">{service.title}</h3>
-                  <p className="text-neutral-600 leading-relaxed">{service.description}</p>
+                  <p className="text-white/70 leading-relaxed">{service.description}</p>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Key Components */}
-      <section className="section bg-gradient-to-br from-neutral-50 to-brand-secondary/5">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
         <div className="container-custom">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">{content.components.title}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {content.components.items.map((component, index) => {
-              const Icon = component.icon;
-              return (
-                <div key={index} className="flex flex-col items-center text-center p-6 bg-white border border-neutral-200 rounded-lg hover:border-brand-secondary/50 hover:shadow-md transition-all">
-                  <div className="w-14 h-14 bg-brand-primary/10 rounded-lg flex items-center justify-center mb-4">
-                    <Icon className="w-7 h-7 text-brand-primary" />
-                  </div>
-                  <h4 className="font-semibold mb-2 text-sm">{component.title}</h4>
-                  <p className="text-xs text-neutral-600">{component.description}</p>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {isEnglish ? 'Key Hatchery ' : 'Ключові компоненти '}
+              <span className="text-[#42c997]">{isEnglish ? 'Components' : 'інкубаторію'}</span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: Fish,
+                title: isEnglish ? 'Broodstock Tanks' : 'Резервуари плідників',
+                description: isEnglish ? 'Temperature, light, photoperiod control' : 'Контроль температури, світла, фотоперіоду',
+              },
+              {
+                icon: Activity,
+                title: isEnglish ? 'Spawning Facilities' : 'Об\'єкти нересту',
+                description: isEnglish ? 'Dedicated spawning and fertilization' : 'Виділені нерестові та запліднення',
+              },
+              {
+                icon: Egg,
+                title: isEnglish ? 'Incubation Systems' : 'Системи інкубації',
+                description: isEnglish ? 'Temperature-controlled incubators' : 'Інкубатори з контролем температури',
+              },
+              {
+                icon: Baby,
+                title: isEnglish ? 'Larval Rearing' : 'Вирощування личинок',
+                description: isEnglish ? 'First feeding, optimal water quality' : 'Перше годування, оптимальна якість води',
+              },
+              {
+                icon: Microscope,
+                title: isEnglish ? 'Live Feed Production' : 'Виробництво живого корму',
+                description: isEnglish ? 'Rotifer, artemia, algae culture' : 'Культивування коловерток, артемії, водоростей',
+              },
+              {
+                icon: Droplets,
+                title: isEnglish ? 'Water Quality' : 'Якість води',
+                description: isEnglish ? 'Filtration, oxygen, temperature' : 'Фільтрація, кисень, температура',
+              },
+              {
+                icon: Shield,
+                title: isEnglish ? 'Biosecurity' : 'Біобезпека',
+                description: isEnglish ? 'Quarantine, water treatment' : 'Карантин, очищення води',
+              },
+              {
+                icon: Gauge,
+                title: isEnglish ? 'Automation' : 'Автоматизація',
+                description: isEnglish ? 'Sensors, feeding, alarms' : 'Датчики, годування, сигналізація',
+              },
+            ].map((component, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center text-center p-6 bg-white border border-gray-200 rounded-xl hover:border-[#42c997]/50 hover:shadow-lg transition-all"
+              >
+                <div className="w-14 h-14 bg-[#1B4B63]/10 rounded-xl flex items-center justify-center mb-4">
+                  <component.icon className="w-7 h-7 text-[#1B4B63]" />
                 </div>
-              );
-            })}
+                <h4 className="font-semibold text-gray-900 mb-2">{component.title}</h4>
+                <p className="text-sm text-gray-600">{component.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Design Process */}
-      <section className="section bg-white">
+      <section className="py-20 bg-white">
         <div className="container-custom">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">{content.process.title}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {content.process.steps.map((step, index) => {
-              const Icon = step.icon;
-              return (
-                <div key={index} className="relative">
-                  <div className="card p-6 h-full bg-gradient-to-br from-white to-brand-primary/5">
-                    <div className="flex items-center gap-4 mb-4">
-                      <span className="text-4xl font-bold text-brand-secondary/20">{step.number}</span>
-                      <Icon className="w-8 h-8 text-brand-secondary" />
-                    </div>
-                    <h3 className="font-semibold text-lg mb-3">{step.title}</h3>
-                    <p className="text-sm text-neutral-600 leading-relaxed">{step.description}</p>
-                  </div>
-                  {index < content.process.steps.length - 1 && (
-                    <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
-                      <ArrowRight className="w-8 h-8 text-brand-secondary/30" />
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {isEnglish ? 'Hatchery Design ' : 'Процес проектування '}
+              <span className="text-[#42c997]">{isEnglish ? 'Process' : 'інкубаторію'}</span>
+            </h2>
           </div>
-        </div>
-      </section>
 
-      {/* Technical Advantages */}
-      <section className="section bg-gradient-to-br from-neutral-50 to-brand-success/5">
-        <div className="container-custom">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">{content.advantages.title}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {content.advantages.items.map((advantage, index) => {
-              const Icon = advantage.icon;
-              return (
-                <div key={index} className="flex items-start gap-3 p-6 bg-white rounded-lg">
-                  <Icon className="w-6 h-6 text-brand-success flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-semibold mb-1">{advantage.title}</h4>
-                    <p className="text-sm text-neutral-600">{advantage.description}</p>
+          <div className="relative">
+            {/* Timeline Line */}
+            <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-[#42c997]/20 via-[#42c997] to-[#42c997]/20 transform -translate-y-1/2" />
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[
+                {
+                  icon: FileText,
+                  number: '01',
+                  title: isEnglish ? 'Species Analysis' : 'Аналіз видів',
+                  description: isEnglish
+                    ? 'Identify target species, production goals, and species-specific requirements'
+                    : 'Визначення цільових видів, цілей виробництва та специфічних вимог видів',
+                },
+                {
+                  icon: Calculator,
+                  number: '02',
+                  title: isEnglish ? 'Facility Layout' : 'Компоновка об\'єкта',
+                  description: isEnglish
+                    ? 'Design layout, calculate tank sizes, plan workflow optimization'
+                    : 'Проектування компоновки, розрахунок розмірів резервуарів, оптимізація робочого процесу',
+                },
+                {
+                  icon: Package,
+                  number: '03',
+                  title: isEnglish ? 'Equipment Selection' : 'Вибір обладнання',
+                  description: isEnglish
+                    ? 'Select incubation, water treatment, and monitoring equipment'
+                    : 'Вибір обладнання для інкубації, очищення води та моніторингу',
+                },
+                {
+                  icon: Rocket,
+                  number: '04',
+                  title: isEnglish ? 'Training' : 'Навчання',
+                  description: isEnglish
+                    ? 'System startup, protocols, and comprehensive staff training'
+                    : 'Запуск системи, протоколи та комплексне навчання персоналу',
+                },
+              ].map((step, index) => (
+                <div key={index} className="relative">
+                  <div className="bg-white border-2 border-gray-100 rounded-2xl p-6 hover:border-[#42c997] transition-all hover:shadow-xl">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-[#42c997] to-[#35a87a] rounded-xl flex items-center justify-center">
+                        <step.icon className="w-6 h-6 text-white" />
+                      </div>
+                      <span className="text-4xl font-bold text-gray-200">{step.number}</span>
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">{step.title}</h3>
+                    <p className="text-sm text-gray-600">{step.description}</p>
                   </div>
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Species We Support */}
-      <section className="section bg-white">
-        <div className="container-custom">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">{content.species.title}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {content.species.items.map((species, index) => (
-              <div key={index} className="card p-6 bg-gradient-to-br from-white to-neutral-50 hover:shadow-lg transition-all">
+      <section className="py-20 bg-gradient-to-br from-[#0a2540] via-[#1B4B63] to-[#0d3a4d] relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 right-20 text-white/5">
+            <Fish className="w-40 h-40" />
+          </div>
+          <div className="absolute bottom-20 left-20 text-white/5">
+            <Egg className="w-32 h-32" />
+          </div>
+        </div>
+
+        <div className="container-custom relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              {isEnglish ? 'Species We ' : 'Види, які ми '}
+              <span className="text-[#42c997]">{isEnglish ? 'Support' : 'підтримуємо'}</span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {[
+              {
+                title: isEnglish ? 'Salmon & Trout' : 'Лосось та форель',
+                description: isEnglish ? 'Salmonid hatcheries, smolt production, egg incubation' : 'Лососеві інкубаторії, виробництво смолтів, інкубація ікри',
+              },
+              {
+                title: isEnglish ? 'Tilapia' : 'Тіляпія',
+                description: isEnglish ? 'Mouth-brooding protocols, fry collection, sex reversal' : 'Протоколи виношування в роті, збір мальків, зміна статі',
+              },
+              {
+                title: isEnglish ? 'Sea Bass & Bream' : 'Сібас та дорада',
+                description: isEnglish ? 'Marine hatcheries, live feed production, larval rearing' : 'Морські інкубаторії, виробництво живого корму, вирощування личинок',
+              },
+              {
+                title: isEnglish ? 'Shrimp & Prawns' : 'Креветки',
+                description: isEnglish ? 'Maturation units, nauplii production, post-larval rearing' : 'Підрозділи дозрівання, виробництво науплій, вирощування постличинок',
+              },
+              {
+                title: isEnglish ? 'Sturgeon & Caviar' : 'Осетр та ікра',
+                description: isEnglish ? 'Specialized broodstock management, caviar production' : 'Спеціалізоване управління плідниками, виробництво ікри',
+              },
+              {
+                title: isEnglish ? 'Ornamental Fish' : 'Декоративні риби',
+                description: isEnglish ? 'Multi-species hatcheries, breeding programs' : 'Багатовидові інкубаторії, програми розведення',
+              },
+            ].map((species, index) => (
+              <div
+                key={index}
+                className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:bg-white/15 transition-all"
+              >
                 <div className="flex items-center gap-3 mb-3">
-                  <Fish className="w-6 h-6 text-brand-primary" />
-                  <h3 className="font-semibold text-lg">{species.title}</h3>
+                  <Fish className="w-6 h-6 text-[#42c997]" />
+                  <h3 className="font-semibold text-white">{species.title}</h3>
                 </div>
-                <p className="text-sm text-neutral-600">{species.description}</p>
+                <p className="text-sm text-white/70">{species.description}</p>
               </div>
             ))}
           </div>
@@ -580,119 +552,95 @@ export default async function HatcheryPage({ params }: Props) {
       </section>
 
       {/* Why Choose Us */}
-      <section className="section bg-gradient-to-br from-neutral-50 to-brand-accent/5">
+      <section className="py-20 bg-white">
         <div className="container-custom">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">{content.whyUs.title}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {content.whyUs.items.map((item, index) => (
-              <div key={index} className="card p-8 bg-white">
-                <h3 className="text-xl font-semibold mb-3 text-brand-primary">{item.title}</h3>
-                <p className="text-neutral-600 leading-relaxed">{item.description}</p>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {isEnglish ? 'Why Choose ' : 'Чому обрати '}
+              <span className="text-[#42c997]">Vismar Aqua?</span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {[
+              {
+                title: isEnglish ? '50% Lower Engineering Costs' : 'На 50% нижчі витрати на інжиніринг',
+                description: isEnglish
+                  ? 'AI-accelerated design process reduces engineering costs while delivering optimized, efficient hatchery systems tailored to your species.'
+                  : 'AI-прискорений процес проектування знижує витрати на інжиніринг, забезпечуючи оптимізовані, ефективні системи інкубаторіїв, адаптовані до ваших видів.',
+              },
+              {
+                title: isEnglish ? 'Multi-Species Expertise' : 'Експертиза багатьох видів',
+                description: isEnglish
+                  ? 'Experience with salmonids, tilapia, marine species, shrimp, sturgeon, and ornamental fish hatchery design and protocols.'
+                  : 'Досвід роботи з лососевими, тіляпією, морськими видами, креветками, осетром та проектуванням інкубаторіїв і протоколами для декоративних риб.',
+              },
+              {
+                title: isEnglish ? 'Proven Hatchery Protocols' : 'Перевірені протоколи інкубаторію',
+                description: isEnglish
+                  ? 'Species-specific breeding, spawning, and rearing protocols based on 15+ years of aquaculture engineering experience.'
+                  : 'Специфічні для видів протоколи розведення, нересту та вирощування на основі 15+ років досвіду інжинірингу аквакультури.',
+              },
+              {
+                title: isEnglish ? 'Complete System Integration' : 'Повна інтеграція системи',
+                description: isEnglish
+                  ? 'Seamless integration with nursery, grow-out facilities, and recirculating systems for vertical integration benefits.'
+                  : 'Безшовна інтеграція з розсадником, вирощувальними об\'єктами та рециркуляційними системами для переваг вертикальної інтеграції.',
+              },
+            ].map((item, index) => (
+              <div key={index} className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100 hover:shadow-xl transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-[#42c997] rounded-xl flex items-center justify-center flex-shrink-0">
+                    <CheckCircle className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{item.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Related Projects Section */}
-      <section className="section bg-white">
-        <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">{content.relatedProjects.title}</h2>
-            <p className="text-xl text-neutral-600 mb-8">{content.relatedProjects.description}</p>
-            <Link
-              href={`/${locale}/projects`}
-              className="inline-flex items-center gap-2 bg-brand-primary text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-primary/90 transition-all hover:shadow-lg"
-            >
-              {content.relatedProjects.cta}
-              <ArrowRight className="w-5 h-5" />
-            </Link>
+      {/* Final CTA Section */}
+      <section className="py-20 bg-gradient-to-br from-[#42c997] to-[#35a87a] relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-10 left-10 text-white/10">
+            <Egg className="w-24 h-24" />
+          </div>
+          <div className="absolute bottom-10 right-10 text-white/10">
+            <Baby className="w-32 h-32" />
           </div>
         </div>
-      </section>
 
-      {/* Final CTA Section */}
-      <section className="section bg-gradient-accent text-white">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">{content.finalCta.title}</h2>
-            <p className="text-xl text-white/90 mb-12 text-center max-w-3xl mx-auto">
-              {content.finalCta.description}
+        <div className="container-custom relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              {isEnglish ? 'Ready to Design Your Hatchery?' : 'Готові спроектувати ваш інкубаторій?'}
+            </h2>
+            <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+              {isEnglish
+                ? 'Contact us today for a consultation. Let\'s discuss your species, production goals, and design the perfect hatchery solution.'
+                : 'Зв\'яжіться з нами сьогодні для консультації. Давайте обговоримо ваші види, цілі виробництва та спроектуємо ідеальне рішення інкубаторію.'}
             </p>
 
-            {/* Contact Form */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12">
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-2">
-                      {content.finalCta.formLabels.name}
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      className="w-full px-4 py-3 rounded-lg bg-white/90 text-neutral-900 border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/50"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">
-                      {content.finalCta.formLabels.email}
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      className="w-full px-4 py-3 rounded-lg bg-white/90 text-neutral-900 border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/50"
-                      required
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="projectType" className="block text-sm font-medium mb-2">
-                    {content.finalCta.formLabels.projectType}
-                  </label>
-                  <select
-                    id="projectType"
-                    name="projectType"
-                    className="w-full px-4 py-3 rounded-lg bg-white/90 text-neutral-900 border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/50"
-                  >
-                    {content.finalCta.formLabels.projectTypes.map((type, index) => (
-                      <option key={index} value={type}>
-                        {type}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    {content.finalCta.formLabels.message}
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={5}
-                    className="w-full px-4 py-3 rounded-lg bg-white/90 text-neutral-900 border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/50"
-                    required
-                  ></textarea>
-                </div>
-                <div className="text-center">
-                  <button
-                    type="submit"
-                    className="inline-flex items-center gap-2 bg-white text-brand-accent px-8 py-4 rounded-lg font-semibold text-lg hover:bg-neutral-100 transition-all hover:shadow-lg"
-                  >
-                    {content.finalCta.formLabels.submit}
-                    <ArrowRight className="w-5 h-5" />
-                  </button>
-                  <p className="mt-4 text-sm text-white/70">
-                    {isEnglish ? 'Or' : 'Або'}{' '}
-                    <Link href={`/${locale}/contact`} className="underline hover:text-white">
-                      {content.finalCta.ctaButton}
-                    </Link>
-                  </p>
-                </div>
-              </form>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href={`/${locale}/contact`}
+                className="inline-flex items-center justify-center gap-2 bg-white text-[#35a87a] px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all hover:shadow-lg"
+              >
+                {isEnglish ? 'Schedule Consultation' : 'Запланувати консультацію'}
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                href={`/${locale}/projects`}
+                className="inline-flex items-center justify-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all border border-white/30"
+              >
+                {isEnglish ? 'View Our Projects' : 'Переглянути проекти'}
+              </Link>
             </div>
           </div>
         </div>
