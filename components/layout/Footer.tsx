@@ -92,7 +92,7 @@ export default function Footer({ locale }: FooterProps) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/services/hfts-technology`}
+                  href={`/${locale}/services/hfts`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
                   {t('engineering.hftsTechnology')}
@@ -230,10 +230,26 @@ export default function Footer({ locale }: FooterProps) {
               </li>
               <li>
                 <Link
+                  href={`/${locale}/services`}
+                  className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
+                >
+                  {locale === 'en' ? 'Services' : 'Послуги'}
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={`/${locale}/projects`}
                   className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
                 >
                   {t('company.ourProjects')}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`/${locale}/species`}
+                  className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
+                >
+                  {locale === 'en' ? 'Species' : 'Види риб'}
                 </Link>
               </li>
               <li>
@@ -277,12 +293,26 @@ export default function Footer({ locale }: FooterProps) {
               </li>
               <li className="flex items-start group">
                 <Phone className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0 text-brand-secondary" />
-                <a
-                  href={`tel:${t('contact.phone').replace(/\s/g, '')}`}
-                  className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm"
-                >
-                  {t('contact.phone')}
-                </a>
+                <div className="flex-1">
+                  <div className="mb-2">
+                    <a
+                      href={`tel:${t('contact.phone').replace(/\s/g, '')}`}
+                      className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm block"
+                    >
+                      {t('contact.phone')}
+                    </a>
+                    <span className="text-xs text-gray-500">{t('contact.phoneLabel')}</span>
+                  </div>
+                  <div>
+                    <a
+                      href={`tel:${t('contact.phone2').replace(/\s/g, '')}`}
+                      className="text-gray-400 hover:text-brand-secondary transition-colors duration-200 text-sm block"
+                    >
+                      {t('contact.phone2')}
+                    </a>
+                    <span className="text-xs text-gray-500">{t('contact.phone2Label')}</span>
+                  </div>
+                </div>
               </li>
               <li className="flex items-start group">
                 <Globe className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0 text-brand-secondary" />
@@ -329,6 +359,15 @@ export default function Footer({ locale }: FooterProps) {
                 </Link>
                 <span className="text-gray-600">•</span>
                 <span className="text-gray-500">{t('legal.registration')}</span>
+                <span className="text-gray-600">•</span>
+                <a
+                  href="https://old.vismar-aqua.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brand-secondary transition-colors duration-200"
+                >
+                  {locale === 'en' ? 'Old Site' : 'Стара версія'}
+                </a>
               </div>
             </div>
             <div className="flex space-x-4">

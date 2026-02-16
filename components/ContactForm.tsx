@@ -28,20 +28,27 @@ export default function ContactForm({ locale }: ContactFormProps) {
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
-    // Simulate form submission (replace with actual API call)
     try {
-      console.log('Form submitted:', formData);
-
-      // TODO: Replace with actual API call to WordPress REST API or serverless function
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      setSubmitStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
+      const response = await fetch('https://formspree.io/f/xpqaabjj', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
       });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+        });
+      } else {
+        throw new Error('Form submission failed');
+      }
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitStatus('error');

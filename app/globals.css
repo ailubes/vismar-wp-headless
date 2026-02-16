@@ -6,6 +6,8 @@
   --color-brand-secondary: #00A8B5;    /* Aqua/Cyan */
   --color-brand-accent: #FF6B35;       /* Coral Orange */
   --color-brand-success: #4ECDC4;      /* Seafoam Green */
+  --color-brand-heading: #35a87a;      /* Teal Green - darker variant for headings */
+  --color-brand-heading-light: #42c997; /* Lighter teal for accents */
 
   /* Legacy Brand Colors (backward compatibility - deprecated) */
   --color-brand-blue: #5db4d2;
@@ -847,6 +849,39 @@ h6 {
   animation: fadeIn 0.2s ease-out;
 }
 
+/* Floating animation for tech symbols */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-2deg);
+  }
+  75% {
+    transform: translateY(-15px) rotate(1deg);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Float animation variants with different speeds */
+.animate-float-slow {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float 4s ease-in-out infinite;
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .button-lift,
@@ -862,7 +897,11 @@ h6 {
   .shadow-transition,
   .color-transition,
   .arrow-slide,
-  .animate-fadeIn {
+  .animate-fadeIn,
+  .animate-float,
+  .animate-float-slow,
+  .animate-float-medium,
+  .animate-float-fast {
     transition: none;
     animation: none;
     transform: none;
@@ -878,5 +917,93 @@ h6 {
   .icon-scale-parent:hover .icon-scale,
   .arrow-slide-parent:hover .arrow-slide {
     transform: none;
+  }
+}
+
+/* ===================================
+   Consistent Heading Styles
+   =================================== */
+
+/* Primary heading style - uses brand teal color */
+.heading-primary {
+  color: var(--color-brand-heading);
+  font-family: var(--font-family-heading);
+}
+
+/* Section heading style - for section titles */
+.heading-section {
+  color: var(--color-brand-heading);
+  font-family: var(--font-family-heading);
+  font-weight: 700;
+}
+
+/* Hero heading - bold variant for hero sections */
+.heading-hero {
+  color: var(--color-brand-heading);
+  font-family: var(--font-family-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Card heading - for card titles */
+.heading-card {
+  color: var(--color-gray-900);
+  font-family: var(--font-family-heading);
+  font-weight: 600;
+}
+
+/* Text color utilities for heading teal */
+.text-heading {
+  color: var(--color-brand-heading);
+}
+
+.text-heading-light {
+  color: var(--color-brand-heading-light);
+}
+
+/* Gradient text with heading teal */
+.text-gradient-heading {
+  background: linear-gradient(135deg, var(--color-brand-heading), var(--color-brand-heading-light));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ===================================
+   Mobile-First Responsive Utilities
+   =================================== */
+
+/* Hide on mobile, show on larger screens */
+.desktop-only {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .desktop-only {
+    display: block;
+  }
+}
+
+/* Show on mobile, hide on larger screens */
+.mobile-only {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .mobile-only {
+    display: none;
+  }
+}
+
+/* Mobile-friendly padding adjustments */
+@media (max-width: 767px) {
+  .mobile-padding {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .mobile-py-reduced {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 }
