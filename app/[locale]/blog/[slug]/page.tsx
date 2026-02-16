@@ -47,7 +47,7 @@ export async function generateStaticParams() {
       }))
     ];
   } catch (error) {
-    console.error('Error generating static params for blog posts:', error);
+    // Error generating static params - return empty array
     return [];
   }
 }
@@ -83,7 +83,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     return generatePostMetadata(locale, slug, post);
   } catch (error) {
-    console.error('Error generating metadata:', error);
+    // Error generating metadata
     return {
       title: 'Post Not Found',
     };
@@ -112,7 +112,7 @@ export default async function BlogDetailPage({ params }: Props) {
     });
     postData = result.data;
   } catch (error) {
-    console.error('Error fetching post data:', error);
+    // Error fetching post data
     notFound();
   }
 
@@ -139,7 +139,7 @@ export default async function BlogDetailPage({ params }: Props) {
     });
     allPosts = allPostsResult.data?.posts?.nodes || [];
   } catch (error) {
-    console.error('Error fetching all posts for related posts:', error);
+    // Error fetching related posts - continue without them
   }
 
   // Calculate related posts

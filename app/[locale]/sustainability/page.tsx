@@ -1,12 +1,7 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Droplets, Zap, Recycle, Leaf, ArrowRight, Sun, Wind, TreePine, Fish, Target, TrendingUp, Heart } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
-import { Section } from '@/components/ui/Section';
-import { Card } from '@/components/ui/Card';
-import { StatCard } from '@/components/ui/AnimatedCounter';
-import ScrollReveal from '@/components/ui/ScrollReveal';
+import { Leaf, Droplets, Recycle, Wind, Sun, TreePine, Fish, CircleDot, Target, Award, ArrowRight, Sparkles, Heart, Globe, TrendingUp, Zap } from 'lucide-react';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -17,11 +12,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: locale === 'en'
-      ? 'Sustainable Aquaculture Engineering - 95% Water Savings & Zero Waste'
-      : 'Екологічний аквакультурний інжиніринг - 95% економії води та нуль відходів',
+      ? 'Sustainability & Environmental Responsibility | Vismar Aqua'
+      : 'Сталість та екологічна відповідальність | Vismar Aqua',
     description: locale === 'en'
-      ? '95% water savings through RAS technology, 40% energy reduction, and zero-waste designs. Building environmentally responsible aquaculture facilities for a sustainable future.'
-      : '95% економії води через RAS-технології, 40% зниження енергоспоживання та безвідходний дизайн. Будуємо екологічно відповідальні аквакультурні об\'єкти.',
+      ? 'Leading sustainable aquaculture through water conservation, renewable energy, zero-waste systems, and environmental stewardship.'
+      : 'Лідери сталої аквакультури через збереження води, відновлювальну енергію, безвідходні системи та екологічне управління.',
   };
 }
 
@@ -31,473 +26,388 @@ export default async function SustainabilityPage({ params }: Props) {
 
   const isEnglish = locale === 'en';
 
+  // Hero stats
+  const heroStats = [
+    {
+      icon: Droplets,
+      value: '95%',
+      label: { en: 'Water Recycled', uk: 'Переробки води' }
+    },
+    {
+      icon: Sun,
+      value: '100%',
+      label: { en: 'Renewable Energy', uk: 'Відновлювана енергія' }
+    },
+    {
+      icon: Recycle,
+      value: 'Zero',
+      label: { en: 'Waste to Ocean', uk: 'Відходів в океан' }
+    },
+    {
+      icon: Award,
+      value: '30+',
+      label: { en: 'Green Certifications', uk: 'Екосертифікатів' }
+    }
+  ];
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <Section
-        background="transparent"
-        spacing="2xl"
-        className="bg-gradient-to-br from-green-600 via-emerald-600 to-teal-600 text-white"
-      >
-        <div className="container-custom">
-          <ScrollReveal>
-            <div className="text-center max-w-4xl mx-auto">
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
-                <Leaf className="w-5 h-5" />
-                <span className="text-sm font-semibold">
-                  {isEnglish ? 'Our Impact' : 'Наш вплив'}
-                </span>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                {isEnglish
-                  ? 'Sustainable Aquaculture Engineering'
-                  : 'Екологічний аквакультурний інжиніринг'}
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 text-white/90">
-                {isEnglish
-                  ? 'Engineering environmentally responsible aquaculture systems that conserve resources, minimize waste, and protect our planet for future generations.'
-                  : 'Розробка екологічно відповідальних аквакультурних систем, що зберігають ресурси, мінімізують відходи та захищають нашу планету для майбутніх поколінь.'}
-              </p>
-              <Link href={`/${locale}/contact`}>
-                <Button variant="accent" size="lg" className="text-lg px-8 py-4">
-                  {isEnglish ? 'Design Sustainable Facility' : 'Спроектувати екологічний об\'єкт'}
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
+      {/* Premium Hero Section */}
+      <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center py-16 md:py-24 overflow-hidden">
+        {/* Dark gradient background with green tint */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a2540] via-[#1B4B63] to-[#0d3a4d]" />
+
+        {/* Decorative gradient circles */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-[#42c997]/20 to-transparent blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-[#4ECDC4]/15 to-transparent blur-3xl" />
+        <div className="absolute top-1/2 left-1/4 w-[300px] h-[300px] rounded-full bg-gradient-to-r from-[#35a87a]/10 to-transparent blur-2xl" />
+
+        {/* Grid pattern overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }}
+        />
+
+        {/* Floating sustainability icons */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-[15%] left-[8%] animate-float-slow opacity-20">
+            <Leaf className="w-12 h-12 text-[#42c997]" />
+          </div>
+          <div className="absolute top-[25%] right-[12%] animate-float-medium opacity-15">
+            <TreePine className="w-16 h-16 text-[#4ECDC4]" />
+          </div>
+          <div className="absolute bottom-[30%] left-[15%] animate-float-fast opacity-20">
+            <Droplets className="w-10 h-10 text-[#35a87a]" />
+          </div>
+          <div className="absolute bottom-[20%] right-[8%] animate-float-slow opacity-15">
+            <Recycle className="w-14 h-14 text-[#42c997]" />
+          </div>
+          <div className="absolute top-[60%] left-[5%] animate-float-medium opacity-10">
+            <Wind className="w-8 h-8 text-white" />
+          </div>
+          <div className="absolute top-[40%] right-[5%] animate-float-fast opacity-15">
+            <Sun className="w-10 h-10 text-[#4ECDC4]" />
+          </div>
+        </div>
+
+        {/* Hero content */}
+        <div className="container-custom relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Eyebrow badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6 md:mb-8">
+              <Sparkles className="w-4 h-4 text-[#4ECDC4]" />
+              <span className="text-sm font-medium text-white/90">
+                {isEnglish ? 'Environmental Leadership' : 'Екологічне лідерство'}
+              </span>
+            </div>
+
+            {/* Main headline */}
+            <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-6">
+              {isEnglish ? (
+                <>
+                  Sustainable{' '}
+                  <span className="text-[#4ECDC4]">Aquaculture Solutions</span>
+                </>
+              ) : (
+                <>
+                  Сталі рішення{' '}
+                  <span className="text-[#4ECDC4]">аквакультури</span>
+                </>
+              )}
+            </h1>
+
+            {/* Subheader */}
+            <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed mb-10">
+              {isEnglish
+                ? 'Building the future of aquaculture through environmental stewardship, water conservation, renewable energy integration, and zero-waste circular systems. Our commitment to sustainability protects our planet while ensuring profitable operations.'
+                : 'Будуємо майбутнє аквакультури через екологічне управління, збереження води, інтеграцію відновлювальної енергії та безвідходні циркулярні системи. Наша відданість сталості захищає планету та забезпечує прибутковість.'}
+            </p>
+
+            {/* CTA buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href={`/${locale}/contact`}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-accent hover:bg-brand-accent/90 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-brand-accent/25"
+              >
+                {isEnglish ? 'Go Green with Us' : 'Будьте екологічними з нами'}
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                href={`/${locale}/projects`}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-success hover:bg-brand-success/90 text-white font-semibold rounded-lg border border-white/20 transition-all duration-300 backdrop-blur-sm"
+              >
+                {isEnglish ? 'View Eco Projects' : 'Переглянути екопроекти'}
               </Link>
             </div>
-          </ScrollReveal>
-        </div>
-      </Section>
-
-      {/* Introduction */}
-      <Section background="white" spacing="2xl">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            <ScrollReveal>
-              <div className="prose prose-lg max-w-none">
-                <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                  {isEnglish
-                    ? 'Sustainability is not an add-on—it\'s fundamental to every aquaculture system we design. At Vismar Aqua, we believe that environmental responsibility and profitability go hand in hand. Our engineering solutions prioritize resource efficiency, waste minimization, and ecological harmony.'
-                    : 'Екологічність - це не доповнення, а основа кожної аквакультурної системи, яку ми проектуємо. У Vismar Aqua ми віримо, що екологічна відповідальність та прибутковість йдуть пліч-о-пліч. Наші інженерні рішення пріоритизують ефективність ресурсів, мінімізацію відходів та екологічну гармонію.'}
-                </p>
-                <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                  {isEnglish
-                    ? 'Through advanced Recirculating Aquaculture Systems (RAS), we achieve 95-99% water recirculation, dramatically reducing freshwater consumption. Our energy-optimized designs cut power usage by 40% compared to conventional systems. We implement circular economy principles, turning waste into valuable by-products like organic fertilizer.'
-                    : 'За допомогою передових рециркуляційних аквакультурних систем (RAS) ми досягаємо 95-99% рециркуляції води, drastично знижуючи споживання прісної води. Наші енергооптимізовані проекти скорочують споживання електроенергії на 40% порівняно з традиційними системами. Ми впроваджуємо принципи циркулярної економіки, перетворюючи відходи на цінні побічні продукти, як органічне добриво.'}
-                </p>
-                <p className="text-xl text-gray-700 leading-relaxed">
-                  {isEnglish
-                    ? 'The future of aquaculture is green, and we\'re engineering it today. From solar-powered operations to carbon-neutral facilities, we\'re committed to building systems that produce premium seafood while protecting the environment that makes it all possible.'
-                    : 'Майбутнє аквакультури - зелене, і ми розробляємо його сьогодні. Від операцій на сонячній енергії до вуглецево-нейтральних об\'єктів - ми віддані створенню систем, що виробляють преміум-морепродукти, захищаючи навколишнє середовище.'}
-                </p>
-              </div>
-            </ScrollReveal>
           </div>
         </div>
-      </Section>
 
-      {/* Key Initiatives */}
-      <Section background="light" spacing="2xl">
+        {/* Wave divider */}
+        <div className="absolute left-0 right-0" style={{ bottom: '-1px' }}>
+          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto block" preserveAspectRatio="none" style={{ display: 'block' }}>
+            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+          </svg>
+        </div>
+      </section>
+
+      {/* Hero stats section */}
+      <section className="section bg-white pt-0">
         <div className="container-custom">
-          <ScrollReveal>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                {isEnglish ? 'Sustainability Initiatives' : 'Екологічні ініціативи'}
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                {isEnglish
-                  ? 'Four pillars of environmental responsibility in aquaculture design'
-                  : 'Чотири стовпи екологічної відповідальності в аквакультурному дизайні'}
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <ScrollReveal delay={100}>
-              <Card className="h-full">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-lg">
-                    <Droplets className="w-8 h-8" />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 -mt-8 md:-mt-12">
+            {heroStats.map((stat, index) => {
+              const Icon = stat.icon;
+              return (
+                <div key={index} className="text-center p-6 rounded-xl bg-white border border-neutral-200 shadow-lg hover:shadow-xl transition-all duration-300">
+                  <div className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-[#42c997]/10 to-[#00A8B5]/10 mb-3 border border-[#42c997]/20">
+                    <Icon className="w-6 h-6 md:w-7 md:h-7 text-[#42c997]" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                      {isEnglish ? 'Water Conservation' : 'Збереження води'}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed mb-4">
-                      {isEnglish
-                        ? 'Our RAS designs recirculate 95-99% of water through advanced biological and mechanical filtration. This means producing the same amount of fish with 100 times less freshwater than traditional pond farming—critical for water-scarce regions and reducing environmental impact.'
-                        : 'Наші RAS-системи рециркулюють 95-99% води через передову біологічну та механічну фільтрацію. Це означає виробництво тієї ж кількості риби зі 100 разів меншим споживанням прісної води, ніж традиційне ставкове рибництво.'}
-                    </p>
-                    <ul className="space-y-2">
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <Droplets className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? '95-99% water recirculation' : '95-99% рециркуляція води'}</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <Droplets className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'Minimal freshwater makeup' : 'Мінімальне додавання прісної води'}</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <Droplets className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'Zero wastewater discharge' : 'Нуль скидів стічних вод'}</span>
-                      </li>
-                    </ul>
+                  <div className="text-3xl md:text-4xl font-bold text-neutral-900 mb-1">{stat.value}</div>
+                  <div className="text-sm md:text-base text-neutral-600">
+                    {isEnglish ? stat.label.en : stat.label.uk}
                   </div>
                 </div>
-              </Card>
-            </ScrollReveal>
-
-            <ScrollReveal delay={200}>
-              <Card className="h-full">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-gradient-to-br from-yellow-500 to-yellow-600 text-white rounded-lg">
-                    <Zap className="w-8 h-8" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                      {isEnglish ? 'Energy Efficiency' : 'Енергоефективність'}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed mb-4">
-                      {isEnglish
-                        ? 'Through optimized pumping systems, variable frequency drives, heat recovery, and renewable energy integration, we reduce operational energy costs by up to 40%. Solar panels, wind turbines, and biogas generation transform facilities into partially or fully energy-independent operations.'
-                        : 'Через оптимізовані системи насосів, частотні перетворювачі, рекуперацію тепла та інтеграцію відновлюваної енергії ми знижуємо операційні енергетичні витрати до 40%. Сонячні панелі, вітрові турбіни та біогаз перетворюють об\'єкти на частково або повністю енергонезалежні.'}
-                    </p>
-                    <ul className="space-y-2">
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <Sun className="w-5 h-5 text-yellow-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'Solar energy integration' : 'Інтеграція сонячної енергії'}</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <Zap className="w-5 h-5 text-yellow-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'Optimized pump efficiency' : 'Оптимізована ефективність насосів'}</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <Recycle className="w-5 h-5 text-yellow-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'Heat recovery systems' : 'Системи рекуперації тепла'}</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </Card>
-            </ScrollReveal>
-
-            <ScrollReveal delay={300}>
-              <Card className="h-full">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-lg">
-                    <Recycle className="w-8 h-8" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                      {isEnglish ? 'Waste Minimization' : 'Мінімізація відходів'}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed mb-4">
-                      {isEnglish
-                        ? 'We design zero-waste systems where fish waste becomes organic fertilizer, excess biomass feeds biogas digesters, and processing by-products are used for animal feed or composting. Nothing is wasted—everything has value in a circular economy approach to aquaculture.'
-                        : 'Ми проектуємо безвідходні системи, де рибні відходи стають органічним добривом, надлишкова біомаса живить біогазові установки, а побічні продукти переробки використовуються для корму тварин чи компостування. Нічого не марнується - все має цінність.'}
-                    </p>
-                    <ul className="space-y-2">
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <TreePine className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'Fish waste to fertilizer' : 'Рибні відходи на добриво'}</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <Recycle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'Biofloc technology' : 'Біофлок-технологія'}</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <Leaf className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'Circular economy design' : 'Дизайн циркулярної економіки'}</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </Card>
-            </ScrollReveal>
-
-            <ScrollReveal delay={400}>
-              <Card className="h-full">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-gradient-to-br from-emerald-500 to-emerald-600 text-white rounded-lg">
-                    <Leaf className="w-8 h-8" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                      {isEnglish ? 'Sustainable Materials' : 'Екологічні матеріали'}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed mb-4">
-                      {isEnglish
-                        ? 'We specify eco-friendly, durable materials that minimize environmental impact throughout their lifecycle. From recyclable plastics to sustainably-sourced building materials, every component is chosen for longevity and environmental compatibility. Minimal use of chemicals and preference for natural biofilters further reduce ecological footprint.'
-                        : 'Ми вказуємо екологічні, довговічні матеріали, що мінімізують вплив на навколишнє середовище протягом їхнього життєвого циклу. Від перероблюваного пластику до екологічно джерельних будівельних матеріалів - кожен компонент обирається для довговічності та екологічної сумісності.'}
-                    </p>
-                    <ul className="space-y-2">
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <Recycle className="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'Recyclable components' : 'Перероблювані компоненти'}</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <Leaf className="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'Low-chemical biofilters' : 'Низькохімічні біофільтри'}</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <TreePine className="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'Sustainable sourcing' : 'Екологічні джерела'}</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </Card>
-            </ScrollReveal>
+              );
+            })}
           </div>
         </div>
-      </Section>
+      </section>
+
+      {/* Why Sustainability */}
+      <section className="section bg-white">
+        <div className="container-custom">
+          <div className="text-center mb-12 md:mb-16">
+            <span className="inline-block text-sm font-semibold text-[#4ECDC4] uppercase tracking-wider mb-3">
+              {isEnglish ? 'Our Commitment' : 'Наша відданість'}
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-heading mb-4">
+              {isEnglish ? 'Sustainability at Our Core' : 'Сталість в основі'}
+            </h2>
+            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+              {isEnglish
+                ? 'Environmental responsibility isn\'t an add-on—it\'s the foundation of every system we design.'
+                : 'Екологічна відповідальність - не додаток, а основа кожної системи, яку ми проектуємо.'}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Heart,
+                title: { en: 'Planet First', uk: 'Планета на першому місці' },
+                description: { en: 'Every design decision prioritizes environmental impact. We measure success not just in production, but in ecosystem health and resource preservation.', uk: 'Кожне проектне рішення пріоритизує вплив на довкілля. Успіх вимірюємо не лише продуктивністю, а здоров\'ям екосистеми.' }
+              },
+              {
+                icon: Globe,
+                title: { en: 'Circular Economy', uk: 'Циркулярна економіка' },
+                description: { en: 'Zero-waste systems where byproducts become resources. Water is endlessly recycled, organic waste becomes fertilizer, and energy comes from renewables.', uk: 'Безвідходні системи, де побічні продукти стають ресурсами. Вода переробляється, органічні відходи - добриво, енергія - відновлювана.' }
+              },
+              {
+                icon: Target,
+                title: { en: 'Future-Proof', uk: 'Стійкість до майбутнього' },
+                description: { en: 'Designs that adapt to climate change, comply with evolving regulations, and meet tomorrow\'s sustainability standards today.', uk: 'Проекти адаптуються до кліматичних змін, відповідають регуляціям і відповідають майбутнім стандартам сталості.' }
+              }
+            ].map((item, index) => {
+              const ItemIcon = item.icon;
+              return (
+                <div key={index} className="text-center p-6 md:p-8 rounded-2xl bg-gradient-to-br from-neutral-50 to-white border border-neutral-100 hover:border-[#4ECDC4]/30 transition-all duration-300 hover:shadow-lg">
+                  <div className="w-16 h-16 mx-auto mb-6 rounded-xl bg-gradient-to-br from-[#4ECDC4]/20 to-[#42c997]/10 flex items-center justify-center">
+                    <ItemIcon className="w-8 h-8 text-[#35a87a]" />
+                  </div>
+                  <h3 className="text-xl font-bold text-neutral-900 mb-3">
+                    {isEnglish ? item.title.en : item.title.uk}
+                  </h3>
+                  <p className="text-neutral-600 leading-relaxed">
+                    {isEnglish ? item.description.en : item.description.uk}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Sustainability Pillars */}
+      <section className="section bg-gradient-to-b from-neutral-50 to-white">
+        <div className="container-custom">
+          <div className="text-center mb-12 md:mb-16">
+            <span className="inline-block text-sm font-semibold text-[#4ECDC4] uppercase tracking-wider mb-3">
+              {isEnglish ? 'Our Approach' : 'Наш підхід'}
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-heading mb-4">
+              {isEnglish ? 'Four Pillars of Sustainability' : 'Чотири стовпи сталості'}
+            </h2>
+            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+              {isEnglish
+                ? 'Integrated environmental strategies that reduce impact while improving profitability.'
+                : 'Інтегровані екологічні стратегії, що зменшують вплив та підвищують прибутковість.'}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {[
+              {
+                icon: Droplets,
+                number: '01',
+                title: { en: 'Water Conservation', uk: 'Збереження води' },
+                description: { en: 'RAS technology recycles 95-99% of water, reducing freshwater consumption by orders of magnitude. Advanced filtration and monitoring ensure pristine water quality with minimal environmental discharge.', uk: 'РАС-технологія переробляє 95-99% води, зменшуючи споживання прісної води на порядки. Передова фільтрація та моніторинг забезпечують якість при мінімальних скидах.' },
+                features: [
+                  { en: '95-99% water recycling', uk: '95-99% переробки води' },
+                  { en: 'Zero ocean discharge', uk: 'Нульовий скид в океан' },
+                  { en: 'Closed-loop systems', uk: 'Замкнені системи' }
+                ]
+              },
+              {
+                icon: Sun,
+                number: '02',
+                title: { en: 'Renewable Energy', uk: 'Відновлювана енергія' },
+                description: { en: 'Solar, wind, and biogas integration powers facilities with 100% renewable electricity. Energy-efficient designs and smart automation minimize consumption while maintaining optimal conditions.', uk: 'Інтеграція сонця, вітру та біогазу забезпечує 100% відновлювальну електрику. Енергоефективні проекти та автоматизація мінімізують споживання.' },
+                features: [
+                  { en: 'Solar & wind power', uk: 'Сонячна та вітрова енергія' },
+                  { en: 'Biogas from waste', uk: 'Біогаз з відходів' },
+                  { en: 'Smart energy management', uk: 'Розумне управління енергією' }
+                ]
+              },
+              {
+                icon: Recycle,
+                number: '03',
+                title: { en: 'Circular Economy', uk: 'Циркулярна економіка' },
+                description: { en: 'Zero-waste philosophy where every byproduct has value. Solid waste becomes organic fertilizer, CO2 feeds algae production, and heat is recovered for reuse throughout the facility.', uk: 'Філософія нульових відходів, де кожен побічний продукт має цінність. Тверді відходи стають добривом, CO2 живить водорості, тепло повторно використовується.' },
+                features: [
+                  { en: 'Waste-to-fertilizer conversion', uk: 'Відходи в добриво' },
+                  { en: 'CO2 capture & reuse', uk: 'Уловлення та повторне використання CO2' },
+                  { en: 'Heat recovery systems', uk: 'Системи рекуперації тепла' }
+                ]
+              },
+              {
+                icon: Fish,
+                number: '04',
+                title: { en: 'Ecosystem Protection', uk: 'Захист екосистеми' },
+                description: { en: 'Land-based systems eliminate ocean ecosystem disruption. No wild fish depletion, no habitat destruction, no genetic pollution—just sustainable protein production that heals rather than harms.', uk: 'Наземні системи усувають порушення океанічних екосистем. Немає виснаження дикої риби, руйнування середовищ, генетичного забруднення.' },
+                features: [
+                  { en: 'No ocean impact', uk: 'Без впливу на океан' },
+                  { en: 'Wild stock preservation', uk: 'Збереження диких запасів' },
+                  { en: 'Habitat protection', uk: 'Захист середовищ' }
+                ]
+              }
+            ].map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={index}
+                  className="group relative bg-white rounded-2xl p-6 md:p-8 border border-neutral-100 hover:border-[#4ECDC4]/30 transition-all duration-300 hover:shadow-xl hover:shadow-[#4ECDC4]/5"
+                >
+                  <div className="absolute top-4 right-4 text-5xl font-bold text-neutral-100 group-hover:text-[#4ECDC4]/10 transition-colors duration-300">
+                    {item.number}
+                  </div>
+
+                  <div className="relative z-10 mb-6 w-14 h-14 md:w-16 md:h-16 rounded-xl bg-gradient-to-br from-[#4ECDC4]/15 to-[#42c997]/10 flex items-center justify-center group-hover:from-[#4ECDC4]/25 group-hover:to-[#42c997]/15 transition-all duration-300">
+                    <Icon className="w-7 h-7 md:w-8 md:h-8 text-[#35a87a] group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+
+                  <h3 className="relative z-10 text-xl md:text-2xl font-bold text-neutral-900 mb-3 group-hover:text-[#35a87a] transition-colors duration-300">
+                    {isEnglish ? item.title.en : item.title.uk}
+                  </h3>
+
+                  <p className="relative z-10 text-neutral-600 mb-6 leading-relaxed">
+                    {isEnglish ? item.description.en : item.description.uk}
+                  </p>
+
+                  <ul className="relative z-10 space-y-2">
+                    {item.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center gap-2 text-sm text-neutral-700">
+                        <Leaf className="w-4 h-4 text-[#4ECDC4] flex-shrink-0" />
+                        <span>{isEnglish ? feature.en : feature.uk}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       {/* Impact Metrics */}
-      <Section background="white" spacing="2xl">
+      <section className="section bg-white">
         <div className="container-custom">
-          <ScrollReveal>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                {isEnglish ? 'Environmental Impact' : 'Екологічний вплив'}
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                {isEnglish
-                  ? 'Measurable environmental benefits from our sustainable engineering approach'
-                  : 'Вимірні екологічні переваги нашого екологічного інженерного підходу'}
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <ScrollReveal delay={100}>
-              <StatCard
-                value={95}
-                suffix="%"
-                label={isEnglish ? 'Water Savings' : 'Економія води'}
-                description={isEnglish ? 'Through RAS recirculation' : 'Через RAS-рециркуляцію'}
-                icon={<Droplets className="w-12 h-12" />}
-              />
-            </ScrollReveal>
-
-            <ScrollReveal delay={200}>
-              <StatCard
-                value={40}
-                suffix="%"
-                label={isEnglish ? 'Energy Reduction' : 'Зниження енергії'}
-                description={isEnglish ? 'Via optimization & renewables' : 'Через оптимізацію та відновлювані джерела'}
-                icon={<Zap className="w-12 h-12" />}
-              />
-            </ScrollReveal>
-
-            <ScrollReveal delay={300}>
-              <StatCard
-                value={100}
-                suffix="%"
-                label={isEnglish ? 'Zero Waste Goal' : 'Мета нуль відходів'}
-                description={isEnglish ? 'Circular economy designs' : 'Проекти циркулярної економіки'}
-                icon={<Recycle className="w-12 h-12" />}
-              />
-            </ScrollReveal>
+          <div className="text-center mb-12 md:mb-16">
+            <span className="inline-block text-sm font-semibold text-[#4ECDC4] uppercase tracking-wider mb-3">
+              {isEnglish ? 'Measurable Impact' : 'Вимірний вплив'}
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-heading mb-4">
+              {isEnglish ? 'Our Environmental Footprint' : 'Наш екологічний слід'}
+            </h2>
           </div>
-        </div>
-      </Section>
 
-      {/* Real-World Examples */}
-      <Section background="light" spacing="2xl">
-        <div className="container-custom">
-          <ScrollReveal>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                {isEnglish ? 'Sustainability in Practice' : 'Екологічність на практиці'}
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                {isEnglish
-                  ? 'Real-world examples of our environmental commitment'
-                  : 'Реальні приклади нашої екологічної відповідальності'}
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <ScrollReveal delay={100}>
-              <Card className="h-full">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-500 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Sun className="w-8 h-8" />
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                { step: '01', title: { en: 'Carbon Neutral', uk: 'Вуглецева нейтральність' }, desc: { en: 'Net-zero emissions through renewables', uk: 'Нульові викиди через відновлювальність' } },
+                { step: '02', title: { en: 'Water Positive', uk: 'Водна позитивність' }, desc: { en: 'Return more water than we consume', uk: 'Повертаємо більше води ніж споживаємо' } },
+                { step: '03', title: { en: 'Waste Negative', uk: 'Негативні відходи' }, desc: { en: 'Turn waste into valuable products', uk: 'Перетворюємо відходи на цінні продукти' } }
+              ].map((item, index) => (
+                <div key={index} className="text-center">
+                  <div className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#0a2540] to-[#1B4B63] flex items-center justify-center text-xl md:text-2xl font-bold text-[#4ECDC4] border-4 border-white shadow-lg">
+                    {item.step}
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    {isEnglish ? 'Solar-Powered RAS' : 'RAS на сонячній енергії'}
+                  <h3 className="text-lg md:text-xl font-bold text-neutral-900 mb-2">
+                    {isEnglish ? item.title.en : item.title.uk}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {isEnglish
-                      ? 'We design RAS facilities with integrated solar arrays that provide 60-80% of daytime power needs. Battery storage ensures 24/7 operation. The result: dramatically lower operating costs and a near-zero carbon footprint for fish production.'
-                      : 'Ми проектуємо RAS-об\'єкти з інтегрованими сонячними панелями, що забезпечують 60-80% денних потреб в енергії. Акумулятори гарантують 24/7 роботу. Результат: різко знижені операційні витрати та майже нульовий вуглецевий слід.'}
+                  <p className="text-sm md:text-base text-neutral-600">
+                    {isEnglish ? item.desc.en : item.desc.uk}
                   </p>
                 </div>
-              </Card>
-            </ScrollReveal>
-
-            <ScrollReveal delay={200}>
-              <Card className="h-full">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                    <TreePine className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    {isEnglish ? 'Fish Waste to Fertilizer' : 'Відходи риби на добриво'}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {isEnglish
-                      ? 'Fish waste solids are collected, composted, and sold as premium organic fertilizer. What was once a disposal problem becomes a revenue stream. Farmers pay premium prices for this nitrogen-rich, sustainable fertilizer that improves soil health without chemicals.'
-                      : 'Тверді відходи риби збираються, компостуються та продаються як преміум органічне добриво. Те, що було проблемою утилізації, стає джерелом доходу. Фермери платять преміум-ціни за це багате азотом екологічне добриво.'}
-                  </p>
-                </div>
-              </Card>
-            </ScrollReveal>
-
-            <ScrollReveal delay={300}>
-              <Card className="h-full">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Fish className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    {isEnglish ? 'Biofloc Systems' : 'Біофлок-системи'}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {isEnglish
-                      ? 'Biofloc technology creates beneficial bacterial communities that convert waste into protein-rich food for fish. This reduces feed costs by up to 25%, eliminates the need for water changes, and creates a healthier growing environment—all while minimizing environmental impact.'
-                      : 'Біофлок-технологія створює корисні бактеріальні спільноти, що перетворюють відходи на багату білком їжу для риби. Це знижує витрати на корм до 25%, усуває потребу в зміні води та створює здоровіше середовище.'}
-                  </p>
-                </div>
-              </Card>
-            </ScrollReveal>
-          </div>
-        </div>
-      </Section>
-
-      {/* Future Goals */}
-      <Section background="white" spacing="2xl">
-        <div className="container-custom">
-          <ScrollReveal>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                {isEnglish ? 'Our Sustainability Roadmap' : 'Наша екологічна дорожня карта'}
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                {isEnglish
-                  ? 'Future environmental goals and initiatives we\'re working toward'
-                  : 'Майбутні екологічні цілі та ініціативи, над якими ми працюємо'}
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-6">
-              <ScrollReveal delay={100}>
-                <Card>
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-lg flex-shrink-0">
-                      <Target className="w-6 h-6" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
-                        {isEnglish ? 'Carbon-Neutral Facilities' : 'Вуглецево-нейтральні об\'єкти'}
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        {isEnglish
-                          ? 'By 2026, we aim to design all new facilities as carbon-neutral operations. This includes 100% renewable energy, carbon offsetting through reforestation partnerships, and lifecycle analysis of all materials. Clients will be able to market their fish as truly climate-neutral protein.'
-                          : 'До 2026 року ми плануємо проектувати всі нові об\'єкти як вуглецево-нейтральні операції. Це включає 100% відновлювану енергію, компенсацію вуглецю через партнерства з лісовідновлення та аналіз життєвого циклу всіх матеріалів.'}
-                      </p>
-                    </div>
-                  </div>
-                </Card>
-              </ScrollReveal>
-
-              <ScrollReveal delay={200}>
-                <Card>
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-lg flex-shrink-0">
-                      <Wind className="w-6 h-6" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
-                        {isEnglish ? 'Renewable Energy Integration' : 'Інтеграція відновлюваної енергії'}
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        {isEnglish
-                          ? 'Expanding beyond solar to include wind power, biogas from waste, and geothermal heating/cooling where applicable. Our goal: 80% renewable energy for all facilities by 2027. This transforms aquaculture from an energy consumer to a potential net energy producer.'
-                          : 'Розширення за межі сонячної енергії для включення вітрової енергії, біогазу з відходів та геотермального опалення/охолодження. Наша ціль: 80% відновлюваної енергії для всіх об\'єктів до 2027 року.'}
-                      </p>
-                    </div>
-                  </div>
-                </Card>
-              </ScrollReveal>
-
-              <ScrollReveal delay={300}>
-                <Card>
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-gradient-to-br from-emerald-500 to-emerald-600 text-white rounded-lg flex-shrink-0">
-                      <Recycle className="w-6 h-6" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
-                        {isEnglish ? 'Circular Aquaculture' : 'Циркулярна аквакультура'}
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        {isEnglish
-                          ? 'Developing fully integrated systems where fish farming, hydroponics, and energy production work in symbiosis. Fish waste feeds plants, plant roots filter water, solar provides power, and biogas from waste generates heat. A closed-loop ecosystem that produces food, energy, and zero waste.'
-                          : 'Розробка повністю інтегрованих систем, де рибництво, гідропоніка та виробництво енергії працюють у симбіозі. Відходи риби живлять рослини, корені рослин фільтрують воду, сонце забезпечує енергію, а біогаз генерує тепло.'}
-                      </p>
-                    </div>
-                  </div>
-                </Card>
-              </ScrollReveal>
+              ))}
             </div>
           </div>
         </div>
-      </Section>
+      </section>
 
       {/* CTA Section */}
-      <Section
-        background="transparent"
-        spacing="2xl"
-        className="bg-gradient-to-br from-brand-primary to-brand-secondary text-white"
-      >
-        <div className="container-custom">
-          <ScrollReveal>
-            <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                {isEnglish
-                  ? 'Ready to Build Sustainably?'
-                  : 'Готові будувати екологічно?'}
-              </h2>
-              <p className="text-xl mb-8 text-white/90">
-                {isEnglish
-                  ? 'Let\'s design an aquaculture facility that\'s profitable for you and responsible for the planet. Sustainable aquaculture is the future—start building it today.'
-                  : 'Давайте спроектуємо аквакультурний об\'єкт, що прибутковий для вас і відповідальний для планети. Екологічна аквакультура - це майбутнє. Почніть будувати його сьогодні.'}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href={`/${locale}/contact`}>
-                  <Button variant="accent" size="lg" className="text-lg px-8 py-4">
-                    {isEnglish ? 'Start Sustainable Project' : 'Почати екопроект'}
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Button>
-                </Link>
-                <Link href={`/${locale}/services`}>
-                  <Button
-                    variant="secondary"
-                    size="lg"
-                    className="text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-brand-primary"
-                  >
-                    {isEnglish ? 'View Our Services' : 'Переглянути послуги'}
-                  </Button>
-                </Link>
-              </div>
+      <section className="relative py-20 md:py-28 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a2540] via-[#1B4B63] to-[#0d3a4d]" />
+        <div className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }}
+        />
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-[#4ECDC4]/20 to-transparent blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-gradient-to-tr from-[#42c997]/15 to-transparent blur-2xl" />
+
+        <div className="container-custom relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+              {isEnglish
+                ? 'Build a Sustainable Future Together'
+                : 'Будуймо стале майбутнє разом'}
+            </h2>
+            <p className="text-lg md:text-xl text-white/80 mb-10">
+              {isEnglish
+                ? 'Partner with us to create aquaculture systems that protect the planet, preserve resources, and ensure profitability for generations.'
+                : 'Співпрацюйте з нами для створення систем аквакультури, що захищають планету, зберігають ресурси та забезпечують прибутковість для поколінь.'}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href={`/${locale}/contact`}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#4ECDC4] hover:bg-[#42c997] text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#4ECDC4]/25"
+              >
+                {isEnglish ? 'Start Sustainable' : 'Почати екологічно'}
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                href={`/${locale}/services`}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg border border-white/20 transition-all duration-300 backdrop-blur-sm"
+              >
+                {isEnglish ? 'Explore Services' : 'Переглянути послуги'}
+              </Link>
             </div>
-          </ScrollReveal>
+          </div>
         </div>
-      </Section>
+      </section>
     </div>
   );
 }

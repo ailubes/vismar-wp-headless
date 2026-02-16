@@ -1,12 +1,7 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Cpu, Lightbulb, Box, TrendingUp, ArrowRight, Zap, Eye, BarChart3, Brain, Rocket, Globe, Users } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
-import { Section } from '@/components/ui/Section';
-import { Card } from '@/components/ui/Card';
-import { StatCard } from '@/components/ui/AnimatedCounter';
-import ScrollReveal from '@/components/ui/ScrollReveal';
+import { Brain, Zap, Box, Eye, Cpu, Lightbulb, Rocket, Globe, TrendingUp, BarChart3, Award, ArrowRight, Sparkles, Users, Clock, Target } from 'lucide-react';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -17,11 +12,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: locale === 'en'
-      ? 'Innovation in Aquaculture Engineering - AI-Powered Design & Technology'
-      : 'Інновації в аквакультурному інжинірингу - AI-дизайн та технології',
+      ? 'Innovation & Research - AI-Powered Aquaculture Engineering | Vismar Aqua'
+      : 'Інновації та дослідження - AI-інжиніринг аквакультури | Vismar Aqua',
     description: locale === 'en'
-      ? '50% faster engineering through AI integration, advanced 3D modeling, and digital twin technology. Leading aquaculture innovation with cutting-edge R&D and modern tools.'
-      : '50% швидший інжиніринг через інтеграцію AI, передове 3D моделювання та технології цифрових двійників. Лідери інновацій в аквакультурі.',
+      ? '50% faster engineering through AI integration, advanced 3D modeling, and digital twin technology. Leading aquaculture innovation with cutting-edge R&D.'
+      : '50% швидший інжиніринг через інтеграцію AI, передове 3D моделювання та технології цифрових двійників.',
   };
 }
 
@@ -31,473 +26,390 @@ export default async function InnovationPage({ params }: Props) {
 
   const isEnglish = locale === 'en';
 
+  // Hero stats
+  const heroStats = [
+    {
+      icon: Zap,
+      value: '50%',
+      label: { en: 'Faster Design', uk: 'Швидше проектування' }
+    },
+    {
+      icon: TrendingUp,
+      value: '30%',
+      label: { en: 'Cost Reduction', uk: 'Зниження витрат' }
+    },
+    {
+      icon: Brain,
+      value: '100+',
+      label: { en: 'AI Projects', uk: 'AI-проектів' }
+    },
+    {
+      icon: Award,
+      value: '25+',
+      label: { en: 'Years R&D', uk: 'Років досліджень' }
+    }
+  ];
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <Section
-        background="transparent"
-        spacing="2xl"
-        className="bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-600 text-white"
-      >
-        <div className="container-custom">
-          <ScrollReveal>
-            <div className="text-center max-w-4xl mx-auto">
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
-                <Rocket className="w-5 h-5" />
-                <span className="text-sm font-semibold">
-                  {isEnglish ? 'Our Impact' : 'Наш вплив'}
-                </span>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                {isEnglish
-                  ? 'Innovation in Aquaculture Engineering'
-                  : 'Інновації в аквакультурному інжинірингу'}
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 text-white/90">
-                {isEnglish
-                  ? 'Leveraging AI, advanced CAD, and cutting-edge technology to deliver faster, smarter, and more cost-effective aquaculture solutions.'
-                  : 'Використання AI, передових CAD-систем та найсучасніших технологій для швидших, розумніших та економічніших рішень в аквакультурі.'}
-              </p>
-              <Link href={`/${locale}/contact`}>
-                <Button variant="accent" size="lg" className="text-lg px-8 py-4">
-                  {isEnglish ? 'Discuss Your Project' : 'Обговорити проект'}
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
+      {/* Premium Hero Section */}
+      <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center py-16 md:py-24 overflow-hidden">
+        {/* Dark gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a2540] via-[#1B4B63] to-[#0d3a4d]" />
+
+        {/* Decorative gradient circles */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-[#42c997]/20 to-transparent blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-[#00A8B5]/15 to-transparent blur-3xl" />
+        <div className="absolute top-1/2 left-1/4 w-[300px] h-[300px] rounded-full bg-gradient-to-r from-[#35a87a]/10 to-transparent blur-2xl" />
+
+        {/* Grid pattern overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }}
+        />
+
+        {/* Floating innovation icons */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-[15%] left-[8%] animate-float-slow opacity-20">
+            <Brain className="w-12 h-12 text-[#42c997]" />
+          </div>
+          <div className="absolute top-[25%] right-[12%] animate-float-medium opacity-15">
+            <Rocket className="w-16 h-16 text-[#00A8B5]" />
+          </div>
+          <div className="absolute bottom-[30%] left-[15%] animate-float-fast opacity-20">
+            <Box className="w-10 h-10 text-[#35a87a]" />
+          </div>
+          <div className="absolute bottom-[20%] right-[8%] animate-float-slow opacity-15">
+            <Cpu className="w-14 h-14 text-[#42c997]" />
+          </div>
+          <div className="absolute top-[60%] left-[5%] animate-float-medium opacity-10">
+            <Lightbulb className="w-8 h-8 text-white" />
+          </div>
+          <div className="absolute top-[40%] right-[5%] animate-float-fast opacity-15">
+            <Eye className="w-10 h-10 text-[#00A8B5]" />
+          </div>
+        </div>
+
+        {/* Hero content */}
+        <div className="container-custom relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Eyebrow badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6 md:mb-8">
+              <Sparkles className="w-4 h-4 text-[#42c997]" />
+              <span className="text-sm font-medium text-white/90">
+                {isEnglish ? 'Pioneering the Future' : 'Прокладаємо шлях у майбутнє'}
+              </span>
+            </div>
+
+            {/* Main headline */}
+            <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-6">
+              {isEnglish ? (
+                <>
+                  Innovation Through{' '}
+                  <span className="text-[#42c997]">AI & Technology</span>
+                </>
+              ) : (
+                <>
+                  Інновації через{' '}
+                  <span className="text-[#42c997]">AI та технології</span>
+                </>
+              )}
+            </h1>
+
+            {/* Subheader */}
+            <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed mb-10">
+              {isEnglish
+                ? 'Leveraging artificial intelligence, advanced 3D modeling, and digital twin technology to deliver faster, smarter, and more cost-effective aquaculture solutions. Our commitment to R&D keeps us at the forefront of industry innovation.'
+                : 'Використовуємо штучний інтелект, передове 3D моделювання та технології цифрових двійників для швидших, розумніших та економічніших рішень. Наша відданість НДДКР тримає нас в авангарді інновацій.'}
+            </p>
+
+            {/* CTA buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href={`/${locale}/contact`}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-accent hover:bg-brand-accent/90 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-brand-accent/25"
+              >
+                {isEnglish ? 'Discuss Innovation' : 'Обговорити інновації'}
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                href={`/${locale}/projects`}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-success hover:bg-brand-success/90 text-white font-semibold rounded-lg border border-white/20 transition-all duration-300 backdrop-blur-sm"
+              >
+                {isEnglish ? 'View Projects' : 'Переглянути проекти'}
               </Link>
             </div>
-          </ScrollReveal>
-        </div>
-      </Section>
-
-      {/* Introduction */}
-      <Section background="white" spacing="2xl">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            <ScrollReveal>
-              <div className="prose prose-lg max-w-none">
-                <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                  {isEnglish
-                    ? 'At Vismar Aqua, innovation is not just a buzzword—it\'s the foundation of everything we do. Since 2007, we\'ve been at the forefront of aquaculture engineering, constantly adopting new technologies and methodologies to stay ahead of industry trends.'
-                    : 'У Vismar Aqua інновації - це не просто гучні слова, а основа всього, що ми робимо. З 2007 року ми в авангарді аквакультурного інжинірингу, постійно впроваджуючи нові технології та методології.'}
-                </p>
-                <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                  {isEnglish
-                    ? 'We integrate artificial intelligence into our design workflows, use advanced 3D modeling and virtual reality for facility visualization, and implement digital twin technology for predictive maintenance. This technological edge allows us to deliver projects 50% faster while reducing costs by 30%.'
-                    : 'Ми інтегруємо штучний інтелект у наші робочі процеси, використовуємо передове 3D моделювання та віртуальну реальність для візуалізації об\'єктів, впроваджуємо технологію цифрових двійників для прогнозного обслуговування. Це дозволяє реалізувати проекти на 50% швидше зі зниженням витрат на 30%.'}
-                </p>
-                <p className="text-xl text-gray-700 leading-relaxed">
-                  {isEnglish
-                    ? 'Our commitment to R&D ensures we\'re not just following trends—we\'re creating them. From AI-assisted engineering calculations to blockchain-enabled traceability systems, we\'re building the future of aquaculture today.'
-                    : 'Наша відданість НДДКР гарантує, що ми не просто слідуємо трендам - ми їх створюємо. Від AI-допоміжних інженерних розрахунків до систем відстеження на базі блокчейн - ми будуємо майбутнє аквакультури сьогодні.'}
-                </p>
-              </div>
-            </ScrollReveal>
           </div>
         </div>
-      </Section>
 
-      {/* Key Initiatives */}
-      <Section background="light" spacing="2xl">
+        {/* Wave divider */}
+        <div className="absolute left-0 right-0" style={{ bottom: '-1px' }}>
+          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto block" preserveAspectRatio="none" style={{ display: 'block' }}>
+            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+          </svg>
+        </div>
+      </section>
+
+      {/* Hero stats section */}
+      <section className="section bg-white pt-0">
         <div className="container-custom">
-          <ScrollReveal>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                {isEnglish ? 'Innovation Initiatives' : 'Інноваційні ініціативи'}
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                {isEnglish
-                  ? 'Four pillars of technological excellence driving our engineering solutions'
-                  : 'Чотири стовпи технологічної досконалості наших інженерних рішень'}
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <ScrollReveal delay={100}>
-              <Card className="h-full">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-lg">
-                    <Brain className="w-8 h-8" />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 -mt-8 md:-mt-12">
+            {heroStats.map((stat, index) => {
+              const StatIcon = stat.icon;
+              return (
+                <div key={index} className="text-center p-6 rounded-xl bg-white border border-neutral-200 shadow-lg hover:shadow-xl transition-all duration-300">
+                  <div className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-[#42c997]/10 to-[#00A8B5]/10 mb-3 border border-[#42c997]/20">
+                    <StatIcon className="w-6 h-6 md:w-7 md:h-7 text-[#42c997]" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                      {isEnglish ? 'AI-Accelerated Design' : 'AI-прискорений дизайн'}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed mb-4">
-                      {isEnglish
-                        ? 'We leverage ChatGPT, Claude, and custom AI models to accelerate engineering calculations, optimize system designs, and generate documentation. Our AI-powered workflows reduce design time by 50% while improving accuracy and exploring more design alternatives.'
-                        : 'Ми використовуємо ChatGPT, Claude та власні AI-моделі для прискорення інженерних розрахунків, оптимізації систем та генерації документації. Наші AI-робочі процеси скорочують час проектування на 50% при підвищенні точності.'}
-                    </p>
-                    <ul className="space-y-2">
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <Zap className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'Automated engineering calculations' : 'Автоматизовані інженерні розрахунки'}</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <Zap className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'AI-powered design optimization' : 'AI-оптимізація дизайну'}</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <Zap className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'Intelligent documentation generation' : 'Інтелектуальна генерація документації'}</span>
-                      </li>
-                    </ul>
+                  <div className="text-3xl md:text-4xl font-bold text-neutral-900 mb-1">{stat.value}</div>
+                  <div className="text-sm md:text-base text-neutral-600">
+                    {isEnglish ? stat.label.en : stat.label.uk}
                   </div>
                 </div>
-              </Card>
-            </ScrollReveal>
-
-            <ScrollReveal delay={200}>
-              <Card className="h-full">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-lg">
-                    <Box className="w-8 h-8" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                      {isEnglish ? 'Advanced 3D Modeling' : 'Передове 3D моделювання'}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed mb-4">
-                      {isEnglish
-                        ? 'State-of-the-art CAD systems, VR/AR visualization, and computational fluid dynamics (CFD) analysis ensure our designs are optimized before construction begins. Clients can virtually walk through their facilities and see water flow patterns in real-time.'
-                        : 'Найсучасніші CAD-системи, VR/AR візуалізація та CFD-аналіз гарантують оптимізацію дизайну до початку будівництва. Клієнти можуть віртуально пройтись об\'єктом і побачити потоки води в реальному часі.'}
-                    </p>
-                    <ul className="space-y-2">
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <Eye className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'VR facility walkthroughs' : 'VR-огляди об\'єктів'}</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <Eye className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'CFD water flow analysis' : 'CFD-аналіз потоків води'}</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <Eye className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? '3D printed prototypes' : '3D-друковані прототипи'}</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </Card>
-            </ScrollReveal>
-
-            <ScrollReveal delay={300}>
-              <Card className="h-full">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-lg">
-                    <Cpu className="w-8 h-8" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                      {isEnglish ? 'Digital Twin Technology' : 'Технологія цифрових двійників'}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed mb-4">
-                      {isEnglish
-                        ? 'Create virtual replicas of physical facilities for simulation, testing, and predictive maintenance. Our digital twins enable virtual commissioning, reducing on-site installation time and costs while predicting maintenance needs before equipment fails.'
-                        : 'Створюємо віртуальні копії фізичних об\'єктів для симуляції, тестування та прогнозного обслуговування. Наші цифрові двійники дозволяють віртуальне введення в експлуатацію, скорочуючи час монтажу та прогнозуючи потреби в обслуговуванні.'}
-                    </p>
-                    <ul className="space-y-2">
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <BarChart3 className="w-5 h-5 text-cyan-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'Virtual commissioning' : 'Віртуальне введення в експлуатацію'}</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <BarChart3 className="w-5 h-5 text-cyan-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'Predictive maintenance' : 'Прогнозне обслуговування'}</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <BarChart3 className="w-5 h-5 text-cyan-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'Real-time performance monitoring' : 'Моніторинг в реальному часі'}</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </Card>
-            </ScrollReveal>
-
-            <ScrollReveal delay={400}>
-              <Card className="h-full">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-gradient-to-br from-indigo-500 to-indigo-600 text-white rounded-lg">
-                    <Lightbulb className="w-8 h-8" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                      {isEnglish ? 'Continuous R&D' : 'Постійні НДДКР'}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed mb-4">
-                      {isEnglish
-                        ? 'We invest heavily in research and development, staying ahead of aquaculture trends and technologies. Our team continuously experiments with new approaches, materials, and systems to deliver cutting-edge solutions to our clients.'
-                        : 'Ми активно інвестуємо в дослідження та розробки, випереджаючи тренди та технології аквакультури. Наша команда постійно експериментує з новими підходами, матеріалами та системами.'}
-                    </p>
-                    <ul className="space-y-2">
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <TrendingUp className="w-5 h-5 text-indigo-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'Industry trend analysis' : 'Аналіз трендів індустрії'}</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <TrendingUp className="w-5 h-5 text-indigo-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'New material testing' : 'Тестування нових матеріалів'}</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-gray-700">
-                        <TrendingUp className="w-5 h-5 text-indigo-600 mt-0.5 flex-shrink-0" />
-                        <span>{isEnglish ? 'System optimization' : 'Оптимізація систем'}</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </Card>
-            </ScrollReveal>
+              );
+            })}
           </div>
         </div>
-      </Section>
+      </section>
 
-      {/* Impact Metrics */}
-      <Section background="white" spacing="2xl">
+      {/* Why Innovation Matters */}
+      <section className="section bg-white">
         <div className="container-custom">
-          <ScrollReveal>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                {isEnglish ? 'Innovation by Numbers' : 'Інновації в цифрах'}
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                {isEnglish
-                  ? 'Measurable impact from our commitment to technological excellence'
-                  : 'Вимірний вплив нашої відданості технологічній досконалості'}
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <ScrollReveal delay={100}>
-              <StatCard
-                value={50}
-                suffix="%"
-                label={isEnglish ? 'Faster Design Time' : 'Швидше проектування'}
-                description={isEnglish ? 'Through AI-accelerated workflows' : 'Завдяки AI-робочим процесам'}
-                icon={<Zap className="w-12 h-12" />}
-              />
-            </ScrollReveal>
-
-            <ScrollReveal delay={200}>
-              <StatCard
-                value={30}
-                suffix="%"
-                label={isEnglish ? 'Cost Reduction' : 'Зниження витрат'}
-                description={isEnglish ? 'Via innovation and optimization' : 'Через інновації та оптимізацію'}
-                icon={<TrendingUp className="w-12 h-12" />}
-              />
-            </ScrollReveal>
-
-            <ScrollReveal delay={300}>
-              <StatCard
-                value={100}
-                suffix="+"
-                label={isEnglish ? 'AI-Assisted Projects' : 'AI-проектів'}
-                description={isEnglish ? 'Successfully delivered with AI' : 'Успішно реалізовано з AI'}
-                icon={<Brain className="w-12 h-12" />}
-              />
-            </ScrollReveal>
+          <div className="text-center mb-12 md:mb-16">
+            <span className="inline-block text-sm font-semibold text-[#42c997] uppercase tracking-wider mb-3">
+              {isEnglish ? 'Why Innovation' : 'Чому інновації'}
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-heading mb-4">
+              {isEnglish ? 'The Vismar Innovation Advantage' : 'Інноваційні переваги Vismar'}
+            </h2>
+            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+              {isEnglish
+                ? 'Cutting-edge technology and relentless R&D commitment deliver measurable benefits to every project.'
+                : 'Передові технології та невпинна відданість НДДКР приносять вимірні переваги кожному проекту.'}
+            </p>
           </div>
-        </div>
-      </Section>
 
-      {/* Real-World Examples */}
-      <Section background="light" spacing="2xl">
-        <div className="container-custom">
-          <ScrollReveal>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                {isEnglish ? 'Innovation in Action' : 'Інновації в дії'}
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                {isEnglish
-                  ? 'Real examples of how we use cutting-edge technology in everyday engineering'
-                  : 'Реальні приклади використання передових технологій у щоденному інжинірингу'}
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <ScrollReveal delay={100}>
-              <Card className="h-full">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Brain className="w-8 h-8" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Clock,
+                title: { en: '50% Faster Delivery', uk: '50% швидша реалізація' },
+                description: { en: 'AI-accelerated design workflows and automation cut project timelines in half while maintaining exceptional quality standards.', uk: 'AI-прискорені робочі процеси та автоматизація скорочують терміни проектів вдвічі при збереженні високої якості.' }
+              },
+              {
+                icon: TrendingUp,
+                title: { en: '30% Cost Savings', uk: '30% економії' },
+                description: { en: 'Advanced optimization, virtual testing, and predictive maintenance reduce both capital and operational expenses significantly.', uk: 'Передова оптимізація, віртуальне тестування та прогнозне обслуговування значно знижують капітальні та операційні витрати.' }
+              },
+              {
+                icon: Target,
+                title: { en: 'Future-Proof Solutions', uk: 'Рішення майбутнього' },
+                description: { en: 'Continuous R&D ensures our designs incorporate tomorrow\'s technologies today, protecting your investment for decades.', uk: 'Постійні НДДКР гарантують, що наші проекти включають технології завтрашнього дня сьогодні, захищаючи ваші інвестиції на десятиліття.' }
+              }
+            ].map((item, index) => {
+              const ItemIcon = item.icon;
+              return (
+                <div key={index} className="text-center p-6 md:p-8 rounded-2xl bg-gradient-to-br from-neutral-50 to-white border border-neutral-100 hover:border-[#42c997]/30 transition-all duration-300 hover:shadow-lg">
+                  <div className="w-16 h-16 mx-auto mb-6 rounded-xl bg-gradient-to-br from-[#42c997]/20 to-[#00A8B5]/10 flex items-center justify-center">
+                    <ItemIcon className="w-8 h-8 text-[#35a87a]" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    {isEnglish ? 'AI Engineering Assistant' : 'AI-асистент інженера'}
+                  <h3 className="text-xl font-bold text-neutral-900 mb-3">
+                    {isEnglish ? item.title.en : item.title.uk}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {isEnglish
-                      ? 'We use ChatGPT and Claude daily for complex hydraulic calculations, material selection, and design verification. AI helps us explore more options faster and catch potential issues early.'
-                      : 'Ми щодня використовуємо ChatGPT та Claude для складних гідравлічних розрахунків, підбору матеріалів та перевірки дизайну. AI допомагає швидше досліджувати варіанти та виявляти потенційні проблеми.'}
+                  <p className="text-neutral-600 leading-relaxed">
+                    {isEnglish ? item.description.en : item.description.uk}
                   </p>
                 </div>
-              </Card>
-            </ScrollReveal>
-
-            <ScrollReveal delay={200}>
-              <Card className="h-full">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Box className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    {isEnglish ? '3D Printing Prototypes' : '3D-друк прототипів'}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {isEnglish
-                      ? 'Physical prototypes of complex piping junctions, custom fittings, and tank components are 3D printed for testing and client approval before manufacturing. This saves time and prevents costly mistakes.'
-                      : 'Фізичні прототипи складних з\'єднань труб, спеціальних фітингів та компонентів резервуарів друкуємо на 3D-принтері для тестування та затвердження клієнтом перед виробництвом.'}
-                  </p>
-                </div>
-              </Card>
-            </ScrollReveal>
-
-            <ScrollReveal delay={300}>
-              <Card className="h-full">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Eye className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    {isEnglish ? 'VR Facility Walkthroughs' : 'VR-огляди об\'єктів'}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {isEnglish
-                      ? 'Clients can put on VR headsets and walk through their facilities before construction. They can see equipment placement, workflow paths, and make design changes while everything is still virtual—saving expensive on-site modifications.'
-                      : 'Клієнти можуть одягнути VR-окуляри і пройтися об\'єктом до будівництва. Вони бачать розміщення обладнання, шляхи руху і вносять зміни в дизайн поки все ще віртуальне.'}
-                  </p>
-                </div>
-              </Card>
-            </ScrollReveal>
+              );
+            })}
           </div>
         </div>
-      </Section>
+      </section>
 
-      {/* Future Roadmap */}
-      <Section background="white" spacing="2xl">
+      {/* Innovation Pillars */}
+      <section className="section bg-gradient-to-b from-neutral-50 to-white">
         <div className="container-custom">
-          <ScrollReveal>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                {isEnglish ? 'The Future of Innovation' : 'Майбутнє інновацій'}
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                {isEnglish
-                  ? 'Upcoming technologies and initiatives we\'re developing'
-                  : 'Майбутні технології та ініціативи, які ми розробляємо'}
-              </p>
-            </div>
-          </ScrollReveal>
+          <div className="text-center mb-12 md:mb-16">
+            <span className="inline-block text-sm font-semibold text-[#42c997] uppercase tracking-wider mb-3">
+              {isEnglish ? 'Our Technologies' : 'Наші технології'}
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-heading mb-4">
+              {isEnglish ? 'Four Pillars of Innovation' : 'Чотири стовпи інновацій'}
+            </h2>
+            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+              {isEnglish
+                ? 'Advanced technologies that power our engineering excellence and accelerate project delivery.'
+                : 'Передові технології, що забезпечують інженерну досконалість та прискорюють реалізацію проектів.'}
+            </p>
+          </div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-6">
-              <ScrollReveal delay={100}>
-                <Card>
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-lg flex-shrink-0">
-                      <Globe className="w-6 h-6" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
-                        {isEnglish ? 'IoT Integration' : 'Інтеграція IoT'}
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        {isEnglish
-                          ? 'Developing smart sensor networks for real-time monitoring of water quality, fish behavior, and system performance. All data will feed into AI models for predictive optimization and early problem detection.'
-                          : 'Розробка мереж розумних датчиків для моніторингу якості води, поведінки риби та продуктивності систем в реальному часі. Всі дані живлять AI-моделі для прогнозної оптимізації та раннього виявлення проблем.'}
-                      </p>
-                    </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {[
+              {
+                icon: Brain,
+                number: '01',
+                title: { en: 'AI-Accelerated Design', uk: 'AI-прискорений дизайн' },
+                description: { en: 'ChatGPT, Claude, and custom AI models power our engineering calculations, system optimization, and documentation generation. AI reduces design time by 50% while exploring more alternatives.', uk: 'ChatGPT, Claude та власні AI-моделі забезпечують інженерні розрахунки, оптимізацію систем та генерацію документації. AI скорочує час проектування на 50%.' },
+                features: [
+                  { en: 'Automated calculations', uk: 'Автоматизовані розрахунки' },
+                  { en: 'Design optimization', uk: 'Оптимізація дизайну' },
+                  { en: 'Smart documentation', uk: 'Розумна документація' }
+                ]
+              },
+              {
+                icon: Box,
+                number: '02',
+                title: { en: 'Advanced 3D Modeling', uk: 'Передове 3D моделювання' },
+                description: { en: 'State-of-the-art CAD, VR/AR visualization, and CFD analysis ensure optimized designs before construction. Clients virtually walk through facilities and see water flow patterns in real-time.', uk: 'Найсучасніші CAD, VR/AR візуалізація та CFD-аналіз гарантують оптимізацію до будівництва. Клієнти віртуально оглядають об\'єкти та бачать потоки води.' },
+                features: [
+                  { en: 'VR facility tours', uk: 'VR-огляди об\'єктів' },
+                  { en: 'CFD water analysis', uk: 'CFD-аналіз води' },
+                  { en: '3D prototyping', uk: '3D-прототипування' }
+                ]
+              },
+              {
+                icon: Cpu,
+                number: '03',
+                title: { en: 'Digital Twin Technology', uk: 'Цифрові двійники' },
+                description: { en: 'Virtual facility replicas enable simulation, testing, and predictive maintenance. Digital twins allow virtual commissioning, reducing installation time and predicting maintenance needs before failures.', uk: 'Віртуальні копії об\'єктів забезпечують симуляцію, тестування та прогнозне обслуговування. Скорочують час монтажу та прогнозують потреби в обслуговуванні.' },
+                features: [
+                  { en: 'Virtual commissioning', uk: 'Віртуальне введення' },
+                  { en: 'Predictive maintenance', uk: 'Прогнозне обслуговування' },
+                  { en: 'Real-time monitoring', uk: 'Моніторинг реального часу' }
+                ]
+              },
+              {
+                icon: Lightbulb,
+                number: '04',
+                title: { en: 'Continuous R&D', uk: 'Постійні НДДКР' },
+                description: { en: 'Heavy investment in research keeps us ahead of trends. We continuously experiment with new approaches, materials, and systems, creating industry innovations rather than following them.', uk: 'Інвестиції в дослідження тримають нас попереду трендів. Постійно експериментуємо з новими підходами, матеріалами та системами, створюючи галузеві інновації.' },
+                features: [
+                  { en: 'Trend analysis', uk: 'Аналіз трендів' },
+                  { en: 'Material testing', uk: 'Тестування матеріалів' },
+                  { en: 'System optimization', uk: 'Оптимізація систем' }
+                ]
+              }
+            ].map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={index}
+                  className="group relative bg-white rounded-2xl p-6 md:p-8 border border-neutral-100 hover:border-[#42c997]/30 transition-all duration-300 hover:shadow-xl hover:shadow-[#42c997]/5"
+                >
+                  {/* Number badge */}
+                  <div className="absolute top-4 right-4 text-5xl font-bold text-neutral-100 group-hover:text-[#42c997]/10 transition-colors duration-300">
+                    {item.number}
                   </div>
-                </Card>
-              </ScrollReveal>
 
-              <ScrollReveal delay={200}>
-                <Card>
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-lg flex-shrink-0">
-                      <Brain className="w-6 h-6" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
-                        {isEnglish ? 'Machine Learning Optimization' : 'Оптимізація машинним навчанням'}
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        {isEnglish
-                          ? 'Training ML models on thousands of design variations to automatically generate optimal layouts for any species, location, and budget. The system will learn from every project to continuously improve recommendations.'
-                          : 'Навчання ML-моделей на тисячах варіантів дизайну для автоматичної генерації оптимальних планів для будь-яких видів, локацій та бюджетів. Система вчиться з кожного проекту для постійного покращення рекомендацій.'}
-                      </p>
-                    </div>
+                  {/* Icon */}
+                  <div className="relative z-10 mb-6 w-14 h-14 md:w-16 md:h-16 rounded-xl bg-gradient-to-br from-[#42c997]/15 to-[#00A8B5]/10 flex items-center justify-center group-hover:from-[#42c997]/25 group-hover:to-[#00A8B5]/15 transition-all duration-300">
+                    <Icon className="w-7 h-7 md:w-8 md:h-8 text-[#35a87a] group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                </Card>
-              </ScrollReveal>
 
-              <ScrollReveal delay={300}>
-                <Card>
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-lg flex-shrink-0">
-                      <Users className="w-6 h-6" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
-                        {isEnglish ? 'Blockchain Traceability' : 'Відстеження через блокчейн'}
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        {isEnglish
-                          ? 'Implementing blockchain-based systems to track fish from egg to consumer, ensuring transparency, food safety, and premium pricing for sustainably-raised products. Full supply chain visibility builds consumer trust.'
-                          : 'Впровадження блокчейн-систем для відстеження риби від ікринки до споживача, забезпечуючи прозорість, безпеку харчових продуктів та преміум-ціни для екологічно вирощеної продукції.'}
-                      </p>
-                    </div>
+                  <h3 className="relative z-10 text-xl md:text-2xl font-bold text-neutral-900 mb-3 group-hover:text-[#35a87a] transition-colors duration-300">
+                    {isEnglish ? item.title.en : item.title.uk}
+                  </h3>
+
+                  <p className="relative z-10 text-neutral-600 mb-6 leading-relaxed">
+                    {isEnglish ? item.description.en : item.description.uk}
+                  </p>
+
+                  <ul className="relative z-10 space-y-2">
+                    {item.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center gap-2 text-sm text-neutral-700">
+                        <Zap className="w-4 h-4 text-[#42c997] flex-shrink-0" />
+                        <span>{isEnglish ? feature.en : feature.uk}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Future Innovations */}
+      <section className="section bg-white">
+        <div className="container-custom">
+          <div className="text-center mb-12 md:mb-16">
+            <span className="inline-block text-sm font-semibold text-[#42c997] uppercase tracking-wider mb-3">
+              {isEnglish ? 'Coming Soon' : 'Скоро'}
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-heading mb-4">
+              {isEnglish ? 'The Future of Innovation' : 'Майбутнє інновацій'}
+            </h2>
+          </div>
+
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                { step: '01', title: { en: 'IoT Integration', uk: 'Інтеграція IoT' }, desc: { en: 'Smart sensor networks for real-time monitoring', uk: 'Мережі розумних датчиків для моніторингу' } },
+                { step: '02', title: { en: 'ML Optimization', uk: 'ML-оптимізація' }, desc: { en: 'Auto-generate optimal layouts for any project', uk: 'Автогенерація оптимальних планів' } },
+                { step: '03', title: { en: 'Blockchain Track', uk: 'Блокчейн-відстеження' }, desc: { en: 'Full traceability from egg to consumer', uk: 'Повне відстеження від ікринки до споживача' } }
+              ].map((item, index) => (
+                <div key={index} className="text-center">
+                  <div className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#0a2540] to-[#1B4B63] flex items-center justify-center text-xl md:text-2xl font-bold text-[#42c997] border-4 border-white shadow-lg">
+                    {item.step}
                   </div>
-                </Card>
-              </ScrollReveal>
+                  <h3 className="text-lg md:text-xl font-bold text-neutral-900 mb-2">
+                    {isEnglish ? item.title.en : item.title.uk}
+                  </h3>
+                  <p className="text-sm md:text-base text-neutral-600">
+                    {isEnglish ? item.desc.en : item.desc.uk}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
-      </Section>
+      </section>
 
       {/* CTA Section */}
-      <Section
-        background="transparent"
-        spacing="2xl"
-        className="bg-gradient-to-br from-brand-primary to-brand-secondary text-white"
-      >
-        <div className="container-custom">
-          <ScrollReveal>
-            <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                {isEnglish
-                  ? 'Ready to Experience Innovation?'
-                  : 'Готові випробувати інновації?'}
-              </h2>
-              <p className="text-xl mb-8 text-white/90">
-                {isEnglish
-                  ? 'Let\'s discuss how our innovative approach can transform your aquaculture project with faster delivery, lower costs, and cutting-edge technology.'
-                  : 'Обговоримо, як наш інноваційний підхід може трансформувати ваш аквакультурний проект зі швидшою реалізацією, нижчими витратами та передовими технологіями.'}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href={`/${locale}/contact`}>
-                  <Button variant="accent" size="lg" className="text-lg px-8 py-4">
-                    {isEnglish ? 'Start Your Project' : 'Почати проект'}
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Button>
-                </Link>
-                <Link href={`/${locale}/services`}>
-                  <Button
-                    variant="secondary"
-                    size="lg"
-                    className="text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-brand-primary"
-                  >
-                    {isEnglish ? 'Explore Services' : 'Переглянути послуги'}
-                  </Button>
-                </Link>
-              </div>
+      <section className="relative py-20 md:py-28 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a2540] via-[#1B4B63] to-[#0d3a4d]" />
+        <div className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }}
+        />
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-[#42c997]/20 to-transparent blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-gradient-to-tr from-[#00A8B5]/15 to-transparent blur-2xl" />
+
+        <div className="container-custom relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+              {isEnglish
+                ? 'Ready to Experience Next-Gen Engineering?'
+                : 'Готові випробувати інжиніринг нового покоління?'}
+            </h2>
+            <p className="text-lg md:text-xl text-white/80 mb-10">
+              {isEnglish
+                ? 'Let\'s discuss how our innovative approach can transform your aquaculture project with AI, 3D modeling, and digital twins.'
+                : 'Обговоримо, як наш інноваційний підхід може трансформувати ваш проект за допомогою AI, 3D моделювання та цифрових двійників.'}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href={`/${locale}/contact`}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-success hover:bg-brand-success/90 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-brand-success/25"
+              >
+                {isEnglish ? 'Start Your Project' : 'Почати проект'}
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                href={`/${locale}/services`}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg border border-white/20 transition-all duration-300 backdrop-blur-sm"
+              >
+                {isEnglish ? 'Explore Services' : 'Переглянути послуги'}
+              </Link>
             </div>
-          </ScrollReveal>
+          </div>
         </div>
-      </Section>
+      </section>
     </div>
   );
 }

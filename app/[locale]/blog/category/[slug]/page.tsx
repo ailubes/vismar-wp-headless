@@ -39,7 +39,7 @@ export async function generateStaticParams() {
       }))
     ];
   } catch (error) {
-    console.error('Error generating static params for categories:', error);
+    // Error generating static params - return empty array
     return [];
   }
 }
@@ -71,7 +71,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: category.description || `Posts in ${category.name} category`,
     };
   } catch (error) {
-    console.error('Error generating metadata:', error);
+    // Error generating metadata
     return {
       title: 'Category Not Found',
     };
@@ -117,7 +117,7 @@ export default async function CategoryArchivePage({ params, searchParams }: Prop
     });
     categoriesData = categoriesResult.data;
   } catch (error) {
-    console.error('Error fetching category posts:', error);
+    // Error fetching category posts
     errorMessage = locale === 'en'
       ? 'Failed to load category posts. Please try again later.'
       : 'Не вдалося завантажити статті категорії. Будь ласка, спробуйте пізніше.';
