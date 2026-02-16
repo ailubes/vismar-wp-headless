@@ -1,6 +1,6 @@
 import { Organization, WebSite, Article, Service, BreadcrumbList, WithContext } from 'schema-dts';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+const SITE_URL = 'https://vismar-aqua.com';
 
 /**
  * Generate Organization schema
@@ -9,55 +9,116 @@ export function generateOrganizationSchema(locale: string): WithContext<Organiza
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Vismar Aqua',
+    '@id': `${SITE_URL}/#organization`,
+    name: 'Vismar Aquaculture OÜ',
+    alternateName: 'Vismar Aqua',
     url: SITE_URL,
-    logo: `${SITE_URL}/images/logo.png`,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE_URL}/images/vismar-logo-horizontal-text.png`,
+      width: '180',
+      height: '48',
+    },
+    image: `${SITE_URL}/images/vismar-logo-horizontal-text.png`,
     description:
       locale === 'en'
-        ? 'Expert aquaculture solutions, water quality management, and sustainable fish farming technology.'
-        : 'Експертні рішення для аквакультури, управління якістю води та технології сталого рибництва.',
-    address: {
-      '@type': 'PostalAddress',
-      addressCountry: 'UA',
-    },
+        ? 'Professional aquaculture engineering company specializing in RAS systems, HFTS technology, hatcheries, water treatment, and custom aquaculture software solutions. 15+ years of experience, 50+ projects worldwide.'
+        : 'Професійна інженерна компанія з аквакультури, що спеціалізується на системах RAS, технології HFTS, інкубаторіях, водопідготовці та розробці програмного забезпечення для аквакультури. 15+ років досвіду, 50+ проектів по всьому світу.',
+    foundingDate: '2007',
+    email: 'vismaraqua@gmail.com',
+    telephone: '+380675024730',
+    address: [
+      {
+        '@type': 'PostalAddress',
+        streetAddress: 'Harju maakond, Lasnamäe linnaosa, Sepapaja tn 6',
+        addressLocality: 'Tallinn',
+        postalCode: '15551',
+        addressCountry: 'EE',
+      },
+      {
+        '@type': 'PostalAddress',
+        addressLocality: 'Kyiv',
+        addressCountry: 'UA',
+      },
+    ],
     sameAs: [
-      'https://www.facebook.com/vismaraqua',
-      'https://www.linkedin.com/company/vismar-aqua',
-      'https://twitter.com/vismaraqua',
+      'https://linkedin.com/company/vismaraqua',
+      'https://facebook.com/vismaraqua',
+      'https://youtube.com/@vismaraqua',
     ],
     contactPoint: {
       '@type': 'ContactPoint',
-      contactType: 'Customer Service',
-      availableLanguage: ['en', 'uk'],
+      telephone: '+380675024730',
+      contactType: 'sales',
+      email: 'vismaraqua@gmail.com',
+      availableLanguage: ['English', 'Ukrainian'],
     },
-  };
+    areaServed: {
+      '@type': 'GeoCircle',
+      geoMidpoint: {
+        '@type': 'GeoCoordinates',
+        latitude: '50.4501',
+        longitude: '30.5234',
+      },
+      geoRadius: '10000000',
+    },
+    knowsAbout: [
+      'Recirculating Aquaculture Systems (RAS)',
+      'HFTS Technology',
+      'Aquaculture Engineering',
+      'Fish Farming',
+      'Hatchery Design',
+      'Water Treatment Systems',
+      'Aquaculture Software',
+      'Fish Counting AI',
+      'IoT Monitoring',
+    ],
+    numberOfEmployees: {
+      '@type': 'QuantitativeValue',
+      minValue: '10',
+      maxValue: '50',
+    },
+  } as any;
 }
 
 /**
  * Generate WebSite schema with search action
  */
 export function generateWebSiteSchema(locale: string): WithContext<WebSite> {
-  const localePrefix = locale === 'en' ? 'en' : 'uk';
-
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': `${SITE_URL}/#website`,
     name: 'Vismar Aqua',
-    url: `${SITE_URL}/${localePrefix}`,
+    url: SITE_URL,
     description:
       locale === 'en'
-        ? 'Expert aquaculture solutions and services'
-        : 'Експертні рішення та послуги в аквакультурі',
-    inLanguage: locale === 'en' ? 'en-US' : 'uk-UA',
+        ? 'Expert aquaculture engineering solutions - RAS systems, hatcheries, water treatment, and custom software for fish farming'
+        : 'Експертні інженерні рішення для аквакультури - системи RAS, інкубатори, водопідготовка та програмне забезпечення для рибництва',
+    publisher: {
+      '@id': `${SITE_URL}/#organization`,
+    },
+    inLanguage: [
+      {
+        '@type': 'Language',
+        name: 'English',
+        alternateName: 'en',
+      },
+      {
+        '@type': 'Language',
+        name: 'Ukrainian',
+        alternateName: 'uk',
+      },
+    ],
     potentialAction: {
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: `${SITE_URL}/${localePrefix}/search?q={search_term_string}`,
+        urlTemplate: `${SITE_URL}/${locale}/blog?search={search_term_string}`,
       },
       'query-input': 'required name=search_term_string',
-    } as any,
-  };
+    },
+  } as any;
 }
 
 /**
@@ -77,27 +138,29 @@ export function generateArticleSchema(
     categories?: string[];
   }
 ): WithContext<Article> {
-  const localePrefix = locale === 'en' ? 'en' : 'uk';
-  const articleUrl = `${SITE_URL}/${localePrefix}/blog/${data.slug}`;
+  const articleUrl = `${SITE_URL}/${locale}/blog/${data.slug}`;
 
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    '@id': articleUrl,
     headline: data.title,
     description: data.excerpt || data.content?.substring(0, 160),
     url: articleUrl,
     datePublished: data.publishedDate,
     dateModified: data.modifiedDate || data.publishedDate,
     author: {
-      '@type': 'Person',
-      name: data.author || 'Vismar Aqua Team',
+      '@type': 'Organization',
+      name: 'Vismar Aqua',
+      url: SITE_URL,
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Vismar Aqua',
+      '@id': `${SITE_URL}/#organization`,
+      name: 'Vismar Aquaculture OÜ',
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE_URL}/images/logo.png`,
+        url: `${SITE_URL}/images/vismar-logo-horizontal-text.png`,
       },
     },
     image: data.featuredImage
@@ -105,12 +168,15 @@ export function generateArticleSchema(
           '@type': 'ImageObject',
           url: data.featuredImage,
         }
-      : undefined,
+      : {
+          '@type': 'ImageObject',
+          url: `${SITE_URL}/images/vismar-logo-horizontal-text.png`,
+        },
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': articleUrl,
     },
-    articleSection: data.categories?.[0],
+    articleSection: data.categories?.[0] || 'Aquaculture',
     inLanguage: locale === 'en' ? 'en-US' : 'uk-UA',
   };
 }
@@ -127,31 +193,43 @@ export function generateServiceSchema(
     featuredImage?: string;
   }
 ): WithContext<Service> {
-  const localePrefix = locale === 'en' ? 'en' : 'uk';
-  const serviceUrl = `${SITE_URL}/${localePrefix}/services/${data.slug}`;
+  const serviceUrl = `${SITE_URL}/${locale}/services/${data.slug}`;
 
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
+    '@id': serviceUrl,
     name: data.title,
     description: data.description,
     url: serviceUrl,
     provider: {
       '@type': 'Organization',
-      name: 'Vismar Aqua',
+      '@id': `${SITE_URL}/#organization`,
+      name: 'Vismar Aquaculture OÜ',
       url: SITE_URL,
     },
     areaServed: {
       '@type': 'Place',
-      name: 'Ukraine',
+      name: 'Worldwide',
     },
+    serviceType: 'Aquaculture Engineering',
+    category: 'Professional Services',
     image: data.featuredImage
       ? {
           '@type': 'ImageObject',
           url: data.featuredImage,
         }
-      : undefined,
-  };
+      : {
+          '@type': 'ImageObject',
+          url: `${SITE_URL}/images/vismar-logo-horizontal-text.png`,
+        },
+    availableChannel: {
+      '@type': 'ServiceChannel',
+      serviceUrl: `${SITE_URL}/${locale}/contact`,
+      servicePhone: '+380675024730',
+      availableLanguage: ['English', 'Ukrainian'],
+    },
+  } as any;
 }
 
 /**
@@ -161,8 +239,6 @@ export function generateBreadcrumbSchema(
   locale: string,
   items: Array<{ name: string; url?: string }>
 ): WithContext<BreadcrumbList> {
-  const localePrefix = locale === 'en' ? 'en' : 'uk';
-
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -207,31 +283,156 @@ export function generateProductSchema(
     featuredImage?: string;
   }
 ): WithContext<any> {
-  const localePrefix = locale === 'en' ? 'en' : 'uk';
-  const productUrl = `${SITE_URL}/${localePrefix}/software/${data.slug}`;
+  const productUrl = `${SITE_URL}/${locale}/software/${data.slug}`;
 
   return {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
+    '@id': productUrl,
     name: data.title,
     description: data.description,
     url: productUrl,
     applicationCategory: 'BusinessApplication',
-    operatingSystem: 'Web',
+    operatingSystem: 'Web-based',
     offers: {
       '@type': 'Offer',
       availability: 'https://schema.org/InStock',
+      price: '0',
+      priceCurrency: 'USD',
+      description: locale === 'en' ? 'Contact for pricing' : 'Зверніться для отримання ціни',
       seller: {
         '@type': 'Organization',
-        name: 'Vismar Aqua',
+        '@id': `${SITE_URL}/#organization`,
+        name: 'Vismar Aquaculture OÜ',
       },
+    },
+    author: {
+      '@type': 'Organization',
+      '@id': `${SITE_URL}/#organization`,
     },
     image: data.featuredImage
       ? {
           '@type': 'ImageObject',
           url: data.featuredImage,
         }
-      : undefined,
+      : {
+          '@type': 'ImageObject',
+          url: `${SITE_URL}/images/vismar-logo-horizontal-text.png`,
+        },
+  };
+}
+
+/**
+ * Generate LocalBusiness schema (for Contact page)
+ */
+export function generateLocalBusinessSchema(locale: string): WithContext<any> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    '@id': `${SITE_URL}/#localbusiness`,
+    name: 'Vismar Aquaculture OÜ',
+    image: `${SITE_URL}/images/vismar-logo-horizontal-text.png`,
+    url: SITE_URL,
+    telephone: '+380675024730',
+    email: 'vismaraqua@gmail.com',
+    priceRange: '$$$',
+    description: locale === 'en'
+      ? 'Professional aquaculture engineering and consulting services specializing in RAS systems, hatcheries, and water treatment'
+      : 'Професійні інженерні та консультаційні послуги з аквакультури, що спеціалізуються на системах RAS, інкубаторіях та водопідготовці',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Harju maakond, Lasnamäe linnaosa, Sepapaja tn 6',
+      addressLocality: 'Tallinn',
+      postalCode: '15551',
+      addressCountry: 'EE',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: '59.4370',
+      longitude: '24.7536',
+    },
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '18:00',
+    },
+    sameAs: [
+      'https://linkedin.com/company/vismaraqua',
+      'https://facebook.com/vismaraqua',
+      'https://youtube.com/@vismaraqua',
+    ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Aquaculture Services',
+      itemListElement: [
+        {
+          '@type': 'OfferCatalog',
+          name: 'Engineering Services',
+          itemListElement: [
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'RAS Systems Design' } },
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'HFTS Technology' } },
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hatchery Engineering' } },
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Water Treatment' } },
+          ],
+        },
+        {
+          '@type': 'OfferCatalog',
+          name: 'Software Solutions',
+          itemListElement: [
+            { '@type': 'Offer', itemOffered: { '@type': 'SoftwareApplication', name: 'Farm Management' } },
+            { '@type': 'Offer', itemOffered: { '@type': 'SoftwareApplication', name: 'AI Fish Counting' } },
+            { '@type': 'Offer', itemOffered: { '@type': 'SoftwareApplication', name: 'IoT Monitoring' } },
+          ],
+        },
+      ],
+    },
+  };
+}
+
+/**
+ * Generate Project/CaseStudy schema
+ */
+export function generateProjectSchema(
+  locale: string,
+  data: {
+    title: string;
+    slug: string;
+    description?: string;
+    featuredImage?: string;
+    location?: string;
+    dateCompleted?: string;
+  }
+): WithContext<any> {
+  const projectUrl = `${SITE_URL}/${locale}/projects/${data.slug}`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    '@id': projectUrl,
+    name: data.title,
+    description: data.description,
+    url: projectUrl,
+    creator: {
+      '@type': 'Organization',
+      '@id': `${SITE_URL}/#organization`,
+    },
+    ...(data.location && {
+      locationCreated: {
+        '@type': 'Place',
+        name: data.location,
+      },
+    }),
+    ...(data.dateCompleted && { dateCreated: data.dateCompleted }),
+    image: data.featuredImage
+      ? {
+          '@type': 'ImageObject',
+          url: data.featuredImage,
+        }
+      : {
+          '@type': 'ImageObject',
+          url: `${SITE_URL}/images/vismar-logo-horizontal-text.png`,
+        },
   };
 }
 

@@ -16,6 +16,11 @@ const intlMiddleware = createIntlMiddleware({
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Skip middleware for sitemap and robots
+  if (pathname === '/sitemap.xml' || pathname === '/robots.txt') {
+    return NextResponse.next();
+  }
+
   // Handle legacy URL redirects before intl middleware
   const redirect = handleLegacyRedirects(request);
   if (redirect) {
@@ -133,7 +138,8 @@ export const config = {
   // - API routes
   // - Static files (images, fonts, etc.)
   // - Next.js internals
+  // - Sitemap and robots.txt
   matcher: [
-    '/((?!api|_next|_vercel|favicon.ico|.*\\..*$).*)',
+    '/((?!api|_next|_vercel|favicon.ico|sitemap.xml|robots.txt|.*\\..*$).*)',
   ]
 };

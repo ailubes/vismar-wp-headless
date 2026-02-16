@@ -39,19 +39,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         alternates: {
           languages: {
             en: `${SITE_URL}/en`,
-            uk: `${SITE_URL}/ua`,
+            uk: `${SITE_URL}/uk`,
           },
         },
       },
       {
-        url: `${SITE_URL}/ua`,
+        url: `${SITE_URL}/uk`,
         lastModified: new Date(),
         changeFrequency: 'weekly',
         priority: 1.0,
         alternates: {
           languages: {
             en: `${SITE_URL}/en`,
-            uk: `${SITE_URL}/ua`,
+            uk: `${SITE_URL}/uk`,
           },
         },
       }
@@ -59,38 +59,40 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Main pages (About, Contact, Services listing, etc.)
     const mainPages = [
-      { en: 'about', ua: 'about' },
-      { en: 'contact', ua: 'contact' },
-      { en: 'services', ua: 'services' },
-      { en: 'projects', ua: 'projects' },
-      { en: 'software', ua: 'software' },
-      { en: 'species', ua: 'species' },
-      { en: 'blog', ua: 'blog' },
+      'about',
+      'contact',
+      'services',
+      'projects',
+      'software',
+      'species',
+      'blog',
+      'case-studies',
+      'careers',
     ];
 
     mainPages.forEach((page) => {
       entries.push(
         {
-          url: `${SITE_URL}/en/${page.en}`,
+          url: `${SITE_URL}/en/${page}`,
           lastModified: new Date(),
           changeFrequency: 'monthly',
           priority: 0.8,
           alternates: {
             languages: {
-              en: `${SITE_URL}/en/${page.en}`,
-              uk: `${SITE_URL}/ua/${page.ua}`,
+              en: `${SITE_URL}/en/${page}`,
+              uk: `${SITE_URL}/uk/${page}`,
             },
           },
         },
         {
-          url: `${SITE_URL}/ua/${page.ua}`,
+          url: `${SITE_URL}/uk/${page}`,
           lastModified: new Date(),
           changeFrequency: 'monthly',
           priority: 0.8,
           alternates: {
             languages: {
-              en: `${SITE_URL}/en/${page.en}`,
-              uk: `${SITE_URL}/ua/${page.ua}`,
+              en: `${SITE_URL}/en/${page}`,
+              uk: `${SITE_URL}/uk/${page}`,
             },
           },
         }
@@ -138,28 +140,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             alternates: {
               languages: {
                 en: `${SITE_URL}/en/services/${slug}`,
-                uk: `${SITE_URL}/ua/services/${slug}`,
+                uk: `${SITE_URL}/uk/services/${slug}`,
               },
             },
           });
         }
         if (services.ua) {
           entries.push({
-            url: `${SITE_URL}/ua/services/${slug}`,
+            url: `${SITE_URL}/uk/services/${slug}`,
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.7,
             alternates: {
               languages: {
                 en: `${SITE_URL}/en/services/${slug}`,
-                uk: `${SITE_URL}/ua/services/${slug}`,
+                uk: `${SITE_URL}/uk/services/${slug}`,
               },
             },
           });
         }
       });
     } catch (error) {
-      console.error('Error fetching services for sitemap:', error);
+      // Error fetching services - silently skip
     }
 
     // Fetch and add all projects
@@ -202,28 +204,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             alternates: {
               languages: {
                 en: `${SITE_URL}/en/projects/${slug}`,
-                uk: `${SITE_URL}/ua/projects/${slug}`,
+                uk: `${SITE_URL}/uk/projects/${slug}`,
               },
             },
           });
         }
         if (projects.ua) {
           entries.push({
-            url: `${SITE_URL}/ua/projects/${slug}`,
+            url: `${SITE_URL}/uk/projects/${slug}`,
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.6,
             alternates: {
               languages: {
                 en: `${SITE_URL}/en/projects/${slug}`,
-                uk: `${SITE_URL}/ua/projects/${slug}`,
+                uk: `${SITE_URL}/uk/projects/${slug}`,
               },
             },
           });
         }
       });
     } catch (error) {
-      console.error('Error fetching projects for sitemap:', error);
+      // Error fetching projects - silently skip
     }
 
     // Fetch and add all software solutions
@@ -266,28 +268,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             alternates: {
               languages: {
                 en: `${SITE_URL}/en/software/${slug}`,
-                uk: `${SITE_URL}/ua/software/${slug}`,
+                uk: `${SITE_URL}/uk/software/${slug}`,
               },
             },
           });
         }
         if (software.ua) {
           entries.push({
-            url: `${SITE_URL}/ua/software/${slug}`,
+            url: `${SITE_URL}/uk/software/${slug}`,
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.6,
             alternates: {
               languages: {
                 en: `${SITE_URL}/en/software/${slug}`,
-                uk: `${SITE_URL}/ua/software/${slug}`,
+                uk: `${SITE_URL}/uk/software/${slug}`,
               },
             },
           });
         }
       });
     } catch (error) {
-      console.error('Error fetching software for sitemap:', error);
+      // Error fetching software - silently skip
     }
 
     // Fetch and add all species
@@ -330,28 +332,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             alternates: {
               languages: {
                 en: `${SITE_URL}/en/species/${slug}`,
-                uk: `${SITE_URL}/ua/species/${slug}`,
+                uk: `${SITE_URL}/uk/species/${slug}`,
               },
             },
           });
         }
         if (species.ua) {
           entries.push({
-            url: `${SITE_URL}/ua/species/${slug}`,
+            url: `${SITE_URL}/uk/species/${slug}`,
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.6,
             alternates: {
               languages: {
                 en: `${SITE_URL}/en/species/${slug}`,
-                uk: `${SITE_URL}/ua/species/${slug}`,
+                uk: `${SITE_URL}/uk/species/${slug}`,
               },
             },
           });
         }
       });
     } catch (error) {
-      console.error('Error fetching species for sitemap:', error);
+      // Error fetching species - silently skip
     }
 
     // Fetch and add all blog posts
@@ -394,28 +396,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             alternates: {
               languages: {
                 en: `${SITE_URL}/en/blog/${slug}`,
-                uk: `${SITE_URL}/ua/blog/${slug}`,
+                uk: `${SITE_URL}/uk/blog/${slug}`,
               },
             },
           });
         }
         if (posts.ua) {
           entries.push({
-            url: `${SITE_URL}/ua/blog/${slug}`,
+            url: `${SITE_URL}/uk/blog/${slug}`,
             lastModified: posts.ua.date ? new Date(posts.ua.date) : new Date(),
             changeFrequency: 'monthly',
             priority: 0.5,
             alternates: {
               languages: {
                 en: `${SITE_URL}/en/blog/${slug}`,
-                uk: `${SITE_URL}/ua/blog/${slug}`,
+                uk: `${SITE_URL}/uk/blog/${slug}`,
               },
             },
           });
         }
       });
     } catch (error) {
-      console.error('Error fetching posts for sitemap:', error);
+      // Error fetching posts - silently skip
     }
 
     // Fetch and add blog categories
@@ -462,31 +464,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             alternates: {
               languages: {
                 en: `${SITE_URL}/en/blog/category/${slug}`,
-                uk: `${SITE_URL}/ua/blog/category/${slug}`,
+                uk: `${SITE_URL}/uk/blog/category/${slug}`,
               },
             },
           });
         }
         if (categories.ua) {
           entries.push({
-            url: `${SITE_URL}/ua/blog/category/${slug}`,
+            url: `${SITE_URL}/uk/blog/category/${slug}`,
             lastModified: new Date(),
             changeFrequency: 'weekly',
             priority: 0.5,
             alternates: {
               languages: {
                 en: `${SITE_URL}/en/blog/category/${slug}`,
-                uk: `${SITE_URL}/ua/blog/category/${slug}`,
+                uk: `${SITE_URL}/uk/blog/category/${slug}`,
               },
             },
           });
         }
       });
     } catch (error) {
-      console.error('Error fetching categories for sitemap:', error);
+      // Error fetching categories - silently skip
     }
   } catch (error) {
-    console.error('Error generating sitemap:', error);
+    // Error generating sitemap - return empty entries
   }
 
   return entries;

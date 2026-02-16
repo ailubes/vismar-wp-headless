@@ -395,7 +395,10 @@
     },
     "contact": {
       "email": "vismaraqua@gmail.com",
-      "phone": "+380 67 502 47 30",
+      "phone": "+380 67 502 4730",
+      "phone2": "+380 50 879 6803",
+      "phoneLabel": "WhatsApp, Viber, Voice",
+      "phone2Label": "Telegram, Voice",
       "website": "vismar-aqua.com"
     },
     "cta": {
@@ -436,6 +439,75 @@
       "subtitle": "PROVEN PROJECT EXCELLENCE",
       "cta": "View All Projects"
     },
+    "caseStudies": {
+      "title": "Case Studies",
+      "description": "Real-world success stories and proven results from our aquaculture projects",
+      "subtitle": "PROVEN SUCCESS STORIES",
+      "hero": {
+        "title": "Case Studies",
+        "description": "Real-world success stories and proven results from our aquaculture projects"
+      },
+      "metrics": {
+        "successRate": "Success Rate",
+        "featuredProjects": "Featured Projects",
+        "countries": "Countries",
+        "portfolioValue": "Portfolio Value"
+      },
+      "whatMakesDifferent": {
+        "title": "What Makes Our Case Studies Different",
+        "description": "Every project tells a story of innovation, problem-solving, and measurable success in aquaculture engineering",
+        "measurableResults": {
+          "title": "Measurable Results",
+          "description": "Real data, real metrics, and proven ROI from every implemented project"
+        },
+        "innovationInAction": {
+          "title": "Innovation in Action",
+          "description": "Cutting-edge solutions tailored to unique challenges and environmental conditions"
+        },
+        "longTermSuccess": {
+          "title": "Long-term Success",
+          "description": "Projects designed for sustained performance and operational excellence over years"
+        }
+      },
+      "industries": {
+        "title": "Industries We Serve",
+        "description": "Specialized solutions across diverse aquaculture sectors",
+        "shrimpFarming": {
+          "title": "Shrimp Farming",
+          "description": "RAS & biofloc systems for intensive production"
+        },
+        "fishHatcheries": {
+          "title": "Fish Hatcheries",
+          "description": "Controlled breeding and larval rearing facilities"
+        },
+        "salmonFarming": {
+          "title": "Salmon Farming",
+          "description": "Flow-through and HFTS systems for premium quality"
+        },
+        "ornamentalFish": {
+          "title": "Ornamental Fish",
+          "description": "Specialized systems for high-value species"
+        }
+      },
+      "cta": {
+        "title": "Want Your Project to Become Our Next Success Story?",
+        "description": "Let's discuss how we can bring proven methodologies and innovative solutions to your aquaculture project.",
+        "primaryButton": "Discuss Your Project",
+        "secondaryButton": "View All Projects",
+        "freeConsultation": "Free Consultation",
+        "successRate": "100% Success Rate",
+        "globalExperience": "Global Experience"
+      },
+      "grid": {
+        "title": "Featured Success Stories",
+        "description": "Explore detailed case studies showcasing our expertise across diverse aquaculture projects",
+        "noCaseStudies": "No case studies available yet",
+        "checkBackSoon": "Check back soon for detailed success stories from our completed projects.",
+        "caseStudyBadge": "Case Study",
+        "featuredBadge": "Featured",
+        "readFullCaseStudy": "Read Full Case Study"
+      }
+    },
     "equipment": {
       "title": "Equipment",
       "description": "High-quality aquaculture equipment and RAS system components",
@@ -461,6 +533,56 @@
       "title": "Contact",
       "description": "Get in touch with our aquaculture experts",
       "subtitle": "LET'S DISCUSS YOUR PROJECT"
+    },
+    "species": {
+      "title": "Aquaculture Species",
+      "description": "Expert knowledge in cultivating diverse aquatic species for sustainable aquaculture",
+      "subtitle": "SPECIES EXPERTISE",
+      "hero": {
+        "title": "Aquaculture Species",
+        "description": "Expert knowledge in cultivating diverse aquatic species for sustainable and profitable aquaculture operations"
+      },
+      "stats": {
+        "speciesExpertise": "Species Expertise",
+        "systemTypes": "System Types",
+        "tempRange": "Temp Range",
+        "optimizedGrowth": "Optimized Growth"
+      },
+      "portfolio": {
+        "title": "Our Species Portfolio",
+        "description": "Comprehensive expertise across a wide range of aquaculture species, from traditional favorites to innovative new cultivars"
+      },
+      "systemTypes": {
+        "title": "Suitable Cultivation Systems",
+        "description": "We design and implement various aquaculture systems optimized for different species and production goals",
+        "ras": {
+          "title": "RAS Systems",
+          "description": "Recirculating aquaculture systems for intensive production"
+        },
+        "flowThrough": {
+          "title": "Flow-Through",
+          "description": "Traditional systems with continuous fresh water supply"
+        },
+        "pond": {
+          "title": "Pond Systems",
+          "description": "Outdoor pond cultivation for extensive production"
+        },
+        "hybrid": {
+          "title": "Hybrid Systems",
+          "description": "Combined approaches for optimal efficiency"
+        }
+      },
+      "card": {
+        "temp": "Temp:",
+        "growth": "Growth:",
+        "systems": "Systems:"
+      },
+      "cta": {
+        "title": "Ready to Cultivate These Species?",
+        "description": "Contact us to discuss which species and systems are right for your aquaculture operation.",
+        "viewServices": "View Our Services"
+      },
+      "noSpecies": "No species available at the moment."
     }
   },
   "contact": {

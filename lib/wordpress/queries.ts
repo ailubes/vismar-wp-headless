@@ -584,6 +584,22 @@ export const GET_SPECIES_BY_SLUG = gql`
   }
 `;
 
+// Query to get all blog posts (without language filter - for debugging)
+export const GET_ALL_POSTS_DEBUG = gql`
+  query GetAllPostsDebug($first: Int = 100) {
+    posts(where: { status: PUBLISH }, first: $first) {
+      nodes {
+        id
+        title
+        slug
+        language {
+          code
+        }
+      }
+    }
+  }
+`;
+
 // Query to get all blog posts
 export const GET_ALL_POSTS = gql`
   query GetAllPosts($language: LanguageCodeFilterEnum!, $first: Int = 100, $after: String) {
@@ -631,8 +647,21 @@ export const GET_ALL_POSTS = gql`
         }
         language {
           code
+          name
+          locale
         }
         translations {
+          id
+          title
+          slug
+          excerpt
+          content
+          date
+          language {
+            code
+            name
+            locale
+          }
           featuredImage {
             node {
               sourceUrl

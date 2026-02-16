@@ -15,6 +15,8 @@ const config: Config = {
           secondary: '#00A8B5',     // Aqua/Cyan (highlights, links)
           accent: '#FF6B35',        // Coral Orange (CTAs, important buttons)
           success: '#4ECDC4',       // Seafoam Green (success states)
+          heading: '#35a87a',       // Teal Green (headings - darker variant of #42c997)
+          'heading-light': '#42c997', // Original teal for lighter contexts
 
           // Legacy colors (backward compatibility - deprecated)
           blue: '#5db4d2',
@@ -75,6 +77,22 @@ const config: Config = {
         'lg': '1024px',  // desktop
         'xl': '1280px',
         '2xl': '1440px', // design width
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      },
+      animation: {
+        'float-slow': 'float 6s ease-in-out infinite',
+        'float-medium': 'float 5s ease-in-out infinite',
+        'float-fast': 'float 4s ease-in-out infinite',
+      },
+      keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+          '25%': { transform: 'translateY(-20px) rotate(2deg)' },
+          '50%': { transform: 'translateY(-10px) rotate(-2deg)' },
+          '75%': { transform: 'translateY(-15px) rotate(1deg)' },
+        },
       },
     },
   },

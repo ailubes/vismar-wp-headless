@@ -73,15 +73,10 @@ const nextConfig = {
         destination: '/uk/blog',
         permanent: true,
       },
-      // Old sitemap URLs
-      {
-        source: '/sitemap.xml',
-        destination: '/uk/sitemap.xml',
-        permanent: true,
-      },
+      // Old sitemap URLs (sitemap_index.xml from old WordPress)
       {
         source: '/sitemap_index.xml',
-        destination: '/uk/sitemap.xml',
+        destination: '/sitemap.xml',
         permanent: true,
       },
       // robots.txt should be at root (no redirect needed)
@@ -110,6 +105,17 @@ const nextConfig = {
       {
         source: '/hfts-technology-can-be-a-game-changer.html',
         destination: '/uk/services/hfts',
+        permanent: true,
+      },
+      // Redirect old hfts-technology URLs to hfts
+      {
+        source: '/:locale/services/hfts-technology',
+        destination: '/:locale/services/hfts',
+        permanent: true,
+      },
+      {
+        source: '/services/hfts-technology',
+        destination: '/en/services/hfts',
         permanent: true,
       },
     ];
