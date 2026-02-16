@@ -2,8 +2,10 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getClient } from '@/lib/wordpress/client';
 import { GET_PAGE_BY_SLUG } from '@/lib/wordpress/queries';
+import { generateLocalBusinessSchema, generateBreadcrumbSchema, renderJsonLd } from '@/lib/seo/structured-data';
 import ContactForm from '@/components/ContactForm';
-import Image from 'next/image';
+import Link from 'next/link';
+import { Mail, Phone, MapPin, Clock, MessageCircle, Sparkles, ArrowRight, Send, Headphones, Globe, Zap, MessageSquare } from 'lucide-react';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -24,8 +26,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: page?.seo?.title || page?.title || (locale === 'en' ? 'Contact Us' : "Зв'яжіться з нами"),
       description: page?.seo?.metaDesc || (locale === 'en'
-        ? 'Get in touch with our team for water treatment solutions'
-        : "Зв'яжіться з нашою командою для отримання рішень з очищення води"),
+        ? 'Contact Vismar Aqua for aquaculture engineering consultation. Email or call +380 67 502 4730. Response within 4 hours. Mon–Sat.'
+        : "Зв'яжіться з Vismar Aqua для консультації з інжинірингу аквакультури. Відповідь протягом 4 годин. Пн–Сб."),
     };
   } catch (error) {
     console.error('Error generating metadata:', error);
@@ -40,6 +42,8 @@ export default async function ContactPage({ params }: Props) {
 
   // Enable static rendering
   setRequestLocale(locale);
+
+  const t = await getTranslations('common');
 
   let pageData: any = null;
 
@@ -56,167 +60,432 @@ export default async function ContactPage({ params }: Props) {
 
   const page = pageData?.page;
 
+  // Generate JSON-LD structured data
+  const localBusinessSchema = generateLocalBusinessSchema(locale);
+
+  const breadcrumbSchema = generateBreadcrumbSchema(locale, [
+    { name: locale === 'en' ? 'Home' : 'Головна', url: `/${locale}` },
+    { name: locale === 'en' ? 'Contact' : 'Контакти' },
+  ]);
+
+  // Hero stats
+  const heroStats = [
+    {
+      icon: Zap,
+      value: '<4h',
+      label: { en: 'Response Time', uk: 'Час відповіді' }
+    },
+    {
+      icon: Clock,
+      value: '9-21',
+      label: { en: 'Working Hours', uk: 'Робочі години' }
+    },
+    {
+      icon: Globe,
+      value: '20+',
+      label: { en: 'Countries Served', uk: 'Країн обслуговування' }
+    },
+    {
+      icon: Headphones,
+      value: '6',
+      label: { en: 'Days/Week', uk: 'Днів/тиждень' }
+    }
+  ];
+
+  // Contact methods
+  const contactMethods = [
+    {
+      icon: Mail,
+      title: { en: 'Email Us', uk: 'Напишіть нам' },
+      description: { en: 'For general inquiries and project discussions', uk: 'Для загальних запитів та обговорення проектів' },
+      value: 'info@vismar-aqua.com',
+      href: 'mailto:info@vismar-aqua.com',
+      color: 'blue',
+      platforms: []
+    },
+    {
+      icon: Phone,
+      title: { en: 'WhatsApp / Viber', uk: 'WhatsApp / Viber' },
+      description: { en: 'Voice calls & messaging', uk: 'Голосові дзвінки та повідомлення' },
+      value: '+380 67 502 4730',
+      href: 'tel:+380675024730',
+      color: 'green',
+      platforms: [
+        { name: 'WhatsApp', href: 'https://wa.me/380675024730', color: '#25D366' },
+        { name: 'Viber', href: 'viber://chat?number=%2B380675024730', color: '#7360F2' }
+      ]
+    },
+    {
+      icon: MessageSquare,
+      title: { en: 'Telegram', uk: 'Telegram' },
+      description: { en: 'Quick messaging & voice calls', uk: 'Швидкі повідомлення та дзвінки' },
+      value: '+380 50 879 6803',
+      href: 'tel:+380508796803',
+      color: 'purple',
+      platforms: [
+        { name: 'Telegram', href: 'https://t.me/+380508796803', color: '#0088cc' }
+      ]
+    }
+  ];
+
+  const getColorClasses = (color: string) => {
+    const colors: Record<string, { bg: string; iconBg: string; text: string }> = {
+      blue: { bg: 'bg-blue-50', iconBg: 'bg-blue-500', text: 'text-blue-600' },
+      green: { bg: 'bg-green-50', iconBg: 'bg-green-500', text: 'text-green-600' },
+      purple: { bg: 'bg-purple-50', iconBg: 'bg-purple-500', text: 'text-purple-600' }
+    };
+    return colors[color] || colors.blue;
+  };
+
   return (
     <div className="min-h-screen">
-      {/* Page Header */}
-      {page?.featuredImage?.node?.sourceUrl ? (
-        <div className="relative h-64 md:h-80 bg-gradient-primary">
-          <Image
-            src={page.featuredImage.node.sourceUrl}
-            alt={page.featuredImage.node.altText || page.title}
-            fill
-            className="object-cover opacity-80"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary-900/50 to-primary-900/80 flex items-center justify-center">
-            <div className="container-custom text-center">
-              <h1 className="text-white font-bold">
-                {page.title || (locale === 'en' ? 'Contact Us' : "Зв'яжіться з нами")}
-              </h1>
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: renderJsonLd(localBusinessSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: renderJsonLd(breadcrumbSchema) }}
+      />
+
+      {/* Premium Hero Section */}
+      <section className="relative min-h-[60vh] md:min-h-[70vh] flex items-center py-16 md:py-24 overflow-hidden">
+        {/* Dark gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a2540] via-[#1B4B63] to-[#0d3a4d]" />
+
+        {/* Decorative gradient circles */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-[#42c997]/20 to-transparent blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-[#00A8B5]/15 to-transparent blur-3xl" />
+        <div className="absolute top-1/2 left-1/4 w-[300px] h-[300px] rounded-full bg-gradient-to-r from-[#35a87a]/10 to-transparent blur-2xl" />
+
+        {/* Grid pattern overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }}
+        />
+
+        {/* Floating icons */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-[15%] left-[8%] animate-float-slow opacity-20">
+            <Mail className="w-12 h-12 text-[#42c997]" />
+          </div>
+          <div className="absolute top-[25%] right-[12%] animate-float-medium opacity-15">
+            <MessageCircle className="w-16 h-16 text-[#00A8B5]" />
+          </div>
+          <div className="absolute bottom-[30%] left-[15%] animate-float-fast opacity-20">
+            <Phone className="w-10 h-10 text-[#35a87a]" />
+          </div>
+          <div className="absolute bottom-[20%] right-[8%] animate-float-slow opacity-15">
+            <Send className="w-14 h-14 text-[#42c997]" />
+          </div>
+          <div className="absolute top-[60%] left-[5%] animate-float-medium opacity-10">
+            <Globe className="w-8 h-8 text-white" />
+          </div>
+          <div className="absolute top-[40%] right-[5%] animate-float-fast opacity-15">
+            <Headphones className="w-10 h-10 text-[#00A8B5]" />
+          </div>
+        </div>
+
+        {/* Hero content */}
+        <div className="container-custom relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Eyebrow badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6 md:mb-8">
+              <Sparkles className="w-4 h-4 text-[#42c997]" />
+              <span className="text-sm font-medium text-white/90">
+                {locale === 'en' ? 'Get In Touch' : "Зв'яжіться з нами"}
+              </span>
+            </div>
+
+            {/* Main headline */}
+            <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-6">
+              {locale === 'en' ? (
+                <>
+                  Let&apos;s Build Your{' '}
+                  <span className="text-[#42c997]">Aquaculture Success</span>
+                </>
+              ) : (
+                <>
+                  Давайте побудуємо ваш{' '}
+                  <span className="text-[#42c997]">успіх в аквакультурі</span>
+                </>
+              )}
+            </h1>
+
+            {/* Subheader */}
+            <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed mb-10">
+              {locale === 'en'
+                ? 'Whether you\'re planning a new facility, upgrading existing systems, or exploring digital solutions — our team is ready to help you achieve your aquaculture goals. Fast response, expert guidance, personalized solutions.'
+                : 'Незалежно від того, чи плануєте ви новий об\'єкт, модернізуєте існуючі системи чи досліджуєте цифрові рішення — наша команда готова допомогти вам досягти ваших цілей в аквакультурі.'}
+            </p>
+
+            {/* Hero stats grid */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+              {heroStats.map((stat, index) => {
+                const StatIcon = stat.icon;
+                return (
+                  <div
+                    key={index}
+                    className="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/10 hover:bg-white/15 transition-all duration-300"
+                  >
+                    <StatIcon className="w-6 h-6 md:w-8 md:h-8 text-[#42c997] mx-auto mb-2" />
+                    <div className="text-2xl md:text-3xl font-bold text-white mb-1">{stat.value}</div>
+                    <div className="text-xs md:text-sm text-white/70">
+                      {locale === 'en' ? stat.label.en : stat.label.uk}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
-      ) : (
-        <section className="section bg-gradient-primary text-white">
-          <div className="container-custom text-center">
-            <h1 className="mb-4 font-bold">
-              {page?.title || (locale === 'en' ? 'Contact Us' : "Зв'яжіться з нами")}
-            </h1>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              {locale === 'en'
-                ? 'Get in touch with our team for water treatment solutions'
-                : "Зв'яжіться з нашою командою для отримання рішень з очищення води"}
-            </p>
-          </div>
-        </section>
-      )}
 
-      {/* Contact Content Section */}
-      <section className="section">
+        {/* Wave divider */}
+        <div className="absolute -bottom-px left-0 right-0">
+          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto block" preserveAspectRatio="none">
+            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+          </svg>
+        </div>
+      </section>
+
+      {/* Contact Methods Section */}
+      <section className="section bg-white -mt-8 relative z-20">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
+            {contactMethods.map((method, index) => {
+              const MethodIcon = method.icon;
+              const colors = getColorClasses(method.color);
+              return (
+                <div
+                  key={index}
+                  className={`group p-6 md:p-8 ${colors.bg} rounded-2xl border border-neutral-100 hover:border-[#42c997]/30 hover:shadow-xl transition-all duration-300 text-center`}
+                >
+                  <div className={`w-14 h-14 md:w-16 md:h-16 mx-auto mb-4 rounded-xl ${colors.iconBg} flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                    <MethodIcon className="w-7 h-7 md:w-8 md:h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-neutral-900 mb-2">
+                    {locale === 'en' ? method.title.en : method.title.uk}
+                  </h3>
+                  <p className="text-neutral-600 text-sm mb-4">
+                    {locale === 'en' ? method.description.en : method.description.uk}
+                  </p>
+                  <a href={method.href} className={`${colors.text} font-semibold hover:underline inline-block mb-4`}>
+                    {method.value}
+                  </a>
+
+                  {/* Platform badges */}
+                  {method.platforms && method.platforms.length > 0 && (
+                    <div className="flex flex-wrap gap-2 justify-center mt-4 pt-4 border-t border-neutral-200">
+                      {method.platforms.map((platform, pIdx) => (
+                        <a
+                          key={pIdx}
+                          href={platform.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-white font-medium text-sm hover:opacity-90 transition-opacity"
+                          style={{ backgroundColor: platform.color }}
+                        >
+                          <MessageCircle className="w-4 h-4" />
+                          {platform.name}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section className="section bg-gradient-to-b from-white to-neutral-50">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {/* Contact Information */}
             <div>
-              {page?.content ? (
-                <div
-                  className="prose prose-lg prose-primary max-w-none
-                    prose-headings:font-semibold
-                    prose-h2:text-2xl prose-h2:mb-4
-                    prose-p:text-neutral-700 prose-p:mb-4
-                    prose-a:text-primary-600
-                    prose-ul:my-4 prose-ul:list-none prose-ul:pl-0
-                    prose-li:text-neutral-700 prose-li:mb-3 prose-li:flex prose-li:items-start"
-                  dangerouslySetInnerHTML={{ __html: page.content }}
-                />
-              ) : (
-                <div className="space-y-8">
+              <span className="inline-block text-sm font-semibold text-[#42c997] uppercase tracking-wider mb-3">
+                {locale === 'en' ? 'Contact Details' : 'Контактні дані'}
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-brand-heading mb-6">
+                {locale === 'en' ? 'Get in Touch' : "Зв'яжіться з нами"}
+              </h2>
+              <p className="text-lg text-neutral-700 mb-8 leading-relaxed">
+                {locale === 'en'
+                  ? 'Have questions about our aquaculture engineering or software solutions? Our team of experts is ready to assist you with personalized guidance for your project.'
+                  : 'Маєте питання щодо наших рішень з інжинірингу аквакультури чи програмного забезпечення? Наша команда експертів готова допомогти вам з персоналізованими рекомендаціями для вашого проекту.'}
+              </p>
+
+              {/* Contact Details */}
+              <div className="space-y-6 mb-8">
+                <div className="flex items-start gap-4 p-4 rounded-xl bg-white border border-neutral-100 hover:border-[#42c997]/30 transition-colors">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#42c997]/20 to-[#00A8B5]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-6 h-6 text-[#35a87a]" />
+                  </div>
                   <div>
-                    <h2 className="text-3xl font-semibold mb-6">
-                      {locale === 'en' ? 'Get in Touch' : "Зв'яжіться з нами"}
-                    </h2>
-                    <p className="text-neutral-700 text-lg mb-6">
-                      {locale === 'en'
-                        ? 'Have questions about our water treatment solutions? Our team is here to help. Fill out the form and we\'ll get back to you as soon as possible.'
-                        : 'Маєте питання щодо наших рішень для очищення води? Наша команда готова допомогти. Заповніть форму, і ми зв\'яжемося з вами якнайшвидше.'}
-                    </p>
-                  </div>
-
-                  {/* Contact Details */}
-                  <div className="space-y-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-lg text-neutral-900 mb-1">
-                          {locale === 'en' ? 'Email' : 'Електронна пошта'}
-                        </h3>
-                        <a href="mailto:info@vismar-aqua.com" className="text-primary-600 hover:text-primary-700">
-                          info@vismar-aqua.com
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-lg text-neutral-900 mb-1">
-                          {locale === 'en' ? 'Phone' : 'Телефон'}
-                        </h3>
-                        <a href="tel:+380123456789" className="text-primary-600 hover:text-primary-700">
-                          +380 12 345 67 89
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-lg text-neutral-900 mb-1">
-                          {locale === 'en' ? 'Address' : 'Адреса'}
-                        </h3>
-                        <p className="text-neutral-700">
-                          {locale === 'en'
-                            ? 'Kyiv, Ukraine'
-                            : 'Київ, Україна'}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Business Hours */}
-                  <div className="bg-primary-50 p-6 rounded-lg">
-                    <h3 className="font-semibold text-lg text-neutral-900 mb-3">
-                      {locale === 'en' ? 'Business Hours' : 'Години роботи'}
+                    <h3 className="font-semibold text-neutral-900 mb-1">
+                      {locale === 'en' ? 'Email' : 'Електронна пошта'}
                     </h3>
-                    <div className="space-y-2 text-neutral-700">
-                      <div className="flex justify-between">
-                        <span>{locale === 'en' ? 'Monday - Friday' : 'Понеділок - П\'ятниця'}</span>
-                        <span>9:00 - 18:00</span>
+                    <a href="mailto:info@vismar-aqua.com" className="text-[#35a87a] hover:text-[#2a8a63]">
+                      info@vismar-aqua.com
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-4 rounded-xl bg-white border border-neutral-100 hover:border-[#42c997]/30 transition-colors">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#42c997]/20 to-[#00A8B5]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-6 h-6 text-[#35a87a]" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-neutral-900 mb-2">
+                      {locale === 'en' ? 'Phone Numbers' : 'Телефони'}
+                    </h3>
+                    <div className="space-y-2">
+                      <div>
+                        <a href="tel:+380675024730" className="text-[#35a87a] hover:text-[#2a8a63] font-medium block">
+                          +380 67 502 4730
+                        </a>
+                        <p className="text-xs text-neutral-500 mt-0.5">WhatsApp, Viber, Voice</p>
                       </div>
-                      <div className="flex justify-between">
-                        <span>{locale === 'en' ? 'Saturday' : 'Субота'}</span>
-                        <span>10:00 - 15:00</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>{locale === 'en' ? 'Sunday' : 'Неділя'}</span>
-                        <span>{locale === 'en' ? 'Closed' : 'Вихідний'}</span>
+                      <div>
+                        <a href="tel:+380508796803" className="text-[#35a87a] hover:text-[#2a8a63] font-medium block">
+                          +380 50 879 6803
+                        </a>
+                        <p className="text-xs text-neutral-500 mt-0.5">Telegram, Voice</p>
                       </div>
                     </div>
                   </div>
                 </div>
-              )}
+
+                <div className="flex items-start gap-4 p-4 rounded-xl bg-white border border-neutral-100 hover:border-[#42c997]/30 transition-colors">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#42c997]/20 to-[#00A8B5]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-6 h-6 text-[#35a87a]" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-neutral-900 mb-1">
+                      {locale === 'en' ? 'Address' : 'Адреса'}
+                    </h3>
+                    <p className="text-neutral-700">
+                      {locale === 'en' ? 'Kyiv, Ukraine' : 'Київ, Україна'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Business Hours */}
+              <div className="p-6 rounded-xl bg-gradient-to-br from-[#42c997]/10 to-[#00A8B5]/5 border border-[#42c997]/20">
+                <div className="flex items-center gap-3 mb-4">
+                  <Clock className="w-6 h-6 text-[#35a87a]" />
+                  <h3 className="font-semibold text-neutral-900">
+                    {locale === 'en' ? 'Business Hours' : 'Години роботи'}
+                  </h3>
+                </div>
+                <div className="space-y-2 text-neutral-700">
+                  <div className="flex justify-between">
+                    <span>{locale === 'en' ? 'Monday - Friday' : 'Понеділок - П\'ятниця'}</span>
+                    <span className="font-semibold">9:00 - 21:00</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>{locale === 'en' ? 'Saturday' : 'Субота'}</span>
+                    <span className="font-semibold">9:00 - 18:00</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>{locale === 'en' ? 'Sunday' : 'Неділя'}</span>
+                    <span className="text-neutral-500">{locale === 'en' ? 'Closed' : 'Вихідний'}</span>
+                  </div>
+                </div>
+                <p className="mt-4 text-sm text-[#35a87a]">
+                  {locale === 'en'
+                    ? '* Response time typically under 4 hours during business hours'
+                    : '* Час відповіді зазвичай менше 4 годин у робочі години'}
+                </p>
+              </div>
             </div>
 
             {/* Contact Form */}
-            <div>
+            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-neutral-100">
+              <h3 className="text-2xl font-bold text-neutral-900 mb-6">
+                {locale === 'en' ? 'Send Us a Message' : 'Надішліть нам повідомлення'}
+              </h3>
               <ContactForm locale={locale} />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Map Section (Optional - can be added later) */}
-      {/*
-      <section className="section bg-neutral-50">
+      {/* Map Section */}
+      <section className="section bg-white">
         <div className="container-custom">
-          <div className="aspect-video bg-neutral-200 rounded-lg overflow-hidden">
-            Map embed here
+          <div className="text-center mb-12">
+            <span className="inline-block text-sm font-semibold text-[#42c997] uppercase tracking-wider mb-3">
+              {locale === 'en' ? 'Our Location' : 'Наше розташування'}
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-brand-heading">
+              {locale === 'en' ? 'Find Us on the Map' : 'Знайдіть нас на карті'}
+            </h2>
+          </div>
+          <div className="aspect-video bg-neutral-200 rounded-2xl overflow-hidden shadow-lg">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d325519.8056278236!2d30.239899249999998!3d50.4016991!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cf4ee15a4505%3A0x764931d2170146fe!2sKyiv%2C%20Ukraine!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title={locale === 'en' ? 'Vismar-Aqua Location Map' : 'Карта розташування Vismar-Aqua'}
+            />
           </div>
         </div>
       </section>
-      */}
+
+      {/* CTA Section */}
+      <section className="relative py-20 md:py-28 overflow-hidden">
+        {/* Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a2540] via-[#1B4B63] to-[#0d3a4d]" />
+        <div className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }}
+        />
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-[#42c997]/20 to-transparent blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-gradient-to-tr from-[#00A8B5]/15 to-transparent blur-2xl" />
+
+        <div className="container-custom relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+              {locale === 'en'
+                ? 'Ready to Start Your Project?'
+                : 'Готові розпочати свій проект?'}
+            </h2>
+            <p className="text-lg md:text-xl text-white/80 mb-10">
+              {locale === 'en'
+                ? 'Explore our services, browse completed projects, or learn more about how we can help transform your aquaculture operation.'
+                : 'Ознайомтеся з нашими послугами, переглянувши завершені проекти, або дізнайтеся більше про те, як ми можемо допомогти трансформувати вашу операцію аквакультури.'}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href={`/${locale}/services`}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#42c997] hover:bg-[#35a87a] text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#42c997]/25"
+              >
+                {locale === 'en' ? 'Our Services' : 'Наші послуги'}
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                href={`/${locale}/projects`}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg border border-white/20 transition-all duration-300 backdrop-blur-sm"
+              >
+                {locale === 'en' ? 'View Projects' : 'Переглянути проекти'}
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

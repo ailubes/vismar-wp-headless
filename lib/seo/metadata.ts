@@ -132,12 +132,12 @@ export function generateMetadata({
  */
 export async function generateHomeMetadata(locale: string, data?: any): Promise<Metadata> {
   const title = locale === 'en'
-    ? 'Vismar Aqua - Expert Aquaculture Solutions & Services'
-    : 'Vismar Aqua - Експертні рішення та послуги в аквакультурі';
+    ? 'Aquaculture Engineering & RAS Systems Design | Vismar Aqua'
+    : 'Інженерія аквакультури та проектування RAS систем | Vismar Aqua';
 
   const description = locale === 'en'
-    ? 'Leading provider of aquaculture solutions, water quality management, and sustainable fish farming technology. Expert consultation and advanced monitoring systems.'
-    : 'Провідний постачальник рішень для аквакультури, управління якістю води та технологій сталого рибництва. Експертні консультації та передові системи моніторингу.';
+    ? 'Expert aquaculture engineering: RAS & HFTS systems, hatcheries, water treatment. 15+ years experience, 50+ projects worldwide. ISO 9001 certified.'
+    : 'Інженерні рішення для аквакультури: системи RAS і HFTS, інкубатори, водопідготовка. 15+ років досвіду, 50+ проектів у світі. ISO 9001.';
 
   return generateMetadata({
     title,
@@ -391,8 +391,8 @@ export function generateDefaultMetadata(locale: string): Metadata {
     : 'Vismar Aqua - Експертні рішення в аквакультурі';
 
   const description = locale === 'en'
-    ? 'Leading provider of aquaculture solutions, water quality management, and sustainable fish farming technology.'
-    : 'Провідний постачальник рішень для аквакультури, управління якістю води та технологій сталого рибництва.';
+    ? 'Expert aquaculture engineering: RAS & HFTS systems, hatcheries, water treatment. 15+ years experience, 50+ projects worldwide. ISO 9001 certified.'
+    : 'Інженерні рішення для аквакультури: системи RAS і HFTS, інкубатори, водопідготовка. 15+ років досвіду, 50+ проектів у світі. ISO 9001.';
 
   return {
     title: {

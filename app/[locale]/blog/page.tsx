@@ -14,10 +14,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
 
   return {
-    title: locale === 'en' ? 'Blog & Insights' : 'Блог та статті',
+    title: locale === 'en'
+      ? 'Aquaculture Blog: RAS Systems, Fish Farming Guides | Vismar Aqua'
+      : 'Блог з аквакультури: системи RAS, керівництва з рибництва | Vismar Aqua',
     description: locale === 'en'
-      ? 'Latest news, insights, and updates from the world of aquaculture and water treatment'
-      : 'Останні новини, статті та оновлення зі світу аквакультури та очищення води',
+      ? 'Aquaculture insights: RAS vs HFTS systems, fish farming guides, water treatment solutions, species cultivation & industry news.'
+      : 'Аквакультурні знання: системи RAS проти HFTS, керівництва з рибництва, рішення для очищення води та новини галузі.',
+    keywords: locale === 'en'
+      ? 'aquaculture blog, RAS systems, HFTS technology, fish farming, water treatment, aquaculture news'
+      : 'блог аквакультура, системи RAS, технологія HFTS, рибництво, водопідготовка',
   };
 }
 
@@ -52,7 +57,7 @@ export default async function BlogPage({ params }: Props) {
     });
     postsData = result.data;
   } catch (error) {
-    console.error('Error fetching blog posts:', error);
+    // Error fetching blog posts
     errorMessage = locale === 'en'
       ? 'Failed to load blog posts. Please try again later.'
       : 'Не вдалося завантажити статті блогу. Будь ласка, спробуйте пізніше.';

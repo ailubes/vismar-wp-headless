@@ -74,10 +74,10 @@ export default async function HomePage({ params }: Props) {
     });
     softwareData = softwareResult.data;
 
-    // Fetch blog posts (latest 3)
+    // Fetch blog posts
     const postsResult = await client.query({
       query: GET_ALL_POSTS,
-      variables: { language: languageCode, first: 3 },
+      variables: { language: languageCode, first: 50 },
     });
     postsData = postsResult.data;
   } catch (error) {
@@ -90,10 +90,31 @@ export default async function HomePage({ params }: Props) {
   const software = softwareData?.softwareSolutions?.nodes || [];
   const allPosts = postsData?.posts?.nodes || [];
 
-  // Sort posts by date (newest first)
-  const posts = [...allPosts].sort((a, b) => {
-    return new Date(b.date).getTime() - new Date(a.date).getTime();
-  });
+  // Helper function to detect if text is primarily in English (Latin) vs Cyrillic
+  const isEnglishText = (text: string): boolean => {
+    if (!text) return false;
+    // Count Latin vs Cyrillic characters
+    const latinChars = (text.match(/[a-zA-Z]/g) || []).length;
+    const cyrillicChars = (text.match(/[\u0400-\u04FF]/g) || []).length;
+    // Consider it English if more Latin chars than Cyrillic
+    return latinChars > cyrillicChars;
+  };
+
+  // Filter posts by actual content language, not just metadata
+  // This workaround is needed because WordPress has Ukrainian content in posts marked as "English"
+  const posts = [...allPosts]
+    .filter((post: any) => {
+      if (languageCode === 'EN') {
+        // For English page, only show posts with actual English content
+        return isEnglishText(post.title);
+      } else {
+        // For Ukrainian page, only show posts with Cyrillic content
+        return !isEnglishText(post.title);
+      }
+    })
+    .sort((a, b) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
 
   const featuredProject = projects[0];
 
@@ -108,105 +129,99 @@ export default async function HomePage({ params }: Props) {
         </div>
       )}
 
-      {/* Hero Section - 50/50 Split Layout with Enhanced Visual Elements */}
-      <section className="relative bg-gradient-to-br from-slate-50 via-blue-50/30 to-cyan-50/40 flex items-center py-16 lg:py-20 overflow-hidden">
+      {/* Hero Section - Premium Design with Background Image */}
+      <section className="relative min-h-[85vh] md:min-h-screen lg:min-h-[700px] flex items-center py-12 md:py-20 lg:py-24 overflow-hidden">
+        {/* Full-Bleed Background Image - Hidden on mobile for cleaner experience */}
+        <div className="absolute inset-0 z-0 hidden md:block">
+          <Image
+            src="/images/vismar-aqua-bg-hero-2.webp"
+            alt=""
+            fill
+            className="object-cover"
+            priority
+            quality={85}
+          />
+          {/* Radial Gradient Overlay - white center fading to soft blue edges */}
+          <div className="absolute inset-0 bg-gradient-radial from-white/80 via-white/70 to-[#F0F4F8]/90" />
+        </div>
+        {/* Mobile-only clean gradient background */}
+        <div className="absolute inset-0 z-0 md:hidden bg-gradient-to-br from-white via-gray-50 to-neutral-aqua-light" />
+
         {/* Decorative Background Elements */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-[1]">
           {/* Large gradient circle - top right */}
-          <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-brand-primary/10 to-cyan-400/20 rounded-full blur-3xl" />
+          <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-brand-primary/10 to-brand-secondary/15 rounded-full blur-3xl" />
           {/* Medium circle - bottom left */}
-          <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-gradient-to-tr from-brand-secondary/10 to-rose-300/15 rounded-full blur-3xl" />
+          <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-gradient-to-tr from-brand-secondary/10 to-brand-primary/10 rounded-full blur-3xl" />
           {/* Animated floating bubbles - aquaculture theme */}
           <div className="absolute top-1/4 right-1/4 w-4 h-4 bg-cyan-400/30 rounded-full animate-pulse" />
           <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-blue-400/25 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
           <div className="absolute bottom-1/3 left-1/4 w-5 h-5 bg-teal-400/20 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
           <div className="absolute top-2/3 right-1/5 w-2 h-2 bg-cyan-500/30 rounded-full animate-pulse" style={{ animationDelay: '1.5s' }} />
+          <div className="absolute bottom-1/4 right-2/3 w-3 h-3 bg-brand-secondary/20 rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-1/2 left-1/3 w-4 h-4 bg-brand-primary/15 rounded-full animate-pulse" style={{ animationDelay: '2.5s' }} />
           {/* Wave pattern - subtle bottom decoration */}
-          <svg className="absolute bottom-0 left-0 right-0 w-full h-24 text-white/50" viewBox="0 0 1440 100" preserveAspectRatio="none">
-            <path fill="currentColor" d="M0,40 C150,80 350,0 500,40 C650,80 800,20 1000,40 C1200,60 1350,20 1440,40 L1440,100 L0,100 Z" opacity="0.3" />
-            <path fill="currentColor" d="M0,60 C200,30 400,80 600,50 C800,20 1000,70 1200,50 C1300,40 1400,60 1440,50 L1440,100 L0,100 Z" opacity="0.2" />
+          <svg className="absolute bottom-0 left-0 right-0 w-full h-32 text-white/40" viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <path fill="currentColor" d="M0,48 C160,96 320,0 480,48 C640,96 800,24 960,48 C1120,72 1280,24 1440,48 L1440,120 L0,120 Z" opacity="0.35" />
+            <path fill="currentColor" d="M0,72 C240,36 480,96 720,60 C960,24 1200,84 1440,60 L1440,120 L0,120 Z" opacity="0.25" />
           </svg>
           {/* Grid pattern overlay - very subtle */}
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLW9wYWNpdHk9IjAuMDIiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-50" />
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLW9wYWNpdHk9IjAuMDIiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-40" />
         </div>
 
-        <div className="container-custom relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Column - Content */}
-            <ScrollReveal>
-              <div className="flex flex-col gap-8">
-                {/* Eyebrow */}
-                <div className="text-brand-secondary text-sm font-semibold tracking-wider uppercase">
-                  {t('hero.eyebrow')}
-                </div>
-
-                {/* Headline */}
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
-                  {t('hero.headline')}
-                </h1>
-
-                {/* Subheadline */}
-                <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
-                  {t('hero.subheadline')}
-                </p>
-
-                {/* CTAs */}
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Link href={`/${locale}/contact`}>
-                    <Button variant="accent" size="lg" className="text-lg px-8 py-4 w-full sm:w-auto shadow-lg hover:shadow-xl transition-shadow">
-                      {t('hero.ctaPrimary')}
-                    </Button>
-                  </Link>
-                  <Link href={`/${locale}/projects`}>
-                    <Button variant="primary" size="lg" className="!bg-brand-primary text-lg px-8 py-4 w-full sm:w-auto hover:!bg-brand-primary/90 shadow-lg hover:shadow-xl transition-shadow">
-                      {t('hero.ctaSecondary')}
-                    </Button>
-                  </Link>
-                </div>
-
-                {/* Trust Badges */}
-                <div className="flex flex-wrap gap-6 pt-4">
-                  <div className="flex items-center gap-2 text-sm text-gray-700 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
-                    <CheckIcon className="w-5 h-5 text-brand-success" />
-                    <span>{t('hero.trustBadge1')}</span>
+        <div className="container mx-auto max-w-[1400px] px-6 lg:px-8 relative z-10">
+          <div className="flex items-center">
+            {/* Text Content - Left Aligned */}
+            <div className="max-w-2xl">
+              <ScrollReveal>
+                <div className="flex flex-col gap-6 lg:gap-8">
+                  {/* Eyebrow */}
+                  <div className="text-brand-secondary text-xs lg:text-sm font-semibold tracking-widest uppercase">
+                    {t('hero.eyebrow')}
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-700 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
-                    <CheckIcon className="w-5 h-5 text-brand-success" />
-                    <span>{t('hero.trustBadge2')}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-700 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
-                    <CheckIcon className="w-5 h-5 text-brand-success" />
-                    <span>{t('hero.trustBadge3')}</span>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
 
-            {/* Right Column - Visual with enhanced styling */}
-            <ScrollReveal delay={200}>
-              <div className="relative h-[400px] lg:h-[600px]">
-                {/* Decorative frame around image */}
-                <div className="absolute -inset-4 bg-gradient-to-br from-brand-primary/20 via-cyan-400/10 to-brand-secondary/20 rounded-3xl blur-xl" />
-                <div className="absolute -top-2 -left-2 w-20 h-20 border-t-4 border-l-4 border-brand-primary/30 rounded-tl-3xl" />
-                <div className="absolute -bottom-2 -right-2 w-20 h-20 border-b-4 border-r-4 border-brand-secondary/30 rounded-br-3xl" />
-                <Image
-                  src="/images/vismar-aqua-hero-image.png"
-                  alt={t('hero.headline')}
-                  fill
-                  className="object-cover rounded-2xl shadow-2xl relative z-10"
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-                {/* Fish icon accent */}
-                <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center z-20">
-                  <Fish className="w-8 h-8 text-brand-primary" />
+                  {/* Headline with Playfair Display */}
+                  <h1 className="font-playfair text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-brand-heading leading-tight">
+                    {t('hero.headline')}
+                  </h1>
+
+                  {/* Subheadline with Manrope */}
+                  <p className="font-manrope text-lg md:text-xl lg:text-xl text-gray-700 leading-relaxed max-w-xl">
+                    {t('hero.subheadline')}
+                  </p>
+
+                  {/* CTAs */}
+                  <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                    <Link href={`/${locale}/contact`}>
+                      <button className="bg-brand-accent hover:bg-brand-accent/90 text-white font-semibold text-base lg:text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto">
+                        {t('hero.ctaPrimary')}
+                      </button>
+                    </Link>
+                    <Link href={`/${locale}/projects`}>
+                      <button className="bg-transparent border-2 border-brand-primary text-brand-primary hover:bg-brand-primary/10 font-semibold text-base lg:text-lg px-8 py-4 rounded-full transition-all duration-300 w-full sm:w-auto">
+                        {t('hero.ctaSecondary')}
+                      </button>
+                    </Link>
+                  </div>
+
+                  {/* Trust Badges */}
+                  <div className="flex flex-wrap gap-3 pt-6">
+                    <div className="flex items-center gap-2 text-sm text-gray-700 bg-white/70 backdrop-blur-sm px-4 py-2.5 rounded-full shadow-sm border border-gray-200/50">
+                      <CheckIcon className="w-5 h-5 text-brand-success flex-shrink-0" />
+                      <span className="font-manrope">{t('hero.trustBadge1')}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-700 bg-white/70 backdrop-blur-sm px-4 py-2.5 rounded-full shadow-sm border border-gray-200/50">
+                      <CheckIcon className="w-5 h-5 text-brand-success flex-shrink-0" />
+                      <span className="font-manrope">{t('hero.trustBadge2')}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-700 bg-white/70 backdrop-blur-sm px-4 py-2.5 rounded-full shadow-sm border border-gray-200/50">
+                      <CheckIcon className="w-5 h-5 text-brand-success flex-shrink-0" />
+                      <span className="font-manrope">{t('hero.trustBadge3')}</span>
+                    </div>
+                  </div>
                 </div>
-                {/* Water drops icon accent */}
-                <div className="absolute -top-4 -right-4 w-14 h-14 bg-white rounded-full shadow-lg flex items-center justify-center z-20">
-                  <Droplets className="w-7 h-7 text-cyan-500" />
-                </div>
-              </div>
-            </ScrollReveal>
+              </ScrollReveal>
+            </div>
           </div>
         </div>
       </section>
@@ -283,7 +298,7 @@ export default async function HomePage({ params }: Props) {
                 </div>
 
                 {/* Headline */}
-                <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+                <h2 className="text-2xl lg:text-3xl font-bold text-brand-heading mb-4">
                   {t('dualValue.engineering.headline')}
                 </h2>
 
@@ -320,7 +335,7 @@ export default async function HomePage({ params }: Props) {
                 </div>
 
                 {/* Headline */}
-                <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+                <h2 className="text-2xl lg:text-3xl font-bold text-brand-heading mb-4">
                   {t('dualValue.business.headline')}
                 </h2>
 
@@ -357,7 +372,7 @@ export default async function HomePage({ params }: Props) {
                 </div>
 
                 {/* Headline */}
-                <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+                <h2 className="text-2xl lg:text-3xl font-bold text-brand-heading mb-4">
                   {t('dualValue.software.headline')}
                 </h2>
 
@@ -413,7 +428,7 @@ export default async function HomePage({ params }: Props) {
               {/* Right - Content (40% / 2 columns) */}
               <div className="lg:col-span-2 flex flex-col gap-6">
                 {/* Headline */}
-                <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
+                <h2 className="text-3xl lg:text-4xl font-bold text-brand-heading">
                   {t('featuredProject.headline')}
                 </h2>
 
@@ -501,7 +516,7 @@ export default async function HomePage({ params }: Props) {
               <div className="text-brand-secondary text-sm font-semibold tracking-wider uppercase mb-4">
                 {t('serviceCategories.eyebrow')}
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl lg:text-5xl font-bold text-brand-heading mb-4">
                 {t('serviceCategories.headline')}
               </h2>
               <p className="text-xl text-gray-600">
@@ -566,7 +581,7 @@ export default async function HomePage({ params }: Props) {
               <div className="text-brand-secondary text-sm font-semibold tracking-wider uppercase mb-4">
                 {t('whyVismar.section.label')}
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl lg:text-5xl font-bold text-brand-heading mb-4">
                 {t('whyVismar.section.title')}
               </h2>
               <p className="text-xl text-gray-600">
@@ -749,7 +764,7 @@ export default async function HomePage({ params }: Props) {
               <div className="text-brand-secondary text-sm font-semibold tracking-wider uppercase mb-4">
                 {t('technologies.eyebrow')}
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl lg:text-5xl font-bold text-brand-heading mb-4">
                 {t('technologies.headline')}
               </h2>
               <p className="text-xl text-gray-600">
@@ -834,7 +849,7 @@ export default async function HomePage({ params }: Props) {
                 </div>
 
                 {/* Headline */}
-                <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
+                <h2 className="text-3xl lg:text-4xl font-bold text-brand-heading">
                   {t('softwareAnnouncement.headline')}
                 </h2>
 
@@ -896,7 +911,7 @@ export default async function HomePage({ params }: Props) {
               <div className="text-brand-secondary text-sm font-semibold tracking-wider uppercase mb-4">
                 {t('process.eyebrow')}
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl lg:text-5xl font-bold text-brand-heading mb-4">
                 {t('process.headline')}
               </h2>
               <p className="text-xl text-gray-600">
@@ -1062,7 +1077,7 @@ export default async function HomePage({ params }: Props) {
         {/* Section Header */}
         <ScrollReveal>
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl lg:text-5xl font-bold text-brand-heading mb-4">
               {t('testimonials.headline')}
             </h2>
           </div>
@@ -1171,7 +1186,7 @@ export default async function HomePage({ params }: Props) {
                 <div className="text-brand-secondary text-sm font-semibold tracking-wider uppercase mb-4">
                   {t('blog.tagline')}
                 </div>
-                <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+                <h2 className="text-4xl lg:text-5xl font-bold text-brand-heading mb-4">
                   {t('blog.title')}
                 </h2>
                 <p className="text-xl text-gray-600">
@@ -1211,7 +1226,7 @@ export default async function HomePage({ params }: Props) {
           {/* Section Header */}
           <ScrollReveal>
             <div className="text-center max-w-4xl mx-auto mb-16">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-heading mb-6">
                 {t('finalCTA.headline')}
               </h2>
               <p className="text-xl text-gray-600 leading-relaxed">
@@ -1243,7 +1258,9 @@ export default async function HomePage({ params }: Props) {
                 {/* Form Fields */}
                 <form className="space-y-4">
                   <div>
+                    <label htmlFor="eng-name" className="sr-only">{t('finalCTA.form.name')}</label>
                     <input
+                      id="eng-name"
                       type="text"
                       placeholder={t('finalCTA.form.name')}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent"
@@ -1251,7 +1268,9 @@ export default async function HomePage({ params }: Props) {
                     />
                   </div>
                   <div>
+                    <label htmlFor="eng-email" className="sr-only">{t('finalCTA.form.email')}</label>
                     <input
+                      id="eng-email"
                       type="email"
                       placeholder={t('finalCTA.form.email')}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent"
@@ -1259,21 +1278,27 @@ export default async function HomePage({ params }: Props) {
                     />
                   </div>
                   <div>
+                    <label htmlFor="eng-company" className="sr-only">{t('finalCTA.form.company')}</label>
                     <input
+                      id="eng-company"
                       type="text"
                       placeholder={t('finalCTA.form.company')}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent"
                     />
                   </div>
                   <div>
+                    <label htmlFor="eng-phone" className="sr-only">{t('finalCTA.form.phone')}</label>
                     <input
+                      id="eng-phone"
                       type="tel"
                       placeholder={t('finalCTA.form.phone')}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent"
                     />
                   </div>
                   <div>
+                    <label htmlFor="eng-details" className="sr-only">{t('finalCTA.form.projectDetails')}</label>
                     <textarea
+                      id="eng-details"
                       placeholder={t('finalCTA.form.projectDetails')}
                       rows={4}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent resize-none"
@@ -1312,7 +1337,9 @@ export default async function HomePage({ params }: Props) {
                 {/* Form Fields */}
                 <form className="space-y-4">
                   <div>
+                    <label htmlFor="biz-name" className="sr-only">{t('finalCTA.form.name')}</label>
                     <input
+                      id="biz-name"
                       type="text"
                       placeholder={t('finalCTA.form.name')}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
@@ -1320,7 +1347,9 @@ export default async function HomePage({ params }: Props) {
                     />
                   </div>
                   <div>
+                    <label htmlFor="biz-email" className="sr-only">{t('finalCTA.form.email')}</label>
                     <input
+                      id="biz-email"
                       type="email"
                       placeholder={t('finalCTA.form.email')}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
@@ -1328,21 +1357,27 @@ export default async function HomePage({ params }: Props) {
                     />
                   </div>
                   <div>
+                    <label htmlFor="biz-company" className="sr-only">{t('finalCTA.form.company')}</label>
                     <input
+                      id="biz-company"
                       type="text"
                       placeholder={t('finalCTA.form.company')}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                     />
                   </div>
                   <div>
+                    <label htmlFor="biz-phone" className="sr-only">{t('finalCTA.form.phone')}</label>
                     <input
+                      id="biz-phone"
                       type="tel"
                       placeholder={t('finalCTA.form.phone')}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                     />
                   </div>
                   <div>
+                    <label htmlFor="biz-needs" className="sr-only">{t('finalCTA.form.businessNeeds')}</label>
                     <textarea
+                      id="biz-needs"
                       placeholder={t('finalCTA.form.businessNeeds')}
                       rows={4}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none"
@@ -1381,7 +1416,9 @@ export default async function HomePage({ params }: Props) {
                 {/* Form Fields */}
                 <form className="space-y-4">
                   <div>
+                    <label htmlFor="sw-name" className="sr-only">{t('finalCTA.form.name')}</label>
                     <input
+                      id="sw-name"
                       type="text"
                       placeholder={t('finalCTA.form.name')}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-secondary focus:border-transparent"
@@ -1389,7 +1426,9 @@ export default async function HomePage({ params }: Props) {
                     />
                   </div>
                   <div>
+                    <label htmlFor="sw-email" className="sr-only">{t('finalCTA.form.email')}</label>
                     <input
+                      id="sw-email"
                       type="email"
                       placeholder={t('finalCTA.form.email')}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-secondary focus:border-transparent"
@@ -1397,21 +1436,27 @@ export default async function HomePage({ params }: Props) {
                     />
                   </div>
                   <div>
+                    <label htmlFor="sw-company" className="sr-only">{t('finalCTA.form.company')}</label>
                     <input
+                      id="sw-company"
                       type="text"
                       placeholder={t('finalCTA.form.company')}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-secondary focus:border-transparent"
                     />
                   </div>
                   <div>
+                    <label htmlFor="sw-phone" className="sr-only">{t('finalCTA.form.phone')}</label>
                     <input
+                      id="sw-phone"
                       type="tel"
                       placeholder={t('finalCTA.form.phone')}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-secondary focus:border-transparent"
                     />
                   </div>
                   <div>
+                    <label htmlFor="sw-needs" className="sr-only">{t('finalCTA.form.softwareNeeds')}</label>
                     <textarea
+                      id="sw-needs"
                       placeholder={t('finalCTA.form.softwareNeeds')}
                       rows={4}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-secondary focus:border-transparent resize-none"

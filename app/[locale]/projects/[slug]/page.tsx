@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getClient } from '@/lib/wordpress/client';
 import { GET_PROJECT_BY_SLUG, GET_ALL_PROJECTS } from '@/lib/wordpress/queries';
-import { generateBreadcrumbSchema, renderJsonLd } from '@/lib/seo/structured-data';
+import { generateBreadcrumbSchema, generateProjectSchema, renderJsonLd } from '@/lib/seo/structured-data';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -184,6 +184,15 @@ export default async function ProjectDetailPage({ params }: Props) {
     { name: project.title },
   ]);
 
+  const projectSchema = generateProjectSchema(locale, {
+    title: project.title,
+    slug,
+    description: project.excerpt?.replace(/<[^>]*>/g, '') || details?.projectOverview,
+    featuredImage: featuredImage?.sourceUrl,
+    location: details?.projectLocation,
+    dateCompleted: details?.projectYear,
+  });
+
   // Check if project has rich content
   const hasRichContent = details?.projectOverview || details?.projectChallenge || details?.projectSolution;
   const hasFinancials = details?.projectCapex || details?.projectOpexAnnual || details?.projectRoi;
@@ -206,6 +215,10 @@ export default async function ProjectDetailPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: renderJsonLd(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: renderJsonLd(projectSchema) }}
       />
 
       {/* Hero Section */}
