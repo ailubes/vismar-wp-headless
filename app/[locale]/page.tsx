@@ -21,6 +21,10 @@ import { Section, SectionHeader } from '@/components/ui/Section';
 import { StatCard } from '@/components/ui/AnimatedCounter';
 import { Badge } from '@/components/ui/Badge';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+import BlueprintCodeSlider from '@/components/ui/BlueprintCodeSlider';
+import DecodeText from '@/components/ui/DecodeText';
+import HoloCard from '@/components/ui/HoloCard';
+import ParticleNetwork from '@/components/ui/ParticleNetwork';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -129,76 +133,44 @@ export default async function HomePage({ params }: Props) {
         </div>
       )}
 
-      {/* Hero Section - Premium Design with Background Image */}
-      <section className="relative min-h-[85vh] md:min-h-screen lg:min-h-[700px] flex items-center py-12 md:py-20 lg:py-24 overflow-hidden">
-        {/* Full-Bleed Background Image - Hidden on mobile for cleaner experience */}
-        <div className="absolute inset-0 z-0 hidden md:block">
-          <Image
-            src="/images/vismar-aqua-bg-hero-2.webp"
-            alt=""
-            fill
-            className="object-cover"
-            priority
-            quality={85}
-          />
-          {/* Radial Gradient Overlay - white center fading to soft blue edges */}
-          <div className="absolute inset-0 bg-gradient-radial from-white/80 via-white/70 to-[#F0F4F8]/90" />
-        </div>
-        {/* Mobile-only clean gradient background */}
-        <div className="absolute inset-0 z-0 md:hidden bg-gradient-to-br from-white via-gray-50 to-neutral-aqua-light" />
+      {/* Hero Section - Technical Dashboard */}
+      <section className="relative min-h-[85vh] md:min-h-screen lg:min-h-[700px] flex items-center py-12 md:py-20 lg:py-24 overflow-hidden bg-white">
+        {/* Particle Network Background */}
+        <ParticleNetwork className="z-0" />
 
-        {/* Decorative Background Elements */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-[1]">
-          {/* Large gradient circle - top right */}
-          <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-brand-primary/10 to-brand-secondary/15 rounded-full blur-3xl" />
-          {/* Medium circle - bottom left */}
-          <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-gradient-to-tr from-brand-secondary/10 to-brand-primary/10 rounded-full blur-3xl" />
-          {/* Animated floating bubbles - aquaculture theme */}
-          <div className="absolute top-1/4 right-1/4 w-4 h-4 bg-cyan-400/30 rounded-full animate-pulse" />
-          <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-blue-400/25 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
-          <div className="absolute bottom-1/3 left-1/4 w-5 h-5 bg-teal-400/20 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
-          <div className="absolute top-2/3 right-1/5 w-2 h-2 bg-cyan-500/30 rounded-full animate-pulse" style={{ animationDelay: '1.5s' }} />
-          <div className="absolute bottom-1/4 right-2/3 w-3 h-3 bg-brand-secondary/20 rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
-          <div className="absolute top-1/2 left-1/3 w-4 h-4 bg-brand-primary/15 rounded-full animate-pulse" style={{ animationDelay: '2.5s' }} />
-          {/* Wave pattern - subtle bottom decoration */}
-          <svg className="absolute bottom-0 left-0 right-0 w-full h-32 text-white/40" viewBox="0 0 1440 120" preserveAspectRatio="none">
-            <path fill="currentColor" d="M0,48 C160,96 320,0 480,48 C640,96 800,24 960,48 C1120,72 1280,24 1440,48 L1440,120 L0,120 Z" opacity="0.35" />
-            <path fill="currentColor" d="M0,72 C240,36 480,96 720,60 C960,24 1200,84 1440,60 L1440,120 L0,120 Z" opacity="0.25" />
-          </svg>
-          {/* Grid pattern overlay - very subtle */}
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLW9wYWNpdHk9IjAuMDIiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-40" />
-        </div>
+        {/* Dot grid background */}
+        <div className="absolute inset-0 pointer-events-none z-[1]" style={{ backgroundImage: 'radial-gradient(circle, rgba(14, 165, 233, 0.08) 1px, transparent 1px)', backgroundSize: '24px 24px' }} aria-hidden="true" />
 
         <div className="container mx-auto max-w-[1400px] px-6 lg:px-8 relative z-10">
-          <div className="flex items-center">
-            {/* Text Content - Left Aligned */}
-            <div className="max-w-2xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Text Content - Left (7 cols) */}
+            <div className="lg:col-span-7">
               <ScrollReveal>
                 <div className="flex flex-col gap-6 lg:gap-8">
-                  {/* Eyebrow */}
-                  <div className="text-brand-secondary text-xs lg:text-sm font-semibold tracking-widest uppercase">
+                  {/* Eyebrow - monospace */}
+                  <div className="font-mono text-primary text-xs lg:text-sm tracking-widest uppercase">
                     {t('hero.eyebrow')}
                   </div>
 
-                  {/* Headline with Playfair Display */}
-                  <h1 className="font-playfair text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-brand-heading leading-tight">
-                    {t('hero.headline')}
+                  {/* Headline with DecodeText animation */}
+                  <h1 className="font-heading text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight">
+                    <DecodeText text={t('hero.headline')} trigger="load" delay={300} />
                   </h1>
 
-                  {/* Subheadline with Manrope */}
-                  <p className="font-manrope text-lg md:text-xl lg:text-xl text-gray-700 leading-relaxed max-w-xl">
+                  {/* Subheadline */}
+                  <p className="font-body text-lg md:text-xl lg:text-xl text-muted-foreground leading-relaxed max-w-xl">
                     {t('hero.subheadline')}
                   </p>
 
                   {/* CTAs */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-4">
                     <Link href={`/${locale}/contact`}>
-                      <button className="bg-brand-accent hover:bg-brand-accent/90 text-white font-semibold text-base lg:text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto">
+                      <button className="bg-primary hover:bg-primary text-foreground font-semibold text-base lg:text-lg px-8 py-4 rounded-lg uppercase tracking-wider transition-all duration-300 w-full sm:w-auto">
                         {t('hero.ctaPrimary')}
                       </button>
                     </Link>
                     <Link href={`/${locale}/projects`}>
-                      <button className="bg-transparent border-2 border-brand-primary text-brand-primary hover:bg-brand-primary/10 font-semibold text-base lg:text-lg px-8 py-4 rounded-full transition-all duration-300 w-full sm:w-auto">
+                      <button className="bg-transparent border border-primary/30 text-primary hover:bg-primary/10 font-semibold text-base lg:text-lg px-8 py-4 rounded-lg uppercase tracking-wider transition-all duration-300 w-full sm:w-auto">
                         {t('hero.ctaSecondary')}
                       </button>
                     </Link>
@@ -206,81 +178,98 @@ export default async function HomePage({ params }: Props) {
 
                   {/* Trust Badges */}
                   <div className="flex flex-wrap gap-3 pt-6">
-                    <div className="flex items-center gap-2 text-sm text-gray-700 bg-white/70 backdrop-blur-sm px-4 py-2.5 rounded-full shadow-sm border border-gray-200/50">
-                      <CheckIcon className="w-5 h-5 text-brand-success flex-shrink-0" />
-                      <span className="font-manrope">{t('hero.trustBadge1')}</span>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground bg-slate-50 px-4 py-2.5 rounded-lg border border-border">
+                      <CheckIcon className="w-5 h-5 text-success flex-shrink-0" />
+                      <span className="font-body">{t('hero.trustBadge1')}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-gray-700 bg-white/70 backdrop-blur-sm px-4 py-2.5 rounded-full shadow-sm border border-gray-200/50">
-                      <CheckIcon className="w-5 h-5 text-brand-success flex-shrink-0" />
-                      <span className="font-manrope">{t('hero.trustBadge2')}</span>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground bg-slate-50 px-4 py-2.5 rounded-lg border border-border">
+                      <CheckIcon className="w-5 h-5 text-success flex-shrink-0" />
+                      <span className="font-body">{t('hero.trustBadge2')}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-gray-700 bg-white/70 backdrop-blur-sm px-4 py-2.5 rounded-full shadow-sm border border-gray-200/50">
-                      <CheckIcon className="w-5 h-5 text-brand-success flex-shrink-0" />
-                      <span className="font-manrope">{t('hero.trustBadge3')}</span>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground bg-slate-50 px-4 py-2.5 rounded-lg border border-border">
+                      <CheckIcon className="w-5 h-5 text-success flex-shrink-0" />
+                      <span className="font-body">{t('hero.trustBadge3')}</span>
                     </div>
                   </div>
                 </div>
+              </ScrollReveal>
+            </div>
+
+            {/* Right - Metrics Panel (5 cols) */}
+            <div className="lg:col-span-5 hidden lg:block">
+              <ScrollReveal delay={200}>
+                <HoloCard className="p-6" tiltEnabled={true}>
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-border">
+                    <div className="flex items-center gap-2">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500" />
+                      </span>
+                      <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                        // Company Metrics
+                      </span>
+                    </div>
+                    <span className="font-mono text-xs text-muted-foreground/50">v4.0</span>
+                  </div>
+
+                  {/* 2×2 Stat Grid */}
+                  <div className="grid grid-cols-2 gap-4">
+                    {[
+                      { icon: Clock,     value: t('trustIndicators.stat1Number'), label: t('trustIndicators.stat1Label') },
+                      { icon: Building2, value: t('trustIndicators.stat2Number'), label: t('trustIndicators.stat2Label') },
+                      { icon: Globe,     value: t('trustIndicators.stat3Number'), label: t('trustIndicators.stat3Label') },
+                      { icon: Award,     value: t('trustIndicators.stat4Number'), label: t('trustIndicators.stat4Label') },
+                    ].map((stat, i) => {
+                      const Icon = stat.icon;
+                      return (
+                        <div key={i} className="bg-slate-50 rounded-lg p-4 flex flex-col gap-3">
+                          <div className="w-9 h-9 rounded-lg bg-cyan-500/10 flex items-center justify-center">
+                            <Icon className="w-5 h-5 text-cyan-600" />
+                          </div>
+                          <div className="font-mono text-3xl font-bold text-foreground">{stat.value}</div>
+                          <div className="text-xs text-muted-foreground leading-tight">{stat.label}</div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Footer CTA */}
+                  <div className="mt-6 pt-4 border-t border-border">
+                    <Link href={`/${locale}/projects`}
+                      className="flex items-center gap-2 text-sm font-semibold text-cyan-600 hover:gap-3 transition-all">
+                      <span>{t('hero.ctaSecondary')}</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
+                </HoloCard>
               </ScrollReveal>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Trust Indicators Band */}
-      <Section background="transparent" spacing="lg" className="bg-gray-50">
+      {/* Mobile Stats Band - shown on mobile only */}
+      <Section background="transparent" spacing="lg" className="bg-background lg:hidden">
         <div className="container-custom">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-            {/* Stat 1 - Years of Experience */}
-            <ScrollReveal delay={0}>
-              <div className="flex flex-col items-center gap-3">
-                <Clock className="w-12 h-12 text-brand-secondary" />
-                <div className="text-5xl font-bold text-brand-primary">
-                  {t('trustIndicators.stat1Number')}
+          <div className="grid grid-cols-2 gap-6 text-center">
+            {[
+              { icon: Clock, label: t('trustIndicators.stat1Label'), value: t('trustIndicators.stat1Number') },
+              { icon: Building2, label: t('trustIndicators.stat2Label'), value: t('trustIndicators.stat2Number') },
+              { icon: Globe, label: t('trustIndicators.stat3Label'), value: t('trustIndicators.stat3Number') },
+              { icon: Award, label: t('trustIndicators.stat4Label'), value: t('trustIndicators.stat4Number') },
+            ].map((stat, i) => {
+              const Icon = stat.icon;
+              return (
+                <div key={i} className="flex flex-col items-center gap-2">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mx-auto">
+                    <Icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="font-mono text-3xl font-bold text-foreground">{stat.value}</div>
+                  <div className="text-xs text-muted-foreground">{stat.label}</div>
                 </div>
-                <div className="text-sm text-gray-600 max-w-[200px]">
-                  {t('trustIndicators.stat1Label')}
-                </div>
-              </div>
-            </ScrollReveal>
-
-            {/* Stat 2 - Projects Delivered */}
-            <ScrollReveal delay={100}>
-              <div className="flex flex-col items-center gap-3">
-                <Building2 className="w-12 h-12 text-brand-secondary" />
-                <div className="text-5xl font-bold text-brand-primary">
-                  {t('trustIndicators.stat2Number')}
-                </div>
-                <div className="text-sm text-gray-600 max-w-[200px]">
-                  {t('trustIndicators.stat2Label')}
-                </div>
-              </div>
-            </ScrollReveal>
-
-            {/* Stat 3 - Countries */}
-            <ScrollReveal delay={200}>
-              <div className="flex flex-col items-center gap-3">
-                <Globe className="w-12 h-12 text-brand-secondary" />
-                <div className="text-5xl font-bold text-brand-primary">
-                  {t('trustIndicators.stat3Number')}
-                </div>
-                <div className="text-sm text-gray-600 max-w-[200px]">
-                  {t('trustIndicators.stat3Label')}
-                </div>
-              </div>
-            </ScrollReveal>
-
-            {/* Stat 4 - ISO Certification */}
-            <ScrollReveal delay={300}>
-              <div className="flex flex-col items-center gap-3">
-                <Award className="w-12 h-12 text-brand-secondary" />
-                <div className="text-5xl font-bold text-brand-primary">
-                  {t('trustIndicators.stat4Number')}
-                </div>
-                <div className="text-sm text-gray-600 max-w-[200px]">
-                  {t('trustIndicators.stat4Label')}
-                </div>
-              </div>
-            </ScrollReveal>
+              );
+            })}
           </div>
         </div>
       </Section>
@@ -291,19 +280,19 @@ export default async function HomePage({ params }: Props) {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Engineering Services */}
             <ScrollReveal>
-              <div className="group p-8 border-2 border-gray-200 rounded-2xl hover:border-brand-primary hover:shadow-lg transition-all duration-300">
+              <HoloCard className="p-8 border-2 border-border hover:border-dark" tiltEnabled={true}>
                 {/* Icon */}
-                <div className="w-16 h-16 mb-6 rounded-xl bg-gradient-to-br from-brand-primary to-blue-600 shadow-lg flex items-center justify-center">
-                  <Settings className="w-8 h-8 text-white" />
+                <div className="w-12 h-12 mb-6 rounded-lg bg-cyan-500/10 flex items-center justify-center group-hover:bg-cyan-500/20 transition-colors">
+                  <Settings className="w-6 h-6 text-cyan-600" />
                 </div>
 
                 {/* Headline */}
-                <h2 className="text-2xl lg:text-3xl font-bold text-brand-heading mb-4">
+                <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-4">
                   {t('dualValue.engineering.headline')}
                 </h2>
 
                 {/* Description */}
-                <p className="text-base text-gray-600 mb-6 leading-relaxed">
+                <p className="text-base text-muted-foreground mb-6 leading-relaxed">
                   {t('dualValue.engineering.description')}
                 </p>
 
@@ -311,36 +300,36 @@ export default async function HomePage({ params }: Props) {
                 <ul className="space-y-2.5 mb-8">
                   {[1, 2, 3, 4, 5].map((i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <CheckIcon className="w-4 h-4 text-brand-success mt-1 flex-shrink-0" />
-                      <span className="text-sm text-gray-700">{t(`dualValue.engineering.feature${i}`)}</span>
+                      <CheckIcon className="w-4 h-4 text-success mt-1 flex-shrink-0" />
+                      <span className="text-sm text-muted-foreground">{t(`dualValue.engineering.feature${i}`)}</span>
                     </li>
                   ))}
                 </ul>
 
                 {/* CTA */}
                 <Link href={`/${locale}/services`}>
-                  <Button variant="primary" size="md" className="w-full !bg-brand-primary hover:!bg-brand-primary/90 !text-white transition-colors">
+                  <Button variant="primary" size="md" className="w-full !bg-dark hover:!bg-dark/90 !text-white transition-colors">
                     {t('dualValue.engineering.cta')} →
                   </Button>
                 </Link>
-              </div>
+              </HoloCard>
             </ScrollReveal>
 
             {/* Business Services */}
             <ScrollReveal delay={100}>
-              <div className="group p-8 border-2 border-gray-200 rounded-2xl hover:border-emerald-500 hover:shadow-lg transition-all duration-300">
+              <HoloCard className="p-8 border-2 border-border hover:border-success" tiltEnabled={true}>
                 {/* Icon */}
-                <div className="w-16 h-16 mb-6 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 shadow-lg flex items-center justify-center">
-                  <Calculator className="w-8 h-8 text-white" />
+                <div className="w-12 h-12 mb-6 rounded-lg bg-cyan-500/10 flex items-center justify-center group-hover:bg-cyan-500/20 transition-colors">
+                  <Calculator className="w-6 h-6 text-cyan-600" />
                 </div>
 
                 {/* Headline */}
-                <h2 className="text-2xl lg:text-3xl font-bold text-brand-heading mb-4">
+                <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-4">
                   {t('dualValue.business.headline')}
                 </h2>
 
                 {/* Description */}
-                <p className="text-base text-gray-600 mb-6 leading-relaxed">
+                <p className="text-base text-muted-foreground mb-6 leading-relaxed">
                   {t('dualValue.business.description')}
                 </p>
 
@@ -348,36 +337,36 @@ export default async function HomePage({ params }: Props) {
                 <ul className="space-y-2.5 mb-8">
                   {[1, 2, 3, 4, 5].map((i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <CheckIcon className="w-4 h-4 text-brand-success mt-1 flex-shrink-0" />
-                      <span className="text-sm text-gray-700">{t(`dualValue.business.feature${i}`)}</span>
+                      <CheckIcon className="w-4 h-4 text-success mt-1 flex-shrink-0" />
+                      <span className="text-sm text-muted-foreground">{t(`dualValue.business.feature${i}`)}</span>
                     </li>
                   ))}
                 </ul>
 
                 {/* CTA */}
                 <Link href={`/${locale}/services/feasibility-studies`}>
-                  <Button variant="primary" size="md" className="w-full !bg-emerald-500 hover:!bg-emerald-600 !text-white transition-colors">
+                  <Button variant="primary" size="md" className="w-full !bg-success hover:!bg-success !text-white transition-colors">
                     {t('dualValue.business.cta')} →
                   </Button>
                 </Link>
-              </div>
+              </HoloCard>
             </ScrollReveal>
 
             {/* Digital Solutions */}
             <ScrollReveal delay={200}>
-              <div className="group p-8 border-2 border-gray-200 rounded-2xl hover:border-brand-secondary hover:shadow-lg transition-all duration-300">
+              <HoloCard className="p-8 border-2 border-border hover:border-primary" tiltEnabled={true}>
                 {/* Icon */}
-                <div className="w-16 h-16 mb-6 rounded-xl bg-gradient-to-br from-brand-secondary to-rose-600 shadow-lg flex items-center justify-center">
-                  <Laptop className="w-8 h-8 text-white" />
+                <div className="w-12 h-12 mb-6 rounded-lg bg-cyan-500/10 flex items-center justify-center group-hover:bg-cyan-500/20 transition-colors">
+                  <Laptop className="w-6 h-6 text-cyan-600" />
                 </div>
 
                 {/* Headline */}
-                <h2 className="text-2xl lg:text-3xl font-bold text-brand-heading mb-4">
+                <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-4">
                   {t('dualValue.software.headline')}
                 </h2>
 
                 {/* Description */}
-                <p className="text-base text-gray-600 mb-6 leading-relaxed">
+                <p className="text-base text-muted-foreground mb-6 leading-relaxed">
                   {t('dualValue.software.description')}
                 </p>
 
@@ -385,19 +374,19 @@ export default async function HomePage({ params }: Props) {
                 <ul className="space-y-2.5 mb-8">
                   {[1, 2, 3, 4, 5].map((i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <CheckIcon className="w-4 h-4 text-brand-success mt-1 flex-shrink-0" />
-                      <span className="text-sm text-gray-700">{t(`dualValue.software.feature${i}`)}</span>
+                      <CheckIcon className="w-4 h-4 text-success mt-1 flex-shrink-0" />
+                      <span className="text-sm text-muted-foreground">{t(`dualValue.software.feature${i}`)}</span>
                     </li>
                   ))}
                 </ul>
 
                 {/* CTA */}
                 <Link href={`/${locale}/software`}>
-                  <Button variant="secondary" size="md" className="w-full !bg-brand-secondary hover:!bg-brand-secondary/90 !text-white !border-brand-secondary transition-colors">
+                  <Button variant="secondary" size="md" className="w-full !bg-primary hover:!bg-primary/90 !text-white !border-primary transition-colors">
                     {t('dualValue.software.cta')} →
                   </Button>
                 </Link>
-              </div>
+              </HoloCard>
             </ScrollReveal>
           </div>
         </div>
@@ -409,7 +398,7 @@ export default async function HomePage({ params }: Props) {
           <ScrollReveal>
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center">
               {/* Left - Image (60% / 3 columns) */}
-              <div className="lg:col-span-3 relative h-[400px] lg:h-[600px] rounded-2xl overflow-hidden">
+              <div className="lg:col-span-3 relative h-[400px] lg:h-[600px] rounded-lg overflow-hidden">
                 <Image
                   src="/images/aquavision-logo-frontpage-featured.png"
                   alt={t('featuredProject.headline')}
@@ -419,7 +408,7 @@ export default async function HomePage({ params }: Props) {
                 />
                 {/* Featured Badge Overlay */}
                 <div className="absolute top-6 left-6">
-                  <span className="px-4 py-2 bg-brand-accent text-white text-sm font-semibold rounded-full uppercase tracking-wide">
+                  <span className="px-4 py-2 bg-cta text-white text-sm font-semibold rounded-full uppercase tracking-wide">
                     {t('featuredProject.eyebrow')}
                   </span>
                 </div>
@@ -428,12 +417,12 @@ export default async function HomePage({ params }: Props) {
               {/* Right - Content (40% / 2 columns) */}
               <div className="lg:col-span-2 flex flex-col gap-6">
                 {/* Headline */}
-                <h2 className="text-3xl lg:text-4xl font-bold text-brand-heading">
+                <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
                   {t('featuredProject.headline')}
                 </h2>
 
                 {/* Description */}
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <p className="text-lg text-muted-foreground leading-relaxed">
                   {t('featuredProject.description')}
                 </p>
 
@@ -441,12 +430,12 @@ export default async function HomePage({ params }: Props) {
                 <div className="grid grid-cols-2 gap-4 py-4">
                   {/* Stat 1 */}
                   <div className="flex items-start gap-3">
-                    <Square className="w-6 h-6 text-brand-secondary mt-1" />
+                    <Square className="w-6 h-6 text-primary mt-1" />
                     <div>
-                      <div className="text-xl font-bold text-gray-900">
+                      <div className="text-xl font-bold text-foreground">
                         {t('featuredProject.stat1Number')}
                       </div>
-                      <div className="text-sm text-gray-600">
+                      <div className="text-sm text-muted-foreground">
                         {t('featuredProject.stat1Label')}
                       </div>
                     </div>
@@ -454,12 +443,12 @@ export default async function HomePage({ params }: Props) {
 
                   {/* Stat 2 */}
                   <div className="flex items-start gap-3">
-                    <Factory className="w-6 h-6 text-brand-secondary mt-1" />
+                    <Factory className="w-6 h-6 text-primary mt-1" />
                     <div>
-                      <div className="text-xl font-bold text-gray-900">
+                      <div className="text-xl font-bold text-foreground">
                         {t('featuredProject.stat2Number')}
                       </div>
-                      <div className="text-sm text-gray-600">
+                      <div className="text-sm text-muted-foreground">
                         {t('featuredProject.stat2Label')}
                       </div>
                     </div>
@@ -467,12 +456,12 @@ export default async function HomePage({ params }: Props) {
 
                   {/* Stat 3 */}
                   <div className="flex items-start gap-3">
-                    <Bot className="w-6 h-6 text-brand-secondary mt-1" />
+                    <Bot className="w-6 h-6 text-primary mt-1" />
                     <div>
-                      <div className="text-xl font-bold text-gray-900">
+                      <div className="text-xl font-bold text-foreground">
                         {t('featuredProject.stat3Number')}
                       </div>
-                      <div className="text-sm text-gray-600">
+                      <div className="text-sm text-muted-foreground">
                         {t('featuredProject.stat3Label')}
                       </div>
                     </div>
@@ -480,12 +469,12 @@ export default async function HomePage({ params }: Props) {
 
                   {/* Stat 4 */}
                   <div className="flex items-start gap-3">
-                    <Recycle className="w-6 h-6 text-brand-secondary mt-1" />
+                    <Recycle className="w-6 h-6 text-primary mt-1" />
                     <div>
-                      <div className="text-xl font-bold text-gray-900">
+                      <div className="text-xl font-bold text-foreground">
                         {t('featuredProject.stat4Number')}
                       </div>
-                      <div className="text-sm text-gray-600">
+                      <div className="text-sm text-muted-foreground">
                         {t('featuredProject.stat4Label')}
                       </div>
                     </div>
@@ -513,13 +502,13 @@ export default async function HomePage({ params }: Props) {
           {/* Section Header */}
           <ScrollReveal>
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <div className="text-brand-secondary text-sm font-semibold tracking-wider uppercase mb-4">
+              <div className="text-primary text-sm font-semibold tracking-wider uppercase mb-4">
                 {t('serviceCategories.eyebrow')}
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-brand-heading mb-4">
+              <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
                 {t('serviceCategories.headline')}
               </h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-muted-foreground">
                 {t('serviceCategories.description')}
               </p>
             </div>
@@ -528,38 +517,38 @@ export default async function HomePage({ params }: Props) {
           {/* Services Grid - 3x3 */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: RefreshCw, key: 'service1', href: '/services/ras', iconBg: 'bg-blue-500', borderColor: 'border-blue-200' },
-              { icon: Waves, key: 'service2', href: '/services/hfts', iconBg: 'bg-cyan-500', borderColor: 'border-cyan-200' },
-              { icon: Fish, key: 'service3', href: '/services/hatchery', iconBg: 'bg-green-500', borderColor: 'border-green-200' },
-              { icon: Droplets, key: 'service4', href: '/services/water-treatment', iconBg: 'bg-teal-500', borderColor: 'border-teal-200' },
+              { icon: RefreshCw, key: 'service1', href: '/services/ras-systems', iconBg: 'bg-secondary', borderColor: 'border-blue-200' },
+              { icon: Waves, key: 'service2', href: '/services/hfts', iconBg: 'bg-primary', borderColor: 'border-cyan-200' },
+              { icon: Fish, key: 'service3', href: '/services/hatchery', iconBg: 'bg-cyan-500', borderColor: 'border-cyan-200' },
+              { icon: Droplets, key: 'service4', href: '/services/water-treatment', iconBg: 'bg-cyan-500', borderColor: 'border-cyan-200' },
               { icon: Factory, key: 'service5', href: '/services/processing', iconBg: 'bg-purple-500', borderColor: 'border-purple-200' },
-              { icon: Wheat, key: 'service6', href: '/services/feed-mill', iconBg: 'bg-amber-500', borderColor: 'border-amber-200' },
+              { icon: Wheat, key: 'service6', href: '/services/feed-mill', iconBg: 'bg-cta', borderColor: 'border-amber-200' },
               { icon: Settings, key: 'service7', href: '/services/custom-design-equipment', iconBg: 'bg-indigo-500', borderColor: 'border-indigo-200' },
-              { icon: Calculator, key: 'service9', href: '/services/feasibility-studies', iconBg: 'bg-emerald-500', borderColor: 'border-emerald-200' },
-              { icon: Code, key: 'service8', href: '/services/software', iconBg: 'bg-rose-500', borderColor: 'border-rose-200' },
+              { icon: Calculator, key: 'service9', href: '/services/feasibility-studies', iconBg: 'bg-success', borderColor: 'border-cyan-200' },
+              { icon: Code, key: 'service8', href: '/software', iconBg: 'bg-rose-500', borderColor: 'border-rose-200' },
             ].map((service, index) => {
               const Icon = service.icon;
               return (
                 <ScrollReveal key={service.key} delay={index * 50}>
                   <Link href={`/${locale}${service.href}`}>
-                    <div className={`group p-6 border-2 border-gray-200 rounded-xl hover:${service.borderColor} hover:shadow-lg transition-all duration-300 h-full flex flex-col`}>
+                    <div className={`group p-6 border-2 border-border rounded-xl hover:${service.borderColor} hover:shadow-sm transition-all duration-300 h-full flex flex-col`}>
                       {/* Icon */}
                       <div className={`w-14 h-14 mb-4 rounded-lg ${service.iconBg} flex items-center justify-center group-hover:scale-110 transition-transform`}>
                         <Icon className="w-7 h-7 text-white" />
                       </div>
 
                       {/* Service Name */}
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      <h3 className="text-xl font-bold text-foreground mb-2">
                         {t(`serviceCategories.${service.key}.name`)}
                       </h3>
 
                       {/* Description */}
-                      <p className="text-sm text-gray-600 mb-4 flex-grow">
+                      <p className="text-sm text-muted-foreground mb-4 flex-grow">
                         {t(`serviceCategories.${service.key}.description`)}
                       </p>
 
                       {/* Learn More Link */}
-                      <div className="flex items-center text-brand-primary text-sm font-semibold group-hover:gap-2 transition-all">
+                      <div className="flex items-center text-foreground text-sm font-semibold group-hover:gap-2 transition-all">
                         <span>{t('serviceCategories.learnMore')}</span>
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </div>
@@ -573,18 +562,18 @@ export default async function HomePage({ params }: Props) {
       </Section>
 
       {/* Why Choose Vismar Aqua? Section */}
-      <Section background="transparent" spacing="2xl" className="bg-gradient-to-br from-gray-50 to-white">
+      <Section background="transparent" spacing="2xl" className="bg-gradient-to-br from-slate-50 to-white">
         <div className="container-custom">
           {/* Section Header */}
           <ScrollReveal>
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <div className="text-brand-secondary text-sm font-semibold tracking-wider uppercase mb-4">
+              <div className="text-primary text-sm font-semibold tracking-wider uppercase mb-4">
                 {t('whyVismar.section.label')}
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-brand-heading mb-4">
+              <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
                 {t('whyVismar.section.title')}
               </h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-muted-foreground">
                 {t('whyVismar.section.subtitle')}
               </p>
             </div>
@@ -594,24 +583,24 @@ export default async function HomePage({ params }: Props) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {/* Card 1: Exceptional Value */}
             <ScrollReveal delay={0}>
-              <div className="group p-8 bg-blue-50 rounded-2xl border-2 border-gray-200 hover:border-blue-300 hover:shadow-xl hover:scale-105 transition-all duration-300 h-full flex flex-col">
+              <div className="group p-8 bg-blue-50 rounded-lg border-2 border-border hover:border-blue-300 hover:shadow-sm hover:scale-105 transition-all duration-300 h-full flex flex-col">
                 {/* Icon Container */}
-                <div className="w-16 h-16 mb-6 rounded-xl bg-blue-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 mb-6 rounded-xl bg-secondary flex items-center justify-center group-hover:scale-110 transition-transform">
                   <DollarSign className="w-8 h-8 text-white" />
                 </div>
 
                 {/* Headline */}
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">
+                <h3 className="text-3xl font-bold text-foreground mb-2">
                   {t('whyVismar.card1.headline')}
                 </h3>
 
                 {/* Subheadline */}
-                <h4 className="text-xl font-semibold text-gray-700 mb-4">
+                <h4 className="text-xl font-semibold text-muted-foreground mb-4">
                   {t('whyVismar.card1.subheadline')}
                 </h4>
 
                 {/* Body */}
-                <p className="text-gray-600 mb-6 flex-grow leading-relaxed">
+                <p className="text-muted-foreground mb-6 flex-grow leading-relaxed">
                   {t('whyVismar.card1.body')}
                 </p>
 
@@ -624,7 +613,7 @@ export default async function HomePage({ params }: Props) {
 
                 {/* Learn More Link */}
                 <Link href={`/${locale}/why-vismar-aqua#value`}>
-                  <div className="flex items-center text-blue-600 font-semibold group-hover:gap-2 transition-all">
+                  <div className="flex items-center text-secondary font-semibold group-hover:gap-2 transition-all">
                     <span>{t('whyVismar.cta')}</span>
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -634,24 +623,24 @@ export default async function HomePage({ params }: Props) {
 
             {/* Card 2: Rapid Response */}
             <ScrollReveal delay={100}>
-              <div className="group p-8 bg-amber-50 rounded-2xl border-2 border-gray-200 hover:border-amber-300 hover:shadow-xl hover:scale-105 transition-all duration-300 h-full flex flex-col">
+              <div className="group p-8 bg-amber-50 rounded-lg border-2 border-border hover:border-amber-300 hover:shadow-sm hover:scale-105 transition-all duration-300 h-full flex flex-col">
                 {/* Icon Container */}
-                <div className="w-16 h-16 mb-6 rounded-xl bg-amber-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 mb-6 rounded-xl bg-cta flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Zap className="w-8 h-8 text-white" />
                 </div>
 
                 {/* Headline */}
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">
+                <h3 className="text-3xl font-bold text-foreground mb-2">
                   {t('whyVismar.card2.headline')}
                 </h3>
 
                 {/* Subheadline */}
-                <h4 className="text-xl font-semibold text-gray-700 mb-4">
+                <h4 className="text-xl font-semibold text-muted-foreground mb-4">
                   {t('whyVismar.card2.subheadline')}
                 </h4>
 
                 {/* Body */}
-                <p className="text-gray-600 mb-6 flex-grow leading-relaxed">
+                <p className="text-muted-foreground mb-6 flex-grow leading-relaxed">
                   {t('whyVismar.card2.body')}
                 </p>
 
@@ -664,7 +653,7 @@ export default async function HomePage({ params }: Props) {
 
                 {/* Learn More Link */}
                 <Link href={`/${locale}/why-vismar-aqua#response`}>
-                  <div className="flex items-center text-amber-600 font-semibold group-hover:gap-2 transition-all">
+                  <div className="flex items-center text-cta font-semibold group-hover:gap-2 transition-all">
                     <span>{t('whyVismar.cta')}</span>
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -674,24 +663,24 @@ export default async function HomePage({ params }: Props) {
 
             {/* Card 3: Advanced Technology */}
             <ScrollReveal delay={200}>
-              <div className="group p-8 bg-purple-50 rounded-2xl border-2 border-gray-200 hover:border-purple-300 hover:shadow-xl hover:scale-105 transition-all duration-300 h-full flex flex-col">
+              <div className="group p-8 bg-purple-50 rounded-lg border-2 border-border hover:border-purple-300 hover:shadow-sm hover:scale-105 transition-all duration-300 h-full flex flex-col">
                 {/* Icon Container */}
                 <div className="w-16 h-16 mb-6 rounded-xl bg-purple-500 flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Rocket className="w-8 h-8 text-white" />
                 </div>
 
                 {/* Headline */}
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">
+                <h3 className="text-3xl font-bold text-foreground mb-2">
                   {t('whyVismar.card3.headline')}
                 </h3>
 
                 {/* Subheadline */}
-                <h4 className="text-xl font-semibold text-gray-700 mb-4">
+                <h4 className="text-xl font-semibold text-muted-foreground mb-4">
                   {t('whyVismar.card3.subheadline')}
                 </h4>
 
                 {/* Body */}
-                <p className="text-gray-600 mb-6 flex-grow leading-relaxed">
+                <p className="text-muted-foreground mb-6 flex-grow leading-relaxed">
                   {t('whyVismar.card3.body')}
                 </p>
 
@@ -714,37 +703,37 @@ export default async function HomePage({ params }: Props) {
 
             {/* Card 4: Battle-Tested Resilience */}
             <ScrollReveal delay={300}>
-              <div className="group p-8 bg-green-50 rounded-2xl border-2 border-gray-200 hover:border-green-300 hover:shadow-xl hover:scale-105 transition-all duration-300 h-full flex flex-col">
+              <div className="group p-8 bg-slate-50 rounded-lg border-2 border-border hover:border-cyan-300 hover:shadow-sm hover:scale-105 transition-all duration-300 h-full flex flex-col">
                 {/* Icon Container */}
-                <div className="w-16 h-16 mb-6 rounded-xl bg-green-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 mb-6 rounded-xl bg-cyan-500 flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Shield className="w-8 h-8 text-white" />
                 </div>
 
                 {/* Headline */}
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">
+                <h3 className="text-3xl font-bold text-foreground mb-2">
                   {t('whyVismar.card4.headline')}
                 </h3>
 
                 {/* Subheadline */}
-                <h4 className="text-xl font-semibold text-gray-700 mb-4">
+                <h4 className="text-xl font-semibold text-muted-foreground mb-4">
                   {t('whyVismar.card4.subheadline')}
                 </h4>
 
                 {/* Body */}
-                <p className="text-gray-600 mb-6 flex-grow leading-relaxed">
+                <p className="text-muted-foreground mb-6 flex-grow leading-relaxed">
                   {t('whyVismar.card4.body')}
                 </p>
 
                 {/* Badge */}
                 <div className="mb-4">
-                  <span className="inline-block px-4 py-2 bg-green-100 text-green-700 text-sm font-semibold rounded-full">
+                  <span className="inline-block px-4 py-2 bg-cyan-100 text-cyan-700 text-sm font-semibold rounded-full">
                     {t('whyVismar.card4.badge')}
                   </span>
                 </div>
 
                 {/* Learn More Link */}
                 <Link href={`/${locale}/why-vismar-aqua#resilience`}>
-                  <div className="flex items-center text-green-600 font-semibold group-hover:gap-2 transition-all">
+                  <div className="flex items-center text-cyan-600 font-semibold group-hover:gap-2 transition-all">
                     <span>{t('whyVismar.cta')}</span>
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -755,19 +744,41 @@ export default async function HomePage({ params }: Props) {
         </div>
       </Section>
 
+      {/* Blueprint/Code Slider */}
+      <Section background="dark" spacing="2xl">
+        <div className="container-custom">
+          <ScrollReveal>
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <div className="font-mono text-primary text-sm tracking-widest uppercase mb-4">
+                {t('blueprintSlider.eyebrow')}
+              </div>
+              <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+                {t('blueprintSlider.headline')}
+              </h2>
+              <p className="text-xl text-dark-muted">
+                {t('blueprintSlider.description')}
+              </p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={200}>
+            <BlueprintCodeSlider />
+          </ScrollReveal>
+        </div>
+      </Section>
+
       {/* Technology Showcase */}
       <Section background="light" spacing="2xl">
         <div className="container-custom">
           {/* Section Header */}
           <ScrollReveal>
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <div className="text-brand-secondary text-sm font-semibold tracking-wider uppercase mb-4">
+              <div className="text-primary text-sm font-semibold tracking-wider uppercase mb-4">
                 {t('technologies.eyebrow')}
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-brand-heading mb-4">
+              <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
                 {t('technologies.headline')}
               </h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-muted-foreground">
                 {t('technologies.description')}
               </p>
             </div>
@@ -782,7 +793,7 @@ export default async function HomePage({ params }: Props) {
             ].map((tech, index) => (
               <ScrollReveal key={tech.key} delay={index * 100}>
                 <Link href={`/${locale}${tech.href}`}>
-                  <div className="group grid grid-cols-1 md:grid-cols-3 gap-6 bg-white border-2 border-gray-200 rounded-2xl overflow-hidden hover:border-brand-secondary hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
+                  <div className="group grid grid-cols-1 md:grid-cols-3 gap-6 bg-white border-2 border-border rounded-lg overflow-hidden hover:border-primary hover:shadow-sm hover:scale-[1.02] transition-all duration-300">
                     {/* Image - 30% */}
                     <div className="md:col-span-1 relative h-64 md:h-auto">
                       <Image
@@ -796,13 +807,13 @@ export default async function HomePage({ params }: Props) {
 
                     {/* Content - 70% */}
                     <div className="md:col-span-2 p-6 md:p-8 flex flex-col justify-center">
-                      <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-3 group-hover:text-brand-secondary transition-colors">
+                      <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
                         {t(`technologies.${tech.key}.title`)}
                       </h3>
-                      <p className="text-lg text-gray-600 mb-4 leading-relaxed">
+                      <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
                         {t(`technologies.${tech.key}.description`)}
                       </p>
-                      <div className="flex items-center text-brand-secondary font-semibold group-hover:gap-2 transition-all">
+                      <div className="flex items-center text-primary font-semibold group-hover:gap-2 transition-all">
                         <span>{t(`technologies.${tech.key}.cta`)}</span>
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                       </div>
@@ -822,8 +833,8 @@ export default async function HomePage({ params }: Props) {
             {/* Left - Visual (40% / 2 columns) */}
             <div className="lg:col-span-2">
               <ScrollReveal>
-                <div className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden bg-gradient-to-br from-brand-secondary/10 to-brand-primary/10 flex items-center justify-center">
-                <Laptop className="w-48 h-48 text-brand-secondary opacity-20" />
+                <div className="relative h-[400px] lg:h-[500px] rounded-lg overflow-hidden bg-gradient-to-br from-primary/10 to-slate-900/10 flex items-center justify-center">
+                <Laptop className="w-48 h-48 text-primary opacity-20" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Image
                     src="/images/template/placeholder-image5.png"
@@ -843,53 +854,53 @@ export default async function HomePage({ params }: Props) {
                 <div className="flex flex-col gap-6">
                 {/* Badge */}
                 <div>
-                  <span className="px-4 py-2 bg-brand-accent text-white text-sm font-semibold rounded-full uppercase tracking-wide">
+                  <span className="px-4 py-2 bg-cta text-white text-sm font-semibold rounded-full uppercase tracking-wide">
                     {t('softwareAnnouncement.badge')}
                   </span>
                 </div>
 
                 {/* Headline */}
-                <h2 className="text-3xl lg:text-4xl font-bold text-brand-heading">
+                <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
                   {t('softwareAnnouncement.headline')}
                 </h2>
 
                 {/* Description */}
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <p className="text-lg text-muted-foreground leading-relaxed">
                   {t('softwareAnnouncement.description')}
                 </p>
 
                 {/* Features Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="flex items-start gap-3">
-                    <Fish className="w-5 h-5 text-brand-secondary mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">{t('softwareAnnouncement.feature1')}</span>
+                    <Fish className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">{t('softwareAnnouncement.feature1')}</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <Thermometer className="w-5 h-5 text-brand-secondary mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">{t('softwareAnnouncement.feature2')}</span>
+                    <Thermometer className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">{t('softwareAnnouncement.feature2')}</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <BarChart3 className="w-5 h-5 text-brand-secondary mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">{t('softwareAnnouncement.feature3')}</span>
+                    <BarChart3 className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">{t('softwareAnnouncement.feature3')}</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <Calendar className="w-5 h-5 text-brand-secondary mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">{t('softwareAnnouncement.feature4')}</span>
+                    <Calendar className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">{t('softwareAnnouncement.feature4')}</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <Dna className="w-5 h-5 text-brand-secondary mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">{t('softwareAnnouncement.feature5')}</span>
+                    <Dna className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">{t('softwareAnnouncement.feature5')}</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <Palette className="w-5 h-5 text-brand-secondary mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">{t('softwareAnnouncement.feature6')}</span>
+                    <Palette className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">{t('softwareAnnouncement.feature6')}</span>
                   </div>
                 </div>
 
                 {/* CTA */}
                 <div>
                   <Link href={`/${locale}/software`}>
-                    <Button variant="accent" size="lg" className="group">
+                    <Button variant="cta" size="lg" className="group">
                       {t('softwareAnnouncement.cta')}
                       <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Button>
@@ -908,13 +919,13 @@ export default async function HomePage({ params }: Props) {
           {/* Section Header */}
           <ScrollReveal>
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <div className="text-brand-secondary text-sm font-semibold tracking-wider uppercase mb-4">
+              <div className="text-primary text-sm font-semibold tracking-wider uppercase mb-4">
                 {t('process.eyebrow')}
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-brand-heading mb-4">
+              <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
                 {t('process.headline')}
               </h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-muted-foreground">
                 {t('process.subtitle')}
               </p>
             </div>
@@ -925,7 +936,7 @@ export default async function HomePage({ params }: Props) {
             {/* Step 1: Design */}
             <ScrollReveal delay={0}>
               <div className="relative group">
-                <div className="p-8 bg-white rounded-2xl border-2 border-gray-200 hover:border-red-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                <div className="p-8 bg-white rounded-lg border-2 border-border hover:border-red-300 hover:shadow-sm transition-all duration-300 h-full flex flex-col">
                   {/* Number Badge */}
                   <div className="w-16 h-16 mb-6 rounded-full bg-red-500 flex items-center justify-center">
                     <span className="text-2xl font-bold text-white">01</span>
@@ -933,21 +944,21 @@ export default async function HomePage({ params }: Props) {
 
                   {/* Icon */}
                   <div className="mb-4">
-                    <Ruler className="w-12 h-12 text-brand-primary" />
+                    <Ruler className="w-12 h-12 text-foreground" />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                  <h3 className="text-2xl font-bold text-foreground mb-3">
                     {t('process.step1.title')}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-600 mb-4 flex-grow leading-relaxed">
+                  <p className="text-muted-foreground mb-4 flex-grow leading-relaxed">
                     {t('process.step1.description')}
                   </p>
 
                   {/* Timeline */}
-                  <div className="flex items-center gap-2 text-sm text-brand-secondary font-semibold">
+                  <div className="flex items-center gap-2 text-sm text-primary font-semibold">
                     <Clock className="w-4 h-4" />
                     <span>{t('process.step1.timeline')}</span>
                   </div>
@@ -955,7 +966,7 @@ export default async function HomePage({ params }: Props) {
 
                 {/* Connecting Arrow (hidden on mobile) */}
                 <div className="hidden lg:block absolute top-1/2 -right-6 xl:-right-8 transform -translate-y-1/2 z-10">
-                  <ArrowRight className="w-8 h-8 text-brand-secondary" />
+                  <ArrowRight className="w-8 h-8 text-primary" />
                 </div>
               </div>
             </ScrollReveal>
@@ -963,7 +974,7 @@ export default async function HomePage({ params }: Props) {
             {/* Step 2: Build */}
             <ScrollReveal delay={100}>
               <div className="relative group">
-                <div className="p-8 bg-white rounded-2xl border-2 border-gray-200 hover:border-yellow-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                <div className="p-8 bg-white rounded-lg border-2 border-border hover:border-yellow-300 hover:shadow-sm transition-all duration-300 h-full flex flex-col">
                   {/* Number Badge */}
                   <div className="w-16 h-16 mb-6 rounded-full bg-yellow-500 flex items-center justify-center">
                     <span className="text-2xl font-bold text-white">02</span>
@@ -971,21 +982,21 @@ export default async function HomePage({ params }: Props) {
 
                   {/* Icon */}
                   <div className="mb-4">
-                    <Hammer className="w-12 h-12 text-brand-primary" />
+                    <Hammer className="w-12 h-12 text-foreground" />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                  <h3 className="text-2xl font-bold text-foreground mb-3">
                     {t('process.step2.title')}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-600 mb-4 flex-grow leading-relaxed">
+                  <p className="text-muted-foreground mb-4 flex-grow leading-relaxed">
                     {t('process.step2.description')}
                   </p>
 
                   {/* Timeline */}
-                  <div className="flex items-center gap-2 text-sm text-brand-secondary font-semibold">
+                  <div className="flex items-center gap-2 text-sm text-primary font-semibold">
                     <Clock className="w-4 h-4" />
                     <span>{t('process.step2.timeline')}</span>
                   </div>
@@ -993,7 +1004,7 @@ export default async function HomePage({ params }: Props) {
 
                 {/* Connecting Arrow (hidden on mobile) */}
                 <div className="hidden lg:block absolute top-1/2 -right-6 xl:-right-8 transform -translate-y-1/2 z-10">
-                  <ArrowRight className="w-8 h-8 text-brand-secondary" />
+                  <ArrowRight className="w-8 h-8 text-primary" />
                 </div>
               </div>
             </ScrollReveal>
@@ -1001,7 +1012,7 @@ export default async function HomePage({ params }: Props) {
             {/* Step 3: Operate */}
             <ScrollReveal delay={200}>
               <div className="relative group">
-                <div className="p-8 bg-white rounded-2xl border-2 border-gray-200 hover:border-orange-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                <div className="p-8 bg-white rounded-lg border-2 border-border hover:border-orange-300 hover:shadow-sm transition-all duration-300 h-full flex flex-col">
                   {/* Number Badge */}
                   <div className="w-16 h-16 mb-6 rounded-full bg-orange-500 flex items-center justify-center">
                     <span className="text-2xl font-bold text-white">03</span>
@@ -1009,21 +1020,21 @@ export default async function HomePage({ params }: Props) {
 
                   {/* Icon */}
                   <div className="mb-4">
-                    <Cog className="w-12 h-12 text-brand-primary" />
+                    <Cog className="w-12 h-12 text-foreground" />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                  <h3 className="text-2xl font-bold text-foreground mb-3">
                     {t('process.step3.title')}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-600 mb-4 flex-grow leading-relaxed">
+                  <p className="text-muted-foreground mb-4 flex-grow leading-relaxed">
                     {t('process.step3.description')}
                   </p>
 
                   {/* Timeline */}
-                  <div className="flex items-center gap-2 text-sm text-brand-secondary font-semibold">
+                  <div className="flex items-center gap-2 text-sm text-primary font-semibold">
                     <Clock className="w-4 h-4" />
                     <span>{t('process.step3.timeline')}</span>
                   </div>
@@ -1031,7 +1042,7 @@ export default async function HomePage({ params }: Props) {
 
                 {/* Connecting Arrow (hidden on mobile) */}
                 <div className="hidden lg:block absolute top-1/2 -right-6 xl:-right-8 transform -translate-y-1/2 z-10">
-                  <ArrowRight className="w-8 h-8 text-brand-secondary" />
+                  <ArrowRight className="w-8 h-8 text-primary" />
                 </div>
               </div>
             </ScrollReveal>
@@ -1039,29 +1050,29 @@ export default async function HomePage({ params }: Props) {
             {/* Step 4: Transfer */}
             <ScrollReveal delay={300}>
               <div className="relative group">
-                <div className="p-8 bg-white rounded-2xl border-2 border-gray-200 hover:border-green-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                <div className="p-8 bg-white rounded-lg border-2 border-border hover:border-cyan-300 hover:shadow-sm transition-all duration-300 h-full flex flex-col">
                   {/* Number Badge */}
-                  <div className="w-16 h-16 mb-6 rounded-full bg-green-500 flex items-center justify-center">
+                  <div className="w-16 h-16 mb-6 rounded-full bg-cyan-500 flex items-center justify-center">
                     <span className="text-2xl font-bold text-white">04</span>
                   </div>
 
                   {/* Icon */}
                   <div className="mb-4">
-                    <Handshake className="w-12 h-12 text-brand-primary" />
+                    <Handshake className="w-12 h-12 text-foreground" />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                  <h3 className="text-2xl font-bold text-foreground mb-3">
                     {t('process.step4.title')}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-600 mb-4 flex-grow leading-relaxed">
+                  <p className="text-muted-foreground mb-4 flex-grow leading-relaxed">
                     {t('process.step4.description')}
                   </p>
 
                   {/* Timeline */}
-                  <div className="flex items-center gap-2 text-sm text-brand-secondary font-semibold">
+                  <div className="flex items-center gap-2 text-sm text-primary font-semibold">
                     <Clock className="w-4 h-4" />
                     <span>{t('process.step4.timeline')}</span>
                   </div>
@@ -1077,7 +1088,7 @@ export default async function HomePage({ params }: Props) {
         {/* Section Header */}
         <ScrollReveal>
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-brand-heading mb-4">
+            <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
               {t('testimonials.headline')}
             </h2>
           </div>
@@ -1087,28 +1098,28 @@ export default async function HomePage({ params }: Props) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {/* Testimonial 1 - Valerii */}
           <ScrollReveal delay={0}>
-            <div className="p-8 bg-white rounded-2xl border-2 border-gray-200 hover:border-brand-primary hover:shadow-lg transition-all duration-300">
+            <div className="p-8 bg-white rounded-lg border-2 border-border hover:border-slate-900 hover:shadow-sm transition-all duration-300">
               {/* Avatar */}
               <div className="flex justify-center mb-6">
-                <div className="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-secondary flex items-center justify-center">
                   <span className="text-2xl font-bold text-white">V</span>
                 </div>
               </div>
 
               {/* Quote */}
               <div className="relative mb-6">
-                <div className="text-6xl text-brand-secondary opacity-20 font-serif absolute -top-4 -left-2">&ldquo;</div>
-                <p className="text-lg text-gray-700 italic leading-relaxed pt-4">
+                <div className="text-6xl text-primary opacity-20 font-serif absolute -top-4 -left-2">&ldquo;</div>
+                <p className="text-lg text-muted-foreground italic leading-relaxed pt-4">
                   {t('testimonials.testimonial1.quote')}
                 </p>
               </div>
 
               {/* Author */}
-              <div className="text-center border-t border-gray-200 pt-4">
-                <div className="font-bold text-gray-900">
+              <div className="text-center border-t border-border pt-4">
+                <div className="font-bold text-foreground">
                   {t('testimonials.testimonial1.author')}
                 </div>
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-muted-foreground">
                   {t('testimonials.testimonial1.role')}
                 </div>
               </div>
@@ -1117,28 +1128,28 @@ export default async function HomePage({ params }: Props) {
 
           {/* Testimonial 2 - Alexander */}
           <ScrollReveal delay={100}>
-            <div className="p-8 bg-white rounded-2xl border-2 border-gray-200 hover:border-brand-primary hover:shadow-lg transition-all duration-300">
+            <div className="p-8 bg-white rounded-lg border-2 border-border hover:border-slate-900 hover:shadow-sm transition-all duration-300">
               {/* Avatar */}
               <div className="flex justify-center mb-6">
-                <div className="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-cyan-500 flex items-center justify-center">
                   <span className="text-2xl font-bold text-white">A</span>
                 </div>
               </div>
 
               {/* Quote */}
               <div className="relative mb-6">
-                <div className="text-6xl text-brand-secondary opacity-20 font-serif absolute -top-4 -left-2">&ldquo;</div>
-                <p className="text-lg text-gray-700 italic leading-relaxed pt-4">
+                <div className="text-6xl text-primary opacity-20 font-serif absolute -top-4 -left-2">&ldquo;</div>
+                <p className="text-lg text-muted-foreground italic leading-relaxed pt-4">
                   {t('testimonials.testimonial2.quote')}
                 </p>
               </div>
 
               {/* Author */}
-              <div className="text-center border-t border-gray-200 pt-4">
-                <div className="font-bold text-gray-900">
+              <div className="text-center border-t border-border pt-4">
+                <div className="font-bold text-foreground">
                   {t('testimonials.testimonial2.author')}
                 </div>
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-muted-foreground">
                   {t('testimonials.testimonial2.role')}
                 </div>
               </div>
@@ -1147,7 +1158,7 @@ export default async function HomePage({ params }: Props) {
 
           {/* Testimonial 3 - Victor */}
           <ScrollReveal delay={200}>
-            <div className="p-8 bg-white rounded-2xl border-2 border-gray-200 hover:border-brand-primary hover:shadow-lg transition-all duration-300">
+            <div className="p-8 bg-white rounded-lg border-2 border-border hover:border-slate-900 hover:shadow-sm transition-all duration-300">
               {/* Avatar */}
               <div className="flex justify-center mb-6">
                 <div className="w-16 h-16 rounded-full bg-purple-500 flex items-center justify-center">
@@ -1157,18 +1168,18 @@ export default async function HomePage({ params }: Props) {
 
               {/* Quote */}
               <div className="relative mb-6">
-                <div className="text-6xl text-brand-secondary opacity-20 font-serif absolute -top-4 -left-2">&ldquo;</div>
-                <p className="text-lg text-gray-700 italic leading-relaxed pt-4">
+                <div className="text-6xl text-primary opacity-20 font-serif absolute -top-4 -left-2">&ldquo;</div>
+                <p className="text-lg text-muted-foreground italic leading-relaxed pt-4">
                   {t('testimonials.testimonial3.quote')}
                 </p>
               </div>
 
               {/* Author */}
-              <div className="text-center border-t border-gray-200 pt-4">
-                <div className="font-bold text-gray-900">
+              <div className="text-center border-t border-border pt-4">
+                <div className="font-bold text-foreground">
                   {t('testimonials.testimonial3.author')}
                 </div>
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-muted-foreground">
                   {t('testimonials.testimonial3.role')}
                 </div>
               </div>
@@ -1183,13 +1194,13 @@ export default async function HomePage({ params }: Props) {
           <div className="container-custom">
             <ScrollReveal>
               <div className="text-center max-w-3xl mx-auto mb-16">
-                <div className="text-brand-secondary text-sm font-semibold tracking-wider uppercase mb-4">
+                <div className="text-primary text-sm font-semibold tracking-wider uppercase mb-4">
                   {t('blog.tagline')}
                 </div>
-                <h2 className="text-4xl lg:text-5xl font-bold text-brand-heading mb-4">
+                <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
                   {t('blog.title')}
                 </h2>
-                <p className="text-xl text-gray-600">
+                <p className="text-xl text-muted-foreground">
                   {t('blog.description')}
                 </p>
               </div>
@@ -1226,10 +1237,10 @@ export default async function HomePage({ params }: Props) {
           {/* Section Header */}
           <ScrollReveal>
             <div className="text-center max-w-4xl mx-auto mb-16">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-heading mb-6">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
                 {t('finalCTA.headline')}
               </h2>
-              <p className="text-xl text-gray-600 leading-relaxed">
+              <p className="text-xl text-muted-foreground leading-relaxed">
                 {t('finalCTA.subtitle')}
               </p>
             </div>
@@ -1239,17 +1250,17 @@ export default async function HomePage({ params }: Props) {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
             {/* Form 1: Engineering Project */}
             <ScrollReveal delay={0}>
-              <div className="p-8 lg:p-10 bg-gradient-to-br from-brand-primary/5 to-brand-primary/10 rounded-2xl border-2 border-brand-primary/20 hover:border-brand-primary/40 transition-all duration-300">
+              <div className="p-8 lg:p-10 bg-gradient-to-br from-dark/5 to-slate-900/10 rounded-lg border-2 border-slate-900/20 hover:border-slate-900/40 transition-all duration-300">
                 {/* Icon & Header */}
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 bg-brand-primary rounded-xl flex items-center justify-center">
+                  <div className="w-16 h-16 bg-dark rounded-xl flex items-center justify-center">
                     <Building2 className="w-8 h-8 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-900">
+                    <h3 className="text-2xl font-bold text-foreground">
                       {t('finalCTA.engineering.headline')}
                     </h3>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-muted-foreground">
                       {t('finalCTA.engineering.description')}
                     </p>
                   </div>
@@ -1263,7 +1274,7 @@ export default async function HomePage({ params }: Props) {
                       id="eng-name"
                       type="text"
                       placeholder={t('finalCTA.form.name')}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent"
+                      className="w-full px-4 py-3 border border-border-strong rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
                       required
                     />
                   </div>
@@ -1273,7 +1284,7 @@ export default async function HomePage({ params }: Props) {
                       id="eng-email"
                       type="email"
                       placeholder={t('finalCTA.form.email')}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent"
+                      className="w-full px-4 py-3 border border-border-strong rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
                       required
                     />
                   </div>
@@ -1283,7 +1294,7 @@ export default async function HomePage({ params }: Props) {
                       id="eng-company"
                       type="text"
                       placeholder={t('finalCTA.form.company')}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent"
+                      className="w-full px-4 py-3 border border-border-strong rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
                     />
                   </div>
                   <div>
@@ -1292,7 +1303,7 @@ export default async function HomePage({ params }: Props) {
                       id="eng-phone"
                       type="tel"
                       placeholder={t('finalCTA.form.phone')}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent"
+                      className="w-full px-4 py-3 border border-border-strong rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
                     />
                   </div>
                   <div>
@@ -1301,13 +1312,13 @@ export default async function HomePage({ params }: Props) {
                       id="eng-details"
                       placeholder={t('finalCTA.form.projectDetails')}
                       rows={4}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent resize-none"
+                      className="w-full px-4 py-3 border border-border-strong rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent resize-none"
                       required
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full px-6 py-4 bg-brand-primary text-white font-semibold rounded-lg hover:bg-brand-primary/90 transition-colors flex items-center justify-center gap-2 group"
+                    className="w-full px-6 py-4 bg-dark text-white font-semibold rounded-lg hover:bg-dark/90 transition-colors flex items-center justify-center gap-2 group"
                   >
                     {t('finalCTA.engineering.cta')}
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -1318,17 +1329,17 @@ export default async function HomePage({ params }: Props) {
 
             {/* Form 2: Business Services - Feasibility Studies */}
             <ScrollReveal delay={50}>
-              <div className="p-8 lg:p-10 bg-gradient-to-br from-emerald-500/5 to-emerald-500/10 rounded-2xl border-2 border-emerald-500/20 hover:border-emerald-500/40 transition-all duration-300">
+              <div className="p-8 lg:p-10 bg-gradient-to-br from-cyan-500/5 to-cyan-500/10 rounded-lg border-2 border-cyan-500/20 hover:border-cyan-500/40 transition-all duration-300">
                 {/* Icon & Header */}
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 bg-emerald-500 rounded-xl flex items-center justify-center">
+                  <div className="w-16 h-16 bg-success rounded-xl flex items-center justify-center">
                     <Calculator className="w-8 h-8 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-900">
+                    <h3 className="text-2xl font-bold text-foreground">
                       {t('finalCTA.business.headline')}
                     </h3>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-muted-foreground">
                       {t('finalCTA.business.description')}
                     </p>
                   </div>
@@ -1342,7 +1353,7 @@ export default async function HomePage({ params }: Props) {
                       id="biz-name"
                       type="text"
                       placeholder={t('finalCTA.form.name')}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-border-strong rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                       required
                     />
                   </div>
@@ -1352,7 +1363,7 @@ export default async function HomePage({ params }: Props) {
                       id="biz-email"
                       type="email"
                       placeholder={t('finalCTA.form.email')}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-border-strong rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                       required
                     />
                   </div>
@@ -1362,7 +1373,7 @@ export default async function HomePage({ params }: Props) {
                       id="biz-company"
                       type="text"
                       placeholder={t('finalCTA.form.company')}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-border-strong rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                     />
                   </div>
                   <div>
@@ -1371,7 +1382,7 @@ export default async function HomePage({ params }: Props) {
                       id="biz-phone"
                       type="tel"
                       placeholder={t('finalCTA.form.phone')}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-border-strong rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                     />
                   </div>
                   <div>
@@ -1380,13 +1391,13 @@ export default async function HomePage({ params }: Props) {
                       id="biz-needs"
                       placeholder={t('finalCTA.form.businessNeeds')}
                       rows={4}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none"
+                      className="w-full px-4 py-3 border border-border-strong rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none"
                       required
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full px-6 py-4 bg-emerald-500 text-white font-semibold rounded-lg hover:bg-emerald-600 transition-colors flex items-center justify-center gap-2 group"
+                    className="w-full px-6 py-4 bg-success text-white font-semibold rounded-lg hover:bg-success transition-colors flex items-center justify-center gap-2 group"
                   >
                     {t('finalCTA.business.cta')}
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -1397,17 +1408,17 @@ export default async function HomePage({ params }: Props) {
 
             {/* Form 3: Software Development */}
             <ScrollReveal delay={100}>
-              <div className="p-8 lg:p-10 bg-gradient-to-br from-brand-secondary/5 to-brand-secondary/10 rounded-2xl border-2 border-brand-secondary/20 hover:border-brand-secondary/40 transition-all duration-300">
+              <div className="p-8 lg:p-10 bg-gradient-to-br from-primary/5 to-secondary/10 rounded-lg border-2 border-primary/20 hover:border-primary/40 transition-all duration-300">
                 {/* Icon & Header */}
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 bg-brand-secondary rounded-xl flex items-center justify-center">
+                  <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center">
                     <Code className="w-8 h-8 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-900">
+                    <h3 className="text-2xl font-bold text-foreground">
                       {t('finalCTA.software.headline')}
                     </h3>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-muted-foreground">
                       {t('finalCTA.software.description')}
                     </p>
                   </div>
@@ -1421,7 +1432,7 @@ export default async function HomePage({ params }: Props) {
                       id="sw-name"
                       type="text"
                       placeholder={t('finalCTA.form.name')}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-secondary focus:border-transparent"
+                      className="w-full px-4 py-3 border border-border-strong rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
                       required
                     />
                   </div>
@@ -1431,7 +1442,7 @@ export default async function HomePage({ params }: Props) {
                       id="sw-email"
                       type="email"
                       placeholder={t('finalCTA.form.email')}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-secondary focus:border-transparent"
+                      className="w-full px-4 py-3 border border-border-strong rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
                       required
                     />
                   </div>
@@ -1441,7 +1452,7 @@ export default async function HomePage({ params }: Props) {
                       id="sw-company"
                       type="text"
                       placeholder={t('finalCTA.form.company')}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-secondary focus:border-transparent"
+                      className="w-full px-4 py-3 border border-border-strong rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
                     />
                   </div>
                   <div>
@@ -1450,7 +1461,7 @@ export default async function HomePage({ params }: Props) {
                       id="sw-phone"
                       type="tel"
                       placeholder={t('finalCTA.form.phone')}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-secondary focus:border-transparent"
+                      className="w-full px-4 py-3 border border-border-strong rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
                     />
                   </div>
                   <div>
@@ -1459,13 +1470,13 @@ export default async function HomePage({ params }: Props) {
                       id="sw-needs"
                       placeholder={t('finalCTA.form.softwareNeeds')}
                       rows={4}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-secondary focus:border-transparent resize-none"
+                      className="w-full px-4 py-3 border border-border-strong rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent resize-none"
                       required
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full px-6 py-4 bg-brand-secondary text-white font-semibold rounded-lg hover:bg-brand-secondary/90 transition-colors flex items-center justify-center gap-2 group"
+                    className="w-full px-6 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 group"
                   >
                     {t('finalCTA.software.cta')}
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -1478,11 +1489,11 @@ export default async function HomePage({ params }: Props) {
           {/* Contact Info Below Forms */}
           <ScrollReveal delay={200}>
             <div className="text-center mt-12">
-              <p className="text-lg text-gray-600">
+              <p className="text-lg text-muted-foreground">
                 {t('finalCTA.orCall')}{' '}
                 <a
                   href="tel:+380508796803"
-                  className="font-semibold text-brand-primary hover:text-brand-secondary transition-colors"
+                  className="font-semibold text-foreground hover:text-primary transition-colors"
                 >
                   +380 50 879 6803
                 </a>
